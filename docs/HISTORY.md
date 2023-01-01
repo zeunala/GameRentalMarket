@@ -3,3 +3,6 @@
   - Heroku를 이용하려 하였으나 무료 서비스 종료로 대안 찾음
   - render를 통해 호스팅 성공(Docker 이용)
   - https://gamerentalmarket.onrender.com
+- 2023/01/01: 로고 만들기, 메인화면 페이지, 로그인 페이지 추가
+  - 로고 만들기는 Tailor Brands([#](https://www.tailorbrands.com/)) 이용
+  - 부트스트랩을 이용하여 기본 구조를 잡음
