@@ -19,4 +19,9 @@ public class MainController {
     public String login() {
         return "login";
     }
+
+    @GetMapping("/join")
+    public String join() {
+        return "join";
+    }
 }
