@@ -24,4 +24,9 @@ public class MainController {
     public String join() {
         return "join";
     }
+
+    @GetMapping("/detail")
+    public String detail() {
+        return "detail";
+    }
 }
