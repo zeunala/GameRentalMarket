@@ -29,4 +29,9 @@ public class MainController {
     public String detail() {
         return "detail";
     }
+
+    @GetMapping("/register/buy")
+    public String registerBuy() {
+        return "register_buy";
+    }
 }
