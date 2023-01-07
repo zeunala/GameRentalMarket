@@ -34,4 +34,9 @@ public class MainController {
     public String registerBuy() {
         return "register_buy";
     }
+
+    @GetMapping("/register/sell")
+    public String registerSell() {
+        return "register_sell";
+    }
 }
