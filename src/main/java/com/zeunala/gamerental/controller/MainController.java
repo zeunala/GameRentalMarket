@@ -40,6 +40,11 @@ public class MainController {
         return "register_sell";
     }
 
+    @GetMapping("/mypage/buy")
+    public String mypageBuy() {
+        return "mypage_buy";
+    }
+
     @GetMapping("/mypage/sell")
     public String mypageSell() {
         return "mypage_sell";
