@@ -12,11 +12,11 @@ SET foreign_key_checks = 1;
 CREATE TABLE IF NOT EXISTS `user` (
     `id` INT(11) NOT NULL AUTO_INCREMENT,
     `name` VARCHAR(45) NOT NULL,
-    `nickname` VARCHAR(45) NOT NULL,
-    `email` VARCHAR(255) NOT NULL,
-    `tel` VARCHAR(45) NOT NULL,
+    `nickname` VARCHAR(45) NOT NULL UNIQUE,
+    `email` VARCHAR(255) NOT NULL UNIQUE,
+    `tel` VARCHAR(45) NOT NULL UNIQUE,
     `home_address` VARCHAR(255) NULL DEFAULT NULL COMMENT '직거래 검색을 위한 주소로 상세주소 필요X',
-    `login_id` VARCHAR(255) NOT NULL,
+    `login_id` VARCHAR(255) NOT NULL UNIQUE,
     `login_password` VARCHAR(255) NOT NULL,
     PRIMARY KEY (`id`))
 ENGINE = InnoDB DEFAULT CHARSET=utf8;
