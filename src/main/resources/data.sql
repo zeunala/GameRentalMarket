@@ -14,6 +14,13 @@ INSERT INTO `file` (id, name, path) VALUES (6, '이미지6', 'img/img6');
 INSERT INTO `file` (id, name, path) VALUES (7, '이미지7', 'img/img7');
 INSERT INTO `file` (id, name, path) VALUES (8, '이미지8', 'img/img8');
 INSERT INTO `file` (id, name, path) VALUES (9, '이미지9', 'img/img9');
+INSERT INTO `file` (id, name, path) VALUES (10, '프로모션 이미지1', 'img/promotionImg1');
+INSERT INTO `file` (id, name, path) VALUES (11, '프로모션 이미지2', 'img/promotionImg2');
+INSERT INTO `file` (id, name, path) VALUES (12, '프로모션 이미지3', 'img/promotionImg3');
+
+INSERT INTO `promotion` (id, file_id, url) VALUES (1, 10, '/main');
+INSERT INTO `promotion` (id, file_id, url) VALUES (2, 11, NULL);
+INSERT INTO `promotion` (id, file_id, url) VALUES (3, 12, NULL);
 
 INSERT INTO `product` (id, category_id, title, description, original_price, file_id) VALUES (1, 1, 'PlayStation title A', '플레이스테이션 타이틀 A', 59000,  1);
 INSERT INTO `product` (id, category_id, title, description, original_price, file_id) VALUES (2, 1, 'PlayStation title B', '플레이스테이션 타이틀 B', 69000,  2);
