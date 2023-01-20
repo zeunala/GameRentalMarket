@@ -30,7 +30,7 @@ INSERT INTO `product` (id, category_id, title, description, original_price, file
 INSERT INTO `product` (id, category_id, title, description, original_price, file_id) VALUES (6, 2, 'XBOX title F', '엑스박스 타이틀 F', 79000,  6);
 INSERT INTO `product` (id, category_id, title, description, original_price, file_id) VALUES (7, 3, 'SWITCH title G', '스위치 타이틀 G', 38000,  7);
 INSERT INTO `product` (id, category_id, title, description, original_price, file_id) VALUES (8, 3, 'SWITCH title H', '스위치 타이틀 H', 64000,  8);
-INSERT INTO `product` (id, category_id, title, description, original_price, file_id) VALUES (9, 3, 'PC title I', 'PC 타이틀 I', 70000,  9);
+INSERT INTO `product` (id, category_id, title, description, original_price, file_id) VALUES (9, 4, 'PC title I', 'PC 타이틀 I', 70000,  9);
 
 INSERT INTO `user` (id, name, nickname, email, tel, home_address, login_id, login_password) VALUES (1, '갑', 'AAA', 'AAA@gmail.com', '010-1111-1111', '서울', 'AAA123', '1234');
 INSERT INTO `user` (id, name, nickname, email, tel, home_address, login_id, login_password) VALUES (2, '을', 'BBB', 'BBB@gmail.com', '010-2222-2222', '인천', 'BBB456', '4567');
