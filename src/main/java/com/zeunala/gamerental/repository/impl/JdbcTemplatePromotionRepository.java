@@ -10,6 +10,8 @@ import org.springframework.stereotype.Repository;
 import javax.sql.DataSource;
 import java.util.List;
 
+import static com.zeunala.gamerental.repository.impl.sql.PromotionRepositorySql.FIND_ALL_PROMOTION_INFO;
+
 @Repository
 public class JdbcTemplatePromotionRepository implements PromotionRepository {
     private final NamedParameterJdbcTemplate jdbc;
@@ -20,7 +22,6 @@ public class JdbcTemplatePromotionRepository implements PromotionRepository {
 
     @Override
     public List<PromotionInfo> findAllPromotionInfo() {
-        return jdbc.query(PromotionRepositorySql.FIND_ALL_PROMOTION_INFO,
-                BeanPropertyRowMapper.newInstance(PromotionInfo.class));
+        return jdbc.query(FIND_ALL_PROMOTION_INFO, BeanPropertyRowMapper.newInstance(PromotionInfo.class));
     }
 }
