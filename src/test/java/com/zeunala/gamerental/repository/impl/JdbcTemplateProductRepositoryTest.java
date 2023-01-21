@@ -1,5 +1,6 @@
 package com.zeunala.gamerental.repository.impl;
 
+import com.zeunala.gamerental.dto.ProductInfo;
 import com.zeunala.gamerental.repository.ProductRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.DisplayName;
@@ -43,5 +44,13 @@ class JdbcTemplateProductRepositoryTest {
     void findMultipleProductInfoByCategoryId(Integer categoryId, Integer expected) {
         assertThat(productRepository.findMultipleProductInfoByCategoryId(categoryId, 0, 1000).size())
                 .isEqualTo(expected);
+    }
+
+    @Test
+    @DisplayName("1개의 상품 정보 확인")
+    void findProductInfoByProductId() {
+        ProductInfo productInfo = productRepository.findProductInfoByProductId(1);
+        log.info("첫번째 상품 정보 조회: {}", productInfo);
+        assertThat(productInfo).isNotNull();
     }
 }
