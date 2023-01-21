@@ -29,4 +29,19 @@ class JdbcTemplateProductRepositoryTest {
     void countProductInfoByCategoryId(Integer categoryId, Integer expected) {
         assertThat(productRepository.countProductInfoByCategoryId(categoryId)).isEqualTo(expected);
     }
+
+    @Test
+    @DisplayName("Product 테이블의 정보들 조회 확인")
+    void findMultipleProductInfo() {
+        log.info("전체 상품 정보 조회: {}", productRepository.findMultipleProductInfo(0, 1000));
+        assertThat(productRepository.findMultipleProductInfo(0, 4).size()).isEqualTo(4);
+    }
+
+    @ParameterizedTest
+    @CsvSource({"1,3", "2,3", "3,2", "4,1", "5,0", "6,0"})
+    @DisplayName("Product 테이블의 각 카테고리별 정보들 조회 확인")
+    void findMultipleProductInfoByCategoryId(Integer categoryId, Integer expected) {
+        assertThat(productRepository.findMultipleProductInfoByCategoryId(categoryId, 0, 1000).size())
+                .isEqualTo(expected);
+    }
 }
