@@ -55,4 +55,10 @@ public class JdbcTemplateProductRepository implements ProductRepository {
         return jdbc.query(FIND_MULTIPLE_PRODUCT_INFO_BY_CATEGORY_ID,
                 sqlParam, BeanPropertyRowMapper.newInstance(ProductInfo.class));
     }
+
+    @Override
+    public ProductInfo findProductInfoByProductId(Integer productId) {
+        return jdbc.queryForObject(FIND_PRODUCT_INFO_BY_PRODUCT_ID,
+                Map.of("productId", productId), BeanPropertyRowMapper.newInstance(ProductInfo.class));
+    }
 }

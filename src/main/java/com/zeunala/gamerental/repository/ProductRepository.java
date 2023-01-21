@@ -38,4 +38,12 @@ public interface ProductRepository {
      * @return 해당 카테고리의 start ~ start+count-1 번째의 상품 정보
      */
     List<ProductInfo> findMultipleProductInfoByCategoryId(Integer categoryId, Integer start, Integer count);
+
+    /**
+     * 주어진 id에 해당하는 하나의 상품 정보 반환
+     *
+     * @param productId 조회할 상품의 id
+     * @return 해당 id를 갖는 상품 정보
+     */
+    ProductInfo findProductInfoByProductId(Integer productId);
 }
