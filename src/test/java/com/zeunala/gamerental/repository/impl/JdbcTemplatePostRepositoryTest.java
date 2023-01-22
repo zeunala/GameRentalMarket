@@ -38,4 +38,13 @@ class JdbcTemplatePostRepositoryTest {
         assertThat(allPostInfo).allMatch((postInfo) ->
                 postInfo.getRentalFlag() == rentalFlag && postInfo.getStatus() == status);
     }
+
+    @ParameterizedTest
+    @CsvSource({"1,0", "1,2"})
+    @DisplayName("판매자 id/status 조건에 따른 판매글 정보 확인")
+    void findAllPostInfoBySellerUsersIdAndStatus(Integer sellerUsersId, Integer status) {
+        List<PostInfo> allPostInfo = postRepository.findAllPostInfoBySellerUsersIdAndStatus(
+                sellerUsersId, status);
+        assertThat(allPostInfo).allMatch((postInfo) -> postInfo.getStatus() == status);
+    }
 }
