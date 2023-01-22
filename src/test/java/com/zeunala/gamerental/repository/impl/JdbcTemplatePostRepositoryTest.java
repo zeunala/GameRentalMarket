@@ -4,6 +4,7 @@ import com.zeunala.gamerental.dto.PostInfo;
 import com.zeunala.gamerental.repository.PostRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -37,6 +38,15 @@ class JdbcTemplatePostRepositoryTest {
                 productId, rentalFlag, status);
         assertThat(allPostInfo).allMatch((postInfo) ->
                 postInfo.getRentalFlag() == rentalFlag && postInfo.getStatus() == status);
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {1, 2, 3})
+    @DisplayName("판매자 id에 따른 판매글 정보 확인")
+    void findAllPostInfoBySellerUsersId(Integer sellerUsersId) {
+        List<PostInfo> allPostInfo = postRepository.findAllPostInfoBySellerUsersId(sellerUsersId);
+        log.info("판매자 id {}의 판매글 정보들: {}", sellerUsersId, allPostInfo);
+        assertThat(allPostInfo).isNotNull();
     }
 
     @ParameterizedTest
