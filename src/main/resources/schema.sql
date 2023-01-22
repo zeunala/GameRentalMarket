@@ -1,5 +1,5 @@
 SET foreign_key_checks = 0;
-DROP TABLE IF EXISTS `user` CASCADE;
+DROP TABLE IF EXISTS `users` CASCADE;
 DROP TABLE IF EXISTS `file` CASCADE;
 DROP TABLE IF EXISTS `category` CASCADE;
 DROP TABLE IF EXISTS `product` CASCADE;
@@ -9,7 +9,7 @@ DROP TABLE IF EXISTS `chat_message` CASCADE;
 DROP TABLE IF EXISTS `promotion` CASCADE;
 SET foreign_key_checks = 1;
 
-CREATE TABLE IF NOT EXISTS `user` (
+CREATE TABLE IF NOT EXISTS `users` (
     `id` INT(11) NOT NULL AUTO_INCREMENT,
     `name` VARCHAR(45) NOT NULL,
     `nickname` VARCHAR(45) NOT NULL UNIQUE,
@@ -58,7 +58,7 @@ ENGINE = InnoDB DEFAULT CHARSET=utf8;
 CREATE TABLE IF NOT EXISTS `post` (
     `id` INT(11) NOT NULL AUTO_INCREMENT,
     `product_id` INT(11) NOT NULL,
-    `seller_user_id` INT(11) NOT NULL,
+    `seller_users_id` INT(11) NOT NULL,
     `rental_flag` TINYINT(1) NOT NULL COMMENT '렌탈일 경우 1, 직거래일 경우 0',
     `direct_flag` TINYINT(1) NOT NULL COMMENT '직거래일경우 1, 택배거래일 경우 0',
     `price` INT(11) NOT NULL,
@@ -68,8 +68,8 @@ CREATE TABLE IF NOT EXISTS `post` (
     `create_date` DATETIME NOT NULL DEFAULT NOW(),
     `status` TINYINT(1) NOT NULL DEFAULT 0 COMMENT '대기물품 0, 거래중 1, 거래종료 2',
     PRIMARY KEY (`id`),
-    FOREIGN KEY (`seller_user_id`)
-    REFERENCES `user` (`id`)
+    FOREIGN KEY (`seller_users_id`)
+    REFERENCES `users` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
     FOREIGN KEY (`product_id`)
@@ -81,14 +81,14 @@ ENGINE = InnoDB DEFAULT CHARSET=utf8;
 CREATE TABLE IF NOT EXISTS `deal` (
     `id` INT(11) NOT NULL AUTO_INCREMENT,
     `post_id` INT(11) NOT NULL,
-    `buyer_user_id` INT(11) NOT NULL,
+    `buyer_users_id` INT(11) NOT NULL,
     `total_price` INT(11) NOT NULL,
     `create_date` DATETIME NOT NULL DEFAULT NOW(),
     `status` TINYINT(1) NOT NULL DEFAULT 0 COMMENT '예약중(구매자등장) 0, 판매자 인계완료 1, 구매자 인수완료 2, 렌탈중 3(렌탈이 아닌 거래는 바로 거래종료로 이동), 구매자 반환완료 4, 판매자 반환수령 5, 거래종료 6',
     `expiration_date` DATETIME NULL,
     PRIMARY KEY (`id`, `post_id`),
-    FOREIGN KEY (`buyer_user_id`)
-    REFERENCES `user` (`id`)
+    FOREIGN KEY (`buyer_users_id`)
+    REFERENCES `users` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
     FOREIGN KEY (`post_id`)
