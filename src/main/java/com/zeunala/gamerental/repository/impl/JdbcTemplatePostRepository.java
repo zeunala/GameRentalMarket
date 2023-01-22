@@ -12,8 +12,7 @@ import javax.sql.DataSource;
 import java.util.List;
 import java.util.Map;
 
-import static com.zeunala.gamerental.repository.impl.sql.PostRepositorySql.FIND_ALL_POST_INFO_BY_PRODUCT_ID_AND_RENTAL_FLAG_AND_STATUS;
-import static com.zeunala.gamerental.repository.impl.sql.PostRepositorySql.FIND_POST_INFO_BY_POST_ID;
+import static com.zeunala.gamerental.repository.impl.sql.PostRepositorySql.*;
 
 @Repository
 public class JdbcTemplatePostRepository implements PostRepository {
@@ -38,6 +37,16 @@ public class JdbcTemplatePostRepository implements PostRepository {
                 .addValue("status", status);
 
         return jdbc.query(FIND_ALL_POST_INFO_BY_PRODUCT_ID_AND_RENTAL_FLAG_AND_STATUS,
+                sqlParam, BeanPropertyRowMapper.newInstance(PostInfo.class));
+    }
+
+    @Override
+    public List<PostInfo> findAllPostInfoBySellerUsersIdAndStatus(Integer sellerUsersId, Integer status) {
+        SqlParameterSource sqlParam = new MapSqlParameterSource()
+                .addValue("sellerUsersId", sellerUsersId)
+                .addValue("status", status);
+
+        return jdbc.query(FIND_ALL_POST_INFO_BY_SELLER_USERS_ID_AND_STATUS,
                 sqlParam, BeanPropertyRowMapper.newInstance(PostInfo.class));
     }
 }

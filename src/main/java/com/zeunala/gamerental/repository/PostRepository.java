@@ -23,4 +23,13 @@ public interface PostRepository {
      */
     List<PostInfo> findAllPostInfoByProductIdAndRentalFlagAndStatus(Integer productId, Integer rentalFlag,
                                                                     Integer status);
+
+    /**
+     * 판매자 id, status 값이 일치하는 모든 판매글 정보 반환
+     *
+     * @param sellerUsersId 판매자 id 조건
+     * @param status        상태 조건 (대기물품 0, 거래중 1, 거래종료 2)
+     * @return 해당 조건들이 모두 일치하는 판매글 정보 목록
+     */
+    List<PostInfo> findAllPostInfoBySellerUsersIdAndStatus(Integer sellerUsersId, Integer status);
 }
