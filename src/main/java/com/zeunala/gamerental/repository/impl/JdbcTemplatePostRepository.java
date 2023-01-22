@@ -41,6 +41,15 @@ public class JdbcTemplatePostRepository implements PostRepository {
     }
 
     @Override
+    public List<PostInfo> findAllPostInfoBySellerUsersId(Integer sellerUsersId) {
+        SqlParameterSource sqlParam = new MapSqlParameterSource()
+                .addValue("sellerUsersId", sellerUsersId);
+
+        return jdbc.query(FIND_ALL_POST_INFO_BY_SELLER_USERS_ID,
+                sqlParam, BeanPropertyRowMapper.newInstance(PostInfo.class));
+    }
+
+    @Override
     public List<PostInfo> findAllPostInfoBySellerUsersIdAndStatus(Integer sellerUsersId, Integer status) {
         SqlParameterSource sqlParam = new MapSqlParameterSource()
                 .addValue("sellerUsersId", sellerUsersId)

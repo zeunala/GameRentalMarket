@@ -25,6 +25,14 @@ public interface PostRepository {
                                                                     Integer status);
 
     /**
+     * 판매자 id가 일치하는 모든 판매글 정보 반환
+     *
+     * @param sellerUsersId 판매자 id 조건
+     * @return 해당 판매자 id의 모든 판매글 정보 목록
+     */
+    List<PostInfo> findAllPostInfoBySellerUsersId(Integer sellerUsersId);
+
+    /**
      * 판매자 id, status 값이 일치하는 모든 판매글 정보 반환
      *
      * @param sellerUsersId 판매자 id 조건

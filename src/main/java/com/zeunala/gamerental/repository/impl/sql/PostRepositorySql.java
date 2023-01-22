@@ -28,6 +28,10 @@ public class PostRepositorySql {
                     WHERE post.product_id = :productId AND post.rental_flag = :rentalFlag AND post.status = :status;
                     """;
 
+    public static final String FIND_ALL_POST_INFO_BY_SELLER_USERS_ID =
+            COMMON_SELECT_POST_INFO_SQL + """
+                    WHERE post.seller_users_id = :sellerUsersId;
+                    """;
     public static final String FIND_ALL_POST_INFO_BY_SELLER_USERS_ID_AND_STATUS =
             COMMON_SELECT_POST_INFO_SQL + """
                     WHERE post.seller_users_id = :sellerUsersId AND post.status = :status;
