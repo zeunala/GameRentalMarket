@@ -1,6 +1,8 @@
 package com.zeunala.gamerental.repository;
 
+import com.zeunala.gamerental.dto.Post;
 import com.zeunala.gamerental.dto.PostInfo;
+import com.zeunala.gamerental.dto.Users;
 
 import java.util.List;
 
@@ -40,4 +42,12 @@ public interface PostRepository {
      * @return 해당 조건들이 모두 일치하는 판매글 정보 목록
      */
     List<PostInfo> findAllPostInfoBySellerUsersIdAndStatus(Integer sellerUsersId, Integer status);
+
+    /**
+     * post 테이블에 새로운 데이터 추가
+     *
+     * @param post 추가할 데이터(id값은 DB에서 지정)
+     * @return 자동 생성된 id값을 포함한 추가된 데이터
+     */
+    Post save(Post post);
 }
