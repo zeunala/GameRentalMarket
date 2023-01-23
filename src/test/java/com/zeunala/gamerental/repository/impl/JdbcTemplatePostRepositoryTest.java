@@ -1,5 +1,6 @@
 package com.zeunala.gamerental.repository.impl;
 
+import com.zeunala.gamerental.dto.Post;
 import com.zeunala.gamerental.dto.PostInfo;
 import com.zeunala.gamerental.repository.PostRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -10,11 +11,13 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@Transactional
 @Slf4j
 @SpringBootTest
 class JdbcTemplatePostRepositoryTest {
@@ -56,5 +59,24 @@ class JdbcTemplatePostRepositoryTest {
         List<PostInfo> allPostInfo = postRepository.findAllPostInfoBySellerUsersIdAndStatus(
                 sellerUsersId, status);
         assertThat(allPostInfo).allMatch((postInfo) -> postInfo.getStatus() == status);
+    }
+
+    @Test
+    @DisplayName("새로운 판매글 추가")
+    void save() {
+        Post post = new Post(1, 1, 1, 1, 5000, 1000, null, "물건 싸게 빌려드립니다~");
+        Post savedPost = postRepository.save(post);
+        log.info("추가된 판매글: {}", savedPost);
+        assertThat(post.getId()).isNotNull();
+    }
+
+    @Test
+    @DisplayName("새로운 판매글을 추가하고 정보가 정상적으로 조회되는지 테스트")
+    void save_SavePostThenFind_IsNotNull() {
+        Post post = new Post(1, 1, 0, 1, 25000, null, null, "물건 싸게 팝니다~");
+        Post savedPost = postRepository.save(post);
+        PostInfo findPostInfo = postRepository.findPostInfoByPostId(post.getId());
+        log.info("조회된 판매글 정보: {}", findPostInfo);
+        assertThat(findPostInfo).isNotNull();
     }
 }
