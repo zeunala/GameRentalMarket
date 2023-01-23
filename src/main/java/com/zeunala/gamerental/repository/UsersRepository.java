@@ -18,4 +18,12 @@ public interface UsersRepository {
      * @return 일치하는 Users 테이블의 데이터
      */
     Users findByLoginId(String loginId);
+
+    /**
+     * Users 테이블에 새로운 데이터 추가
+     *
+     * @param users 추가할 데이터(id값은 DB에서 지정)
+     * @return 자동 생성된 id값을 포함한 추가된 데이터
+     */
+    Users save(Users users);
 }
