@@ -67,7 +67,7 @@ class JdbcTemplatePostRepositoryTest {
         Post post = new Post(1, 1, 1, 1, 5000, 1000, null, "물건 싸게 빌려드립니다~");
         Post savedPost = postRepository.save(post);
         log.info("추가된 판매글: {}", savedPost);
-        assertThat(post.getId()).isNotNull();
+        assertThat(savedPost.getId()).isNotNull();
     }
 
     @Test
@@ -75,7 +75,7 @@ class JdbcTemplatePostRepositoryTest {
     void save_SavePostThenFind_IsNotNull() {
         Post post = new Post(1, 1, 0, 1, 25000, null, null, "물건 싸게 팝니다~");
         Post savedPost = postRepository.save(post);
-        PostInfo findPostInfo = postRepository.findPostInfoByPostId(post.getId());
+        PostInfo findPostInfo = postRepository.findPostInfoByPostId(savedPost.getId());
         log.info("조회된 판매글 정보: {}", findPostInfo);
         assertThat(findPostInfo).isNotNull();
     }
