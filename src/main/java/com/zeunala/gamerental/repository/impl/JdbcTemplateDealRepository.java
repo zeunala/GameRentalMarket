@@ -1,11 +1,15 @@
 package com.zeunala.gamerental.repository.impl;
 
+import com.zeunala.gamerental.dto.Deal;
 import com.zeunala.gamerental.dto.DealInfo;
 import com.zeunala.gamerental.repository.DealRepository;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
@@ -17,9 +21,13 @@ import static com.zeunala.gamerental.repository.impl.sql.DealRepositorySql.*;
 @Repository
 public class JdbcTemplateDealRepository implements DealRepository {
     private final NamedParameterJdbcTemplate jdbc;
+    private final SimpleJdbcInsert jdbcInsert;
 
     public JdbcTemplateDealRepository(DataSource dataSource) {
         this.jdbc = new NamedParameterJdbcTemplate(dataSource);
+        this.jdbcInsert = new SimpleJdbcInsert(dataSource)
+                .withTableName("deal")
+                .usingGeneratedKeyColumns("id", "create_date", "status");
     }
 
     @Override
@@ -74,5 +82,14 @@ public class JdbcTemplateDealRepository implements DealRepository {
 
         return jdbc.query(FIND_ALL_DEAL_INFO_BY_BUYER_USERS_ID_AND_DEAL_STATUS,
                 sqlParam, BeanPropertyRowMapper.newInstance(DealInfo.class));
+    }
+
+    @Override
+    public Deal save(Deal deal) {
+        KeyHolder keyholder = jdbcInsert.executeAndReturnKeyHolder(new BeanPropertySqlParameterSource(deal));
+        deal.setId((Integer)keyholder.getKeys().get("id"));
+        deal.setCreateDate(keyholder.getKeys().get("create_date").toString().substring(0, 10));
+        deal.setStatus((Integer)keyholder.getKeys().get("status"));
+        return deal;
     }
 }

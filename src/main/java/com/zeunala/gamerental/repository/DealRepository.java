@@ -1,5 +1,6 @@
 package com.zeunala.gamerental.repository;
 
+import com.zeunala.gamerental.dto.Deal;
 import com.zeunala.gamerental.dto.DealInfo;
 
 import java.util.List;
@@ -55,4 +56,12 @@ public interface DealRepository {
      * @return 해당 조건들이 모두 일치하는 모든 거래글 정보 목록
      */
     List<DealInfo> findAllDealInfoByBuyerUsersIdAndDealStatus(Integer buyerUsersId, Integer dealStatus);
+
+    /**
+     * deal 테이블에 새로운 데이터 추가
+     *
+     * @param deal 추가할 데이터(id값은 DB에서 지정)
+     * @return 자동 생성된 id값을 포함한 추가된 데이터
+     */
+    Deal save(Deal deal);
 }
