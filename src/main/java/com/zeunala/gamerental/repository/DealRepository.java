@@ -64,4 +64,13 @@ public interface DealRepository {
      * @return 자동 생성된 id값을 포함한 추가된 데이터
      */
     Deal save(Deal deal);
+
+    /**
+     * deal 테이블에서 id로 행을 찾아 status 값을 변경
+     *
+     * @param id     변경할 행의 id
+     * @param status 바꿀 status 값
+     * @return 변경 성공시 true, 실패시 false 반환
+     */
+    Boolean updateStatusById(Integer id, Integer status);
 }

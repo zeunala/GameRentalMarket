@@ -48,4 +48,10 @@ public class DealRepositorySql {
             COMMON_SELECT_DEAL_INFO_SQL + """
                     WHERE deal.buyer_users_id = :buyerUsersId AND deal.status = :dealStatus
                     """;
+
+    public static final String UPDATE_STATUS_BY_ID = """
+            UPDATE deal
+            SET status = :status
+            WHERE id = :id
+            """;
 }

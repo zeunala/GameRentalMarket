@@ -92,4 +92,15 @@ public class JdbcTemplateDealRepository implements DealRepository {
         deal.setStatus((Integer)keyholder.getKeys().get("status"));
         return deal;
     }
+
+    @Override
+    public Boolean updateStatusById(Integer id, Integer status) {
+        SqlParameterSource sqlParam = new MapSqlParameterSource()
+                .addValue("id", id)
+                .addValue("status", status);
+
+        Integer result = jdbc.update(UPDATE_STATUS_BY_ID, sqlParam);
+
+        return result > 0;
+    }
 }
