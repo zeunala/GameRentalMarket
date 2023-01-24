@@ -75,4 +75,15 @@ public class JdbcTemplatePostRepository implements PostRepository {
         post.setStatus((Integer)keyholder.getKeys().get("status"));
         return post;
     }
+
+    @Override
+    public Boolean updateStatusById(Integer id, Integer status) {
+        SqlParameterSource sqlParam = new MapSqlParameterSource()
+                .addValue("id", id)
+                .addValue("status", status);
+
+        Integer result = jdbc.update(UPDATE_STATUS_BY_ID, sqlParam);
+
+        return result > 0;
+    }
 }

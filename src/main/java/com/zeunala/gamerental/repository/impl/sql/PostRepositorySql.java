@@ -36,4 +36,10 @@ public class PostRepositorySql {
             COMMON_SELECT_POST_INFO_SQL + """
                     WHERE post.seller_users_id = :sellerUsersId AND post.status = :status;
                     """;
+
+    public static final String UPDATE_STATUS_BY_ID = """
+            UPDATE post
+            SET status = :status
+            WHERE id = :id
+            """;
 }
