@@ -12,7 +12,7 @@ public class DealRepositorySql {
             		AS buyerUsersNickName,
             	post.rental_flag AS rentalFlag, post.direct_flag AS directFlag,
             	category.name AS categoryName, product.title AS title,
-            	post.price AS price, post.extension_price AS extensionPrice,
+            	post.price AS price, post.extension_price AS extensionPrice, deal.total_price AS totalPrice,
             	post.deposit AS deposit, post.comment AS comment,
             	FORMATDATETIME(post.create_date, 'yyyy-MM-dd') AS postCreateDate,
             	FORMATDATETIME(deal.create_date, 'yyyy-MM-dd') AS dealCreateDate,
