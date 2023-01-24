@@ -79,4 +79,15 @@ class JdbcTemplatePostRepositoryTest {
         log.info("조회된 판매글 정보: {}", findPostInfo);
         assertThat(findPostInfo).isNotNull();
     }
+
+    @ParameterizedTest
+    @CsvSource({"1,1,true", "2,2,true", "3,2,true", "99999,2,false"})
+    @DisplayName("status 값을 바꾸고 변경값 확인")
+    void updateStatusById(Integer id, Integer status, Boolean expected) {
+        Boolean updateResult = postRepository.updateStatusById(id, status);
+        assertThat(updateResult).isEqualTo(expected);
+        if (updateResult) {
+            assertThat(postRepository.findPostInfoByPostId(id).getStatus()).isEqualTo(status);
+        }
+    }
 }
