@@ -2,6 +2,7 @@ package com.zeunala.gamerental.repository.impl;
 
 import com.zeunala.gamerental.dto.ProductInfo;
 import com.zeunala.gamerental.repository.ProductRepository;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -58,7 +59,11 @@ public class JdbcTemplateProductRepository implements ProductRepository {
 
     @Override
     public ProductInfo findProductInfoByProductId(Integer productId) {
-        return jdbc.queryForObject(FIND_PRODUCT_INFO_BY_PRODUCT_ID,
-                Map.of("productId", productId), BeanPropertyRowMapper.newInstance(ProductInfo.class));
+        try {
+            return jdbc.queryForObject(FIND_PRODUCT_INFO_BY_PRODUCT_ID,
+                    Map.of("productId", productId), BeanPropertyRowMapper.newInstance(ProductInfo.class));
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
     }
 }

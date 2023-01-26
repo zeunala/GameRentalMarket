@@ -3,6 +3,7 @@ package com.zeunala.gamerental.repository.impl;
 import com.zeunala.gamerental.dto.Deal;
 import com.zeunala.gamerental.dto.DealInfo;
 import com.zeunala.gamerental.repository.DealRepository;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -32,8 +33,12 @@ public class JdbcTemplateDealRepository implements DealRepository {
 
     @Override
     public DealInfo findDealInfoByDealId(Integer dealId) {
-        return jdbc.queryForObject(FIND_DEAL_INFO_BY_DEAL_ID,
-                Map.of("dealId", dealId), BeanPropertyRowMapper.newInstance(DealInfo.class));
+        try {
+            return jdbc.queryForObject(FIND_DEAL_INFO_BY_DEAL_ID,
+                    Map.of("dealId", dealId), BeanPropertyRowMapper.newInstance(DealInfo.class));
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
     }
 
     @Override

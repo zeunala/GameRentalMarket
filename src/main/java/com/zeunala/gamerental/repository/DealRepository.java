@@ -10,7 +10,7 @@ public interface DealRepository {
      * 주어진 id에 해당하는 거래글 정보 반환
      *
      * @param dealId 조회할 거래글의 id
-     * @return 해당 id를 갖는 거래글 정보
+     * @return 해당 id를 갖는 거래글 정보 (없을 경우 null)
      */
     DealInfo findDealInfoByDealId(Integer dealId);
 

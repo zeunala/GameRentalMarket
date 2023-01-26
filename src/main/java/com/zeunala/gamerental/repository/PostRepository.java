@@ -11,7 +11,7 @@ public interface PostRepository {
      * 주어진 id에 해당하는 판매글 정보 반환
      *
      * @param postId 조회할 판매글의 id
-     * @return 해당 id를 갖는 판매글 정보
+     * @return 해당 id를 갖는 판매글 정보 (없을 경우 null)
      */
     PostInfo findPostInfoByPostId(Integer postId);
 

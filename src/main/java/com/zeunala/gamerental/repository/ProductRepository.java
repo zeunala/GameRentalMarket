@@ -43,7 +43,7 @@ public interface ProductRepository {
      * 주어진 id에 해당하는 하나의 상품 정보 반환
      *
      * @param productId 조회할 상품의 id
-     * @return 해당 id를 갖는 상품 정보
+     * @return 해당 id를 갖는 상품 정보 (없을 경우 null)
      */
     ProductInfo findProductInfoByProductId(Integer productId);
 }

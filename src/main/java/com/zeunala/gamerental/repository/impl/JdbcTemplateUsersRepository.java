@@ -2,6 +2,7 @@ package com.zeunala.gamerental.repository.impl;
 
 import com.zeunala.gamerental.dto.Users;
 import com.zeunala.gamerental.repository.UsersRepository;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -28,14 +29,22 @@ public class JdbcTemplateUsersRepository implements UsersRepository {
 
     @Override
     public Users findById(Integer id) {
-        return jdbc.queryForObject(FIND_BY_ID, Map.of("id", id),
-                BeanPropertyRowMapper.newInstance(Users.class));
+        try {
+            return jdbc.queryForObject(FIND_BY_ID, Map.of("id", id),
+                    BeanPropertyRowMapper.newInstance(Users.class));
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
     }
 
     @Override
     public Users findByLoginId(String loginId) {
-        return jdbc.queryForObject(FIND_BY_LOGIN_ID, Map.of("loginId", loginId),
-                BeanPropertyRowMapper.newInstance(Users.class));
+        try {
+            return jdbc.queryForObject(FIND_BY_LOGIN_ID, Map.of("loginId", loginId),
+                    BeanPropertyRowMapper.newInstance(Users.class));
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
     }
 
     @Override

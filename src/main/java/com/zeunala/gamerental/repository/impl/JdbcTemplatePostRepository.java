@@ -3,6 +3,7 @@ package com.zeunala.gamerental.repository.impl;
 import com.zeunala.gamerental.dto.Post;
 import com.zeunala.gamerental.dto.PostInfo;
 import com.zeunala.gamerental.repository.PostRepository;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -32,8 +33,12 @@ public class JdbcTemplatePostRepository implements PostRepository {
 
     @Override
     public PostInfo findPostInfoByPostId(Integer postId) {
-        return jdbc.queryForObject(FIND_POST_INFO_BY_POST_ID,
-                Map.of("postId", postId), BeanPropertyRowMapper.newInstance(PostInfo.class));
+        try {
+            return jdbc.queryForObject(FIND_POST_INFO_BY_POST_ID,
+                    Map.of("postId", postId), BeanPropertyRowMapper.newInstance(PostInfo.class));
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
     }
 
     @Override
