@@ -34,6 +34,13 @@ class JdbcTemplatePostRepositoryTest {
     }
 
     @ParameterizedTest
+    @ValueSource(ints = {11111111, 22222222, 33333333, 44444444, -1})
+    @DisplayName("존재하지 않는 판매글 정보 확인시 null 리턴")
+    void findPostInfoByPostId_NotExist_ReturnNull(Integer postId) {
+        assertThat(postRepository.findPostInfoByPostId(postId)).isNull();
+    }
+
+    @ParameterizedTest
     @CsvSource({"1,1,0", "1,1,1", "1,1,2", "1,0,0", "1,0,1", "1,0,2"})
     @DisplayName("조건에 따른 판매글 정보 확인")
     void findAllPostInfoByProductIdAndRentalFlagAndStatus(Integer productId, Integer rentalFlag, Integer status) {

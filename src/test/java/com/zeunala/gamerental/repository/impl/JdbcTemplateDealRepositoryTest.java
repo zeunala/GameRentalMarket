@@ -34,6 +34,13 @@ class JdbcTemplateDealRepositoryTest {
     }
 
     @ParameterizedTest
+    @ValueSource(ints = {11111111, 22222222, -1})
+    @DisplayName("존재하지 않는 dealId의 거래글 정보 확인시 null 리턴")
+    void findDealInfoByDealId_NotExist_ReturnNull(Integer dealId) {
+        assertThat(dealRepository.findDealInfoByDealId(dealId)).isNull();
+    }
+
+    @ParameterizedTest
     @ValueSource(ints = {1, 3})
     @DisplayName("sellerUsersId에 해당하는 모든 거래글 정보 확인")
     void findAllDealInfoBySellerUsersId(Integer sellerUsersId) {

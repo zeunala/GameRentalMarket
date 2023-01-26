@@ -53,4 +53,11 @@ class JdbcTemplateProductRepositoryTest {
         log.info("첫번째 상품 정보 조회: {}", productInfo);
         assertThat(productInfo).isNotNull();
     }
+
+    @Test
+    @DisplayName("존재하지 않는 상품 정보 확인시 null 리턴")
+    void findProductInfoByProductId_NotExist_ReturnNull() {
+        ProductInfo productInfo = productRepository.findProductInfoByProductId(10000);
+        assertThat(productInfo).isNull();
+    }
 }

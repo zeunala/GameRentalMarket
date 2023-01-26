@@ -30,11 +30,27 @@ class JdbcTemplateUsersRepositoryTest {
     }
 
     @ParameterizedTest
+    @ValueSource(ints = {11111111, 22222222, 33333333, -1})
+    @DisplayName("존재하지 않는 id로 유저정보 조회시 null 리턴")
+    void findById_NotExist_ReturnNull(Integer id) {
+        Users users = usersRepository.findById(id);
+        assertThat(users).isNull();
+    }
+
+    @ParameterizedTest
     @ValueSource(strings = {"AAA123", "BBB456", "CCC789", "DDD369"})
     @DisplayName("loginId로 유저정보 조회")
     void findByLoginId(String loginId) {
         Users users = usersRepository.findByLoginId(loginId);
         assertThat(users.getLoginId()).isEqualTo(loginId);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"aaa123", "bbb456", "CCC", " ", ""})
+    @DisplayName("존재하지 않는 loginId로 유저정보 조회시 null 리턴")
+    void findByLoginId_NotExist_ReturnNull(String loginId) {
+        Users users = usersRepository.findByLoginId(loginId);
+        assertThat(users).isNull();
     }
 
     @Test
