@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS `users` (
     `name` VARCHAR(45) NOT NULL,
     `nickname` VARCHAR(45) NOT NULL UNIQUE,
     `email` VARCHAR(255) NOT NULL UNIQUE,
-    `tel` VARCHAR(45) NOT NULL UNIQUE,
+    `tel` VARCHAR(45) NOT NULL,
     `home_address` VARCHAR(255) NULL DEFAULT NULL COMMENT '직거래 검색을 위한 주소로 상세주소 필요X',
     `login_id` VARCHAR(255) NOT NULL UNIQUE,
     `login_password` VARCHAR(255) NOT NULL,
