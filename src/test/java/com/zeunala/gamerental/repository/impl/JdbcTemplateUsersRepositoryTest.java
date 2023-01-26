@@ -53,6 +53,38 @@ class JdbcTemplateUsersRepositoryTest {
         assertThat(users).isNull();
     }
 
+    @ParameterizedTest
+    @ValueSource(strings = {"AAA@gmail.com", "BBB@gmail.com", "CCC@gmail.com", "DDD@gmail.com"})
+    @DisplayName("email로 유저정보 조회")
+    void findByEmail(String email) {
+        Users users = usersRepository.findByEmail(email);
+        assertThat(users.getEmail()).isEqualTo(email);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"AAA123", "AAA", "AAA@naver.com", " ", ""})
+    @DisplayName("존재하지 않는 email로 유저정보 조회시 null 리턴")
+    void findByEmail_NotExist_ReturnNull(String email) {
+        Users users = usersRepository.findByEmail(email);
+        assertThat(users).isNull();
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"AAA", "BBB", "CCC", "DDD"})
+    @DisplayName("nickname으로 유저정보 조회")
+    void findByNickname(String nickname) {
+        Users users = usersRepository.findByNickname(nickname);
+        assertThat(users.getNickname()).isEqualTo(nickname);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"AAA123", "AAA@gmail.com", "aaa", " ", ""})
+    @DisplayName("존재하지 않는 nickname으로 유저정보 조회시 null 리턴")
+    void findByNickname_NotExist_ReturnNull(String nickname) {
+        Users users = usersRepository.findByNickname(nickname);
+        assertThat(users).isNull();
+    }
+
     @Test
     @DisplayName("새로운 유저 추가")
     void save() {
