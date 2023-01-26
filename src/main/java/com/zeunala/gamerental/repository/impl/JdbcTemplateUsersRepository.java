@@ -12,8 +12,7 @@ import org.springframework.stereotype.Repository;
 import javax.sql.DataSource;
 import java.util.Map;
 
-import static com.zeunala.gamerental.repository.impl.sql.UsersRepositorySql.FIND_BY_ID;
-import static com.zeunala.gamerental.repository.impl.sql.UsersRepositorySql.FIND_BY_LOGIN_ID;
+import static com.zeunala.gamerental.repository.impl.sql.UsersRepositorySql.*;
 
 @Repository
 public class JdbcTemplateUsersRepository implements UsersRepository {
@@ -41,6 +40,26 @@ public class JdbcTemplateUsersRepository implements UsersRepository {
     public Users findByLoginId(String loginId) {
         try {
             return jdbc.queryForObject(FIND_BY_LOGIN_ID, Map.of("loginId", loginId),
+                    BeanPropertyRowMapper.newInstance(Users.class));
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
+    }
+
+    @Override
+    public Users findByEmail(String email) {
+        try {
+            return jdbc.queryForObject(FIND_BY_EMAIL, Map.of("email", email),
+                    BeanPropertyRowMapper.newInstance(Users.class));
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
+    }
+
+    @Override
+    public Users findByNickname(String nickname) {
+        try {
+            return jdbc.queryForObject(FIND_BY_NICKNAME, Map.of("nickname", nickname),
                     BeanPropertyRowMapper.newInstance(Users.class));
         } catch (EmptyResultDataAccessException e) {
             return null;

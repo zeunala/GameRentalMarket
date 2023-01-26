@@ -12,4 +12,16 @@ public class UsersRepositorySql {
             FROM users
             WHERE login_id = :loginId;
             """;
+
+    public static final String FIND_BY_EMAIL = """
+            SELECT *
+            FROM users
+            WHERE email = :email;
+            """;
+
+    public static final String FIND_BY_NICKNAME = """
+            SELECT *
+            FROM users
+            WHERE nickname = :nickname;
+            """;
 }
