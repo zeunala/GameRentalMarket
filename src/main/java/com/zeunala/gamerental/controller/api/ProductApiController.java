@@ -1,13 +1,12 @@
 package com.zeunala.gamerental.controller.api;
 
+import com.zeunala.gamerental.dto.ProductInfo;
 import com.zeunala.gamerental.service.ProductService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "/api")
@@ -32,5 +31,22 @@ public class ProductApiController {
 
         return Map.of("totalCount", productService.getCountByCategoryId(categoryId),
                 "products", productService.getMultipleProductInfoByCategoryId(categoryId, start));
+    }
+
+    /**
+     * productId 에 해당하는 상품 1개의 정보를 반환한다.
+     *
+     * @param productId 조회할 productId
+     * @return {"product": (상품 정보) }
+     */
+    @GetMapping("/product/{productId}")
+    public Map<String, Object> product(@PathVariable Integer productId) {
+        ProductInfo productInfo = productService.getProductInfoByProductId(productId);
+
+        if (productInfo == null) {
+            return Map.of("product", Optional.empty());
+        }
+
+        return Map.of("product", productInfo);
     }
 }
