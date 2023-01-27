@@ -1,11 +1,13 @@
 package com.zeunala.gamerental.controller.api;
 
 import lombok.extern.slf4j.Slf4j;
+import org.hamcrest.core.IsNull;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
@@ -55,6 +57,26 @@ class ProductApiControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("totalCount").value(expectedTotalCount))
                 .andExpect(jsonPath("$.products.length()", equalTo(expectedProductsLength)))
+                .andDo(print());
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {1, 2, 3, 4, 5, 6, 7, 8, 9})
+    @DisplayName("1개의 상품정보 JSON 조회 테스트")
+    void product(Integer productId) throws Exception {
+        mock.perform(get("/api/product/{productId}", productId))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.product.id").value(productId))
+                .andDo(print());
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {1000, -1, -1234})
+    @DisplayName("존재하지 않는 상품정보 JSON 조회시 null")
+    void product_NotExist_NullProductValue(Integer productId) throws Exception {
+        mock.perform(get("/api/product/{productId}", productId))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.product").value(IsNull.nullValue()))
                 .andDo(print());
     }
 }
