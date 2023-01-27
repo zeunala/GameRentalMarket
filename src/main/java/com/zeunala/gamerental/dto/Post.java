@@ -13,7 +13,7 @@ public class Post {
     Integer id; // DB에서 생성할 PK값으로 생성자에 존재하지 않음
     Integer productId;
     Integer sellerUsersId;
-    Integer rentalFlag; // 렌탈일 경우 1, 직거래일 경우 0
+    Integer rentalFlag; // 렌탈일 경우 1, 중고판매일 경우 0
     Integer directFlag; // 직거래일경우 1, 택배거래일 경우 0
     Integer price;
     Integer extensionPrice; // 3주 초과시 1주당 초과요금

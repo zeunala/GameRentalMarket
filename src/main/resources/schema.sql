@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS `post` (
     `id` INT(11) NOT NULL AUTO_INCREMENT,
     `product_id` INT(11) NOT NULL,
     `seller_users_id` INT(11) NOT NULL,
-    `rental_flag` TINYINT(1) NOT NULL COMMENT '렌탈일 경우 1, 직거래일 경우 0',
+    `rental_flag` TINYINT(1) NOT NULL COMMENT '렌탈일 경우 1, 중고판매일 경우 0',
     `direct_flag` TINYINT(1) NOT NULL COMMENT '직거래일경우 1, 택배거래일 경우 0',
     `price` INT(11) NOT NULL,
     `extension_price` INT(11) NULL DEFAULT NULL COMMENT '3주 초과시 1주당 초과요금',

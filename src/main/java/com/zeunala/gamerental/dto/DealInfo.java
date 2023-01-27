@@ -15,7 +15,7 @@ public class DealInfo {
     String buyerUsersNickname;
     String sellerUsersNickname;
     String sellerUsersHomeAddress;
-    Integer rentalFlag; // 렌탈일 경우 1, 직거래일 경우 0
+    Integer rentalFlag; // 렌탈일 경우 1, 중고판매일 경우 0
     Integer directFlag; // 직거래일경우 1, 택배거래일 경우 0
     String categoryName;
     String title;
