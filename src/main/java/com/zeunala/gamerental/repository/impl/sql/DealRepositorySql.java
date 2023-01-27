@@ -10,6 +10,8 @@ public class DealRepositorySql {
             		AS sellerUsersNickname,
             	(SELECT users.nickname FROM users WHERE users.id = deal.buyer_users_id)
             		AS buyerUsersNickName,
+            	(SELECT users.home_address FROM users WHERE users.id = post.seller_users_id)
+                    AS sellerUsersHomeAddress,
             	post.rental_flag AS rentalFlag, post.direct_flag AS directFlag,
             	category.name AS categoryName, product.title AS title,
             	post.price AS price, post.extension_price AS extensionPrice, deal.total_price AS totalPrice,

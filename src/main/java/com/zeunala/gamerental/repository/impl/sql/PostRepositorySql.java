@@ -8,6 +8,8 @@ public class PostRepositorySql {
             SELECT post.id AS id,
                 (SELECT users.nickname FROM users WHERE users.id = post.seller_users_id)
                     AS sellerUsersNickname,
+                (SELECT users.home_address FROM users WHERE users.id = post.seller_users_id)
+                    AS sellerUsersHomeAddress,
                 post.rental_flag AS rentalFlag, post.direct_flag AS directFlag,
                 category.name AS categoryName, product.title AS title,
                 post.price AS price, post.extension_price AS extensionPrice,
