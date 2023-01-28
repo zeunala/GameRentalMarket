@@ -5,6 +5,7 @@ import com.zeunala.gamerental.repository.UsersRepository;
 import com.zeunala.gamerental.service.UsersService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DuplicateKeyException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class UsersServiceImpl implements UsersService {
     private final UsersRepository usersRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public Users getUsersById(Integer id) {
@@ -36,6 +38,7 @@ public class UsersServiceImpl implements UsersService {
     @Override
     @Transactional
     public Users registerUsers(Users users) throws IllegalArgumentException {
+        users.setLoginPassword(passwordEncoder.encode(users.getLoginPassword()));
         try {
             return usersRepository.save(users);
         } catch (DuplicateKeyException e) {
@@ -46,6 +49,6 @@ public class UsersServiceImpl implements UsersService {
     @Override
     public Boolean login(String loginId, String loginPassword) {
         Users users = usersRepository.findByLoginId(loginId);
-        return users != null && users.getLoginPassword().equals(loginPassword);
+        return users != null && passwordEncoder.matches(loginPassword, users.getLoginPassword());
     }
 }

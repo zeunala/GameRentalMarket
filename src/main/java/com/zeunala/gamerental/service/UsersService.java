@@ -39,7 +39,7 @@ public interface UsersService {
      * 새로운 유저 데이터 추가
      *
      * @param users 추가할 데이터(id값은 DB에서 지정)
-     * @return 자동 생성된 id값을 포함한 추가된 데이터
+     * @return 자동 생성된 id값, 암호화된 loginPassword값 을 포함한 추가된 데이터
      * @throws IllegalArgumentException 잘못된 데이터 입력 (중복된 로그인아이디/닉네임/이메일 사용)
      */
     Users registerUsers(Users users);
@@ -48,7 +48,7 @@ public interface UsersService {
      * 주어진 loginId/loginPassword 로 로그인 시도 후 성공 여부 반환
      *
      * @param loginId       로그인 아이디
-     * @param loginPassword 로그인 패스워드
+     * @param loginPassword 로그인 패스워드 (암호화되지 않은 값)
      * @return 로그인 성공 여부
      */
     Boolean login(String loginId, String loginPassword);
