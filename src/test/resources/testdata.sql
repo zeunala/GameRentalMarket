@@ -32,10 +32,10 @@ INSERT INTO `product` (id, category_id, title, description, original_price, file
 INSERT INTO `product` (id, category_id, title, description, original_price, file_id) VALUES (8, 3, 'SWITCH title H', '스위치 타이틀 H', 64000,  8);
 INSERT INTO `product` (id, category_id, title, description, original_price, file_id) VALUES (9, 4, 'PC title I', 'PC 타이틀 I', 70000,  9);
 
-INSERT INTO `users` (id, name, nickname, email, tel, home_address, login_id, login_password) VALUES (1, '갑', 'AAA', 'AAA@gmail.com', '010-1111-1111', '서울', 'AAA123', '1234');
-INSERT INTO `users` (id, name, nickname, email, tel, home_address, login_id, login_password) VALUES (2, '을', 'BBB', 'BBB@gmail.com', '010-2222-2222', '인천', 'BBB456', '4567');
-INSERT INTO `users` (id, name, nickname, email, tel, home_address, login_id, login_password) VALUES (3, '병', 'CCC', 'CCC@gmail.com', '010-3333-3333', '경기', 'CCC789', '7890');
-INSERT INTO `users` (id, name, nickname, email, tel, home_address, login_id, login_password) VALUES (4, '정', 'DDD', 'DDD@gmail.com', '010-4444-4444', '부산', 'DDD369', '3690');
+INSERT INTO `users` (id, name, nickname, email, tel, home_address, login_id, login_password) VALUES (1, '갑', 'AAA', 'AAA@gmail.com', '010-1111-1111', '서울', 'AAA123', '$2a$10$95xF27wD7B7s.TGeUt5UtuNdUJaXzvkG1PV/lNxxjV1u7cWqmNxFW'); -- rawPassword: 1234
+INSERT INTO `users` (id, name, nickname, email, tel, home_address, login_id, login_password) VALUES (2, '을', 'BBB', 'BBB@gmail.com', '010-2222-2222', '인천', 'BBB456', '$2a$10$NRM1oFA87EbebfULTqrgB.6wqLM1zZq6QhvRhLXefzwAlqd7lCBDe'); -- rawPassword: 4567
+INSERT INTO `users` (id, name, nickname, email, tel, home_address, login_id, login_password) VALUES (3, '병', 'CCC', 'CCC@gmail.com', '010-3333-3333', '경기', 'CCC789', '$2a$10$0IyuMKgSPUQimls5hzDLROKanwuv0Efgh/lunkhRKfnTLglkPcTbS'); -- rawPassword: 7890
+INSERT INTO `users` (id, name, nickname, email, tel, home_address, login_id, login_password) VALUES (4, '정', 'DDD', 'DDD@gmail.com', '010-4444-4444', '부산', 'DDD369', '$2a$10$mKZ1m4hUDYsWIAN/IvIjQO3v9Zl8LdKLt4xKkGmmLGRdBSDhbI5cW'); -- rawPassword: 3690
 
 -- 갑이 렌탈/직거래로 물건 등록만 한 상황
 INSERT INTO `post` (id, product_id, seller_users_id, rental_flag, direct_flag, price, extension_price, deposit, comment, status) VALUES (1, 1, 1, 1, 1, 6900, 1500, 20000, '싸게 거래합니다', 0);
