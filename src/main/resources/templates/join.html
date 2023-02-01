@@ -18,39 +18,64 @@
   <a th:href="@{/main}" href="./main.html">
     <img th:src="@{/img/logo.png}" src="../static/img/logo.png" width="190" height="71" alt="로고이미지">
   </a>
-  <form class="my-5" style="max-width: 380px; float:none; margin:0 auto">
+  <form action="./join.html" th:action method="post" th:object="${joinForm}"
+        class="my-5" style="max-width: 380px; float:none; margin:0 auto">
     <div class="mb-2">
-      <input type="text" maxlength="20" class="form-control" id="userId" placeholder="아이디">
+      <input type="text" maxlength="20" class="form-control" th:field="*{loginId}" id="loginId"
+             th:errorclass="is-invalid" placeholder="아이디">
+      <p class="text-danger" th:style="${'display: inline'}" style="display: none;" th:errors="*{loginId}"></p>
     </div>
     <div class="mb-2">
-      <input type="password" maxlength="100" class="form-control" id="userPassword" placeholder="비밀번호">
+      <input type="password" maxlength="100" class="form-control" th:field="*{loginPassword}" id="loginPassword"
+             th:errorclass="is-invalid" placeholder="비밀번호">
+      <p class="text-danger" th:style="${'display: inline'}" style="display: none;" th:errors="*{loginPassword}"></p>
     </div>
     <div class="mb-2">
-      <input type="password" maxlength="100" class="form-control" id="userPasswordRepeat" placeholder="비밀번호 확인">
+      <input type="password" maxlength="100" class="form-control" id="loginPasswordRepeat" placeholder="비밀번호 확인">
+      <p class="text-danger" style="display: none;">비밀번호가 일치하지 않습니다.</p>
     </div>
     <div class="m-5"></div>
     <div class="mb-2">
-      <input type="text" maxlength="20" class="form-control" id="userNickname" placeholder="닉네임">
+      <input type="text" maxlength="20" class="form-control" th:field="*{name}" id="name"
+             th:errorclass="is-invalid" placeholder="이름">
+      <p class="text-danger" th:style="${'display: inline'}" style="display: none;" th:errors="*{name}"></p>
+    </div>
+    <div class="mb-2">
+      <input type="text" maxlength="20" class="form-control" th:field="*{nickname}" id="nickname"
+             th:errorclass="is-invalid" placeholder="닉네임">
+      <p class="text-danger" th:style="${'display: inline'}" style="display: none;" th:errors="*{nickname}"></p>
     </div>
     <div class="mb-2">
       <div class="row">
         <div class="col">
-          <select class="form-select" id="userAddressSido">
-            <option>시/도 선택</option>
+          <select class="form-select" th:field="*{homeAddressSido}" id="homeAddressSido"
+                  th:errorclass="is-invalid">
+            <option th:if="*{homeAddressSido}" th:value="*{homeAddressSido}" th:text="*{homeAddressSido}">
+            </option>
+            <option value="">시/도 선택</option>
           </select>
         </div>
         <div class="col">
-          <select class="form-select" id="userAddressSigugun">
-            <option>시/군/구 선택</option>
+          <select class="form-select" th:field="*{homeAddressSigugun}" id="homeAddressSigugun"
+                  th:errorclass="is-invalid">
+            <option th:if="*{homeAddressSigugun}" th:value="*{homeAddressSigugun}" th:text="*{homeAddressSigugun}">
+            </option>
+            <option value="">시/군/구 선택</option>
           </select>
         </div>
+        <p class="text-danger" th:style="${'display: inline'}" style="display: none;"
+           th:errors="*{homeAddressSigugun}"></p>
       </div>
     </div>
     <div class="mb-2">
-      <input type="text" maxlength="100" class="form-control" id="userEmail" placeholder="이메일">
+      <input type="text" maxlength="100" class="form-control" th:field="*{email}" id="email"
+             th:errorclass="is-invalid" placeholder="이메일">
+      <p class="text-danger" th:style="${'display: inline'}" style="display: none;" th:errors="*{email}"></p>
     </div>
     <div class="mb-1">
-      <input type="text" maxlength="13" class="form-control" id="userPhoneNumber" placeholder="휴대전화번호 (예시: 010-1234-5678)">
+      <input type="text" maxlength="13" class="form-control" th:field="*{tel}" id="tel"
+             th:errorclass="is-invalid" placeholder="휴대전화번호 (예시: 010-1234-5678)">
+      <p class="text-danger" th:style="${'display: inline'}" style="display: none;" th:errors="*{tel}"></p>
     </div>
     <div class="d-grid gap-2 my-3">
       <button type="submit" class="btn btn-dark">회원가입</button>

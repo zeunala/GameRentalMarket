@@ -43,12 +43,13 @@ const AddressFormObj = {
      * @private
      */
     _loadSigugun() {
-        const selectedSido = document.getElementById("userAddressSido").value;
+        const selectedSido = document.getElementById("homeAddressSido").value;
 
-        document.getElementById("userAddressSigugun").innerHTML = `<option>시/군/구 선택</option>`;
+        document.getElementById("homeAddressSigugun").innerHTML = `<option value="">시/군/구 선택</option>`;
         if (selectedSido in this._addressData) {
             for (const sigugun of this._addressData[selectedSido]) {
-                document.getElementById("userAddressSigugun").innerHTML += `<option>${sigugun}</option>`;
+                document.getElementById("homeAddressSigugun").innerHTML +=
+                    `<option value="${sigugun}">${sigugun}</option>`;
             }
         }
     },
@@ -57,10 +58,31 @@ const AddressFormObj = {
      */
     initForm() {
         for (const sido in this._addressData) {
-            document.getElementById("userAddressSido").innerHTML += `<option>${sido}</option>`;
+            document.getElementById("homeAddressSido").innerHTML +=
+                `<option value="${sido}">${sido}</option>`;
         }
-        document.getElementById("userAddressSido").addEventListener("change", () => {
+        document.getElementById("homeAddressSido").addEventListener("change", () => {
             this._loadSigugun();
+        });
+        this._loadSigugun();
+    }
+}
+
+const EventObj = {
+    /**
+     * EventListener들을 등록
+     */
+    setEventListeners() {
+        /**
+         * 비밀번호 항목과 비밀번호 확인 항목이 일치하지 않을 경우 제출을 막고 에러 메시지 출력
+         */
+        document.querySelector("form").addEventListener("submit", (event) => {
+            if (document.getElementById("loginPassword").value
+                !== document.getElementById("loginPasswordRepeat").value) {
+                event.preventDefault();
+                document.getElementById("loginPasswordRepeat").classList.add("is-invalid");
+                document.getElementById("loginPasswordRepeat").nextElementSibling.style.display = "inline";
+            }
         });
     }
 }
@@ -70,6 +92,7 @@ const AddressFormObj = {
  */
 function initConfig() {
     AddressFormObj.initForm();
+    EventObj.setEventListeners();
 }
 
 document.addEventListener("DOMContentLoaded", () => {
