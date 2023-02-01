@@ -28,4 +28,29 @@ public class DealInfo {
     String dealCreateDate; // "2023-01-01"의 형태로 저장
     Integer postStatus; // 대기물품 0, 거래중 1, 거래종료 2
     Integer dealStatus; // 예약중 0, 판매자 인계완료 1, 구매자 인수완료 2, 렌탈중 3, 구매자 반환완료 4, 판매자 반환수령 5, 거래종료 6'
+
+    public DealInfo(Integer id, Integer postId, String buyerUsersNickname, String sellerUsersNickname,
+                    String sellerUsersHomeAddress, Integer rentalFlag, Integer directFlag, String categoryName,
+                    String title, Integer price, Integer extensionPrice, Integer totalPrice, Integer deposit,
+                    String comment, String postCreateDate, String dealCreateDate, Integer postStatus,
+                    Integer dealStatus) {
+        this.id = id;
+        this.postId = postId;
+        this.buyerUsersNickname = buyerUsersNickname;
+        this.sellerUsersNickname = sellerUsersNickname;
+        this.sellerUsersHomeAddress = sellerUsersHomeAddress;
+        this.rentalFlag = rentalFlag;
+        this.directFlag = directFlag;
+        this.categoryName = categoryName;
+        this.title = title;
+        this.price = price;
+        this.extensionPrice = extensionPrice;
+        this.totalPrice = totalPrice;
+        this.deposit = deposit;
+        this.comment = comment;
+        this.postCreateDate = postCreateDate;
+        this.dealCreateDate = dealCreateDate;
+        this.postStatus = postStatus;
+        this.dealStatus = dealStatus;
+    }
 }
