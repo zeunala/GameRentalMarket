@@ -22,16 +22,15 @@
         <div class="mb-2">
             <input type="text" class="form-control" th:field="*{loginId}"
                    th:errorclass="is-invalid" placeholder="아이디">
+            <p class="text-danger" th:errors="*{loginId}"></p>
         </div>
         <div class="mb-1">
             <input type="password" class="form-control" th:field="*{loginPassword}"
                    th:errorclass="is-invalid" placeholder="비밀번호">
+            <p class="text-danger" th:errors="*{loginPassword}"></p>
         </div>
         <div class="my-3" th:if="${#fields.hasGlobalErrors()}">
-            <p class="text-danger" th:each="err: ${#fields.globalErrors()}" th:text="${err}"
-               th:style="${'display: inline'}" style="display: none;">
-                로그인 에러 메시지
-            </p>
+            <p class="text-danger" th:each="err: ${#fields.globalErrors()}" th:text="${err}"></p>
         </div>
         <div class="d-grid gap-2 my-3">
             <button type="submit" class="btn btn-primary">로그인</button>
