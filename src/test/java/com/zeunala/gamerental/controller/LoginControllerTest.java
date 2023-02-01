@@ -25,9 +25,6 @@ class LoginControllerTest {
     @Autowired
     LoginController loginController;
 
-    @Autowired
-    ObjectMapper objectMapper;
-
     MockMvc mock;
 
     @BeforeEach
@@ -41,8 +38,6 @@ class LoginControllerTest {
     @CsvSource({"AAA123,1234", "BBB456,4567", "CCC789,7890", "DDD369,3690"})
     @DisplayName("로그인 성공시 리다이렉트 테스트")
     void login_ValidIdAndPassword_Success(String loginId, String loginPassword) throws Exception {
-        Map<String, String> param = Map.of("loginId", loginId, "loginPassword", loginPassword);
-
         mock.perform(post("/login")
                         .contentType(MediaType.MULTIPART_FORM_DATA)
                         .param("loginId", loginId)
