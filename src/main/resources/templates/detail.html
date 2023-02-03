@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link th:href="@{/favicon.ico}" rel="shortcut icon" type="image/x-icon" href="../static/favicon.ico"/>
+    <link th:href="@{/css/detail.css}" href="../static/css/detail.css" rel="stylesheet">
     <!-- Bootstrap CSS -->
     <link th:href="@{/css/bootstrap.min.css}" href="../static/css/bootstrap.min.css" rel="stylesheet">
     <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
@@ -55,19 +56,27 @@
 <div class="container p-5">
     <div class="row">
         <div class="col">
-            <img src="https://dummyimage.com/355x355/000/fff.png&text=product+image" class="d-block"
-                 alt="상품이미지">
+            <img th:src="${imgUrl}" src="https://dummyimage.com/355x355/000/fff.png&text=product+image" class="d-block"
+                 alt="상품이미지" id="productImage">
         </div>
         <div class="col">
-            <h1 class="mb-3 fw-bolder">상품명</h1>
+            <h1 class="mb-3 fw-bolder" th:text="${title}">상품명</h1>
             <hr/>
             <div class="row text-info my-3">
                 <h4 class="col-6 text-start fw-bolder">렌탈 최저가</h4>
-                <h4 class="col-6 text-end">0,000원~</h4>
+                <h4 class="col-6 text-end">
+                    <span th:if="${minRentalPrice}"
+                          th:text="${#numbers.formatInteger(minRentalPrice, 1, 'COMMA')} + '원~'">0,000원~</span>
+                    <span th:if="${minRentalPrice} == null" th:text="'재고 없음'"></span>
+                </h4>
             </div>
             <div class="row text-primary my-3">
                 <h4 class="col-6 text-start fw-bolder">중고 최저가</h4>
-                <h4 class="col-6 text-end">00,000원~</h4>
+                <h4 class="col-6 text-end">
+                    <span th:if="${minUsedPrice}"
+                          th:text="${#numbers.formatInteger(minUsedPrice, 1, 'COMMA')} + '원~'">00,000원~</span>
+                    <span th:if="${minUsedPrice} == null" th:text="'재고 없음'"></span>
+                </h4>
             </div>
             <hr/>
             <div class="row my-3">
