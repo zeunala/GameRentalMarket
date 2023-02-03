@@ -41,6 +41,17 @@ const ProductObj = {
         }
         return `재고 없음`;
     },
+    _setCountAndMoreButton: function (totalCount, addCount) {
+        this._totalCount = totalCount;
+        this._currentCount += addCount;
+
+        // 더 조회할 데이터가 남은 경우 더보기 버튼 활성화
+        if (this._currentCount < this._totalCount) {
+            document.getElementById("showMoreButton").classList.remove("visually-hidden");
+        } else {
+            document.getElementById("showMoreButton").classList.add("visually-hidden");
+        }
+    },
     /**
      * 상품 JSON 데이터에 따라 개별 상품 HTML 추가
      * @param totalCount 카테고리의 총 product 개수
@@ -48,6 +59,8 @@ const ProductObj = {
      * @private
      */
     _showProduct({totalCount, products}) {
+        this._setCountAndMoreButton(totalCount, products.length);
+
         products.forEach(({id, title, filePath, minRentalPrice, minUsedPrice}) => {
             document.getElementById("productList").innerHTML +=
                 `<div class="col mb-5">
@@ -70,12 +83,47 @@ const ProductObj = {
         });
     },
     /**
+     * 다른 카테고리로 변경할 경우 현재 표시중인 상품을 지우고 해당 카테고리의 처음부터 로드
+     * @param categoryId 변경할 categoryId
+     */
+    set currentCategoryId(categoryId) {
+        if (this._currentCategoryId === categoryId) {
+            return;
+        }
+
+        document.getElementById("productList").innerHTML = "";
+        this._currentCategoryId = categoryId;
+        this._currentCount = 0;
+        this.loadData();
+    },
+    /**
      * 상품 API 호출
      */
     loadData() {
-        fetch('/api/productlist')
+        let fetchUrl = `/api/productlist?start=${this._currentCount}`;
+        if (this._currentCategoryId) {
+            fetchUrl += `&categoryId=${this._currentCategoryId}`;
+        }
+
+        fetch(fetchUrl)
             .then(response => response.json())
             .then(jsonData => this._showProduct(jsonData));
+    }
+}
+
+const EventObj = {
+    /**
+     * EventListener들을 등록
+     */
+    setEventListeners() {
+        document.querySelectorAll(".change-category").forEach(e => {
+            e.addEventListener("click", () => {
+                ProductObj.currentCategoryId = parseInt(e.dataset.categoryId);
+            });
+        });
+        document.getElementById("showMoreButton").addEventListener("click", () => {
+            ProductObj.loadData();
+        });
     }
 }
 
@@ -85,6 +133,7 @@ const ProductObj = {
 function initConfig() {
     PromotionObj.loadData();
     ProductObj.loadData();
+    EventObj.setEventListeners();
 }
 
 document.addEventListener("DOMContentLoaded", () => {
