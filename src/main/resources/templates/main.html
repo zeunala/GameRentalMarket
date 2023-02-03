@@ -9,6 +9,7 @@
     <link th:href="@{/css/main.css}" href="../static/css/main.css" rel="stylesheet">
     <!-- Bootstrap CSS -->
     <link th:href="@{/css/bootstrap.min.css}" href="../static/css/bootstrap.min.css" rel="stylesheet">
+    <script defer th:src="@{/js/main.js}" src="../static/js/main.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
     <title>GameRentalMarket</title>
 </head>
@@ -54,16 +55,19 @@
 
 <!-- 프로모션 구간 -->
 <div class="container-md text-center p-5">
-    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
+    <div id="promotionCarousel" class="carousel slide" data-bs-ride="true">
         <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+            <!--/*-->
+            <button type="button" data-bs-target="#promotionCarousel" data-bs-slide-to="0" class="active"
                     aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+            <button type="button" data-bs-target="#promotionCarousel" data-bs-slide-to="1"
                     aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+            <button type="button" data-bs-target="#promotionCarousel" data-bs-slide-to="2"
                     aria-label="Slide 3"></button>
+            <!--*/-->
         </div>
         <div class="carousel-inner">
+            <!--/*-->
             <div class="carousel-item active">
                 <img th:src="@{/img/promotion/a.png}" src="../static/img/promotion/a.png" class="d-block w-100"
                      alt="프로모션 이미지">
@@ -76,13 +80,14 @@
                 <img th:src="@{/img/promotion/c.png}" src="../static/img/promotion/c.png" class="d-block w-100"
                      alt="프로모션 이미지">
             </div>
+            <!--*/-->
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+        <button class="carousel-control-prev" type="button" data-bs-target="#promotionCarousel"
                 data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Previous</span>
         </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+        <button class="carousel-control-next" type="button" data-bs-target="#promotionCarousel"
                 data-bs-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
