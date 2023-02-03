@@ -97,12 +97,15 @@
 
 <!-- 상품 구간 -->
 <div class="container px-4 px-lg-5 mt-5">
-    <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+    <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center" id="productList">
+        <!--/*-->
         <div class="col mb-5">
             <div class="card h-100">
                 <!-- 게임 이미지 -->
-                <img class="card-img-top" th:src="@{/img/product/ps5_a.png}" src="../static/img/product/ps5_a.png"
+                <a href="./detail.html">
+                    <img class="card-img-top" th:src="@{/img/product/ps5_a.png}" src="../static/img/product/ps5_a.png"
                      alt="상품 이미지">
+                </a>
                 <!-- 개별 게임 -->
                 <div class="card-body p-4">
                     <div class="text-center">
@@ -122,8 +125,10 @@
         <div class="col mb-5">
             <div class="card h-100">
                 <!-- 게임 이미지 -->
-                <img class="card-img-top" th:src="@{/img/product/ps5_b.png}" src="../static/img/product/ps5_b.png"
-                     alt="상품 이미지">
+                <a href="./detail.html">
+                    <img class="card-img-top" th:src="@{/img/product/ps5_b.png}" src="../static/img/product/ps5_b.png"
+                         alt="상품 이미지">
+                </a>
                 <!-- 개별 게임 -->
                 <div class="card-body p-4">
                     <div class="text-center">
@@ -143,8 +148,10 @@
         <div class="col mb-5">
             <div class="card h-100">
                 <!-- 게임 이미지 -->
-                <img class="card-img-top" th:src="@{/img/product/ps4_c.png}" src="../static/img/product/ps4_c.png"
-                     alt="상품 이미지">
+                <a href="./detail.html">
+                    <img class="card-img-top" th:src="@{/img/product/ps4_c.png}" src="../static/img/product/ps4_c.png"
+                         alt="상품 이미지">
+                </a>
                 <!-- 개별 게임 -->
                 <div class="card-body p-4">
                     <div class="text-center">
@@ -164,8 +171,10 @@
         <div class="col mb-5">
             <div class="card h-100">
                 <!-- 게임 이미지 -->
-                <img class="card-img-top" th:src="@{/img/product/ps4_d.png}" src="../static/img/product/ps4_d.png"
-                     alt="상품 이미지">
+                <a href="./detail.html">
+                    <img class="card-img-top" th:src="@{/img/product/ps4_d.png}" src="../static/img/product/ps4_d.png"
+                         alt="상품 이미지">
+                </a>
                 <!-- 개별 게임 -->
                 <div class="card-body p-4">
                     <div class="text-center">
@@ -185,8 +194,10 @@
         <div class="col mb-5">
             <div class="card h-100">
                 <!-- 게임 이미지 -->
-                <img class="card-img-top" th:src="@{/img/product/xbx_a.png}" src="../static/img/product/xbx_a.png"
-                     alt="상품 이미지">
+                <a href="./detail.html">
+                    <img class="card-img-top" th:src="@{/img/product/xbx_a.png}" src="../static/img/product/xbx_a.png"
+                         alt="상품 이미지">
+                </a>
                 <!-- 개별 게임 -->
                 <div class="card-body p-4">
                     <div class="text-center">
@@ -206,8 +217,10 @@
         <div class="col mb-5">
             <div class="card h-100">
                 <!-- 게임 이미지 -->
-                <img class="card-img-top" th:src="@{/img/product/xbo_b.png}" src="../static/img/product/xbo_b.png"
-                     alt="상품 이미지">
+                <a href="./detail.html">
+                    <img class="card-img-top" th:src="@{/img/product/xbo_b.png}" src="../static/img/product/xbo_b.png"
+                         alt="상품 이미지">
+                </a>
                 <!-- 개별 게임 -->
                 <div class="card-body p-4">
                     <div class="text-center">
@@ -227,8 +240,10 @@
         <div class="col mb-5">
             <div class="card h-100">
                 <!-- 게임 이미지 -->
-                <img class="card-img-top" th:src="@{/img/product/ns_c.png}" src="../static/img/product/ns_c.png"
-                     alt="상품 이미지">
+                <a href="./detail.html">
+                    <img class="card-img-top" th:src="@{/img/product/ns_c.png}" src="../static/img/product/ns_c.png"
+                         alt="상품 이미지">
+                </a>
                 <!-- 개별 게임 -->
                 <div class="card-body p-4">
                     <div class="text-center">
@@ -248,8 +263,10 @@
         <div class="col mb-5">
             <div class="card h-100">
                 <!-- 게임 이미지 -->
-                <img class="card-img-top" th:src="@{/img/product/etc_d.png}" src="../static/img/product/etc_d.png"
-                     alt="상품 이미지">
+                <a href="./detail.html">
+                    <img class="card-img-top" th:src="@{/img/product/etc_d.png}" src="../static/img/product/etc_d.png"
+                         alt="상품 이미지">
+                </a>
                 <!-- 개별 게임 -->
                 <div class="card-body p-4">
                     <div class="text-center">
@@ -266,6 +283,10 @@
                 </div>
             </div>
         </div>
+        <!--*/-->
+    </div>
+    <div class="d-grid mx-5 mb-5">
+        <button class="btn btn-lg btn-outline-primary" id="showMoreButton" type="button">더보기</button>
     </div>
 </div>
 </body>
