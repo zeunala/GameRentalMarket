@@ -14,7 +14,7 @@ public class PostRepositorySql {
                 category.name AS categoryName, product.title AS title,
                 post.price AS price, post.extension_price AS extensionPrice,
                 post.deposit AS deposit, post.comment AS comment,
-                FORMATDATETIME(post.create_date, 'yyyy-MM-dd') AS createDate,
+                FORMATDATETIME(post.create_date, 'yyyy-MM-dd HH:mm:ss') AS createDate,
                 post.status AS status
             FROM post
                 INNER JOIN product ON post.product_id = product.id

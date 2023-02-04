@@ -16,8 +16,8 @@ public class DealRepositorySql {
             	category.name AS categoryName, product.title AS title,
             	post.price AS price, post.extension_price AS extensionPrice, deal.total_price AS totalPrice,
             	post.deposit AS deposit, post.comment AS comment,
-            	FORMATDATETIME(post.create_date, 'yyyy-MM-dd') AS postCreateDate,
-            	FORMATDATETIME(deal.create_date, 'yyyy-MM-dd') AS dealCreateDate,
+            	FORMATDATETIME(post.create_date, 'yyyy-MM-dd HH:mm:ss') AS postCreateDate,
+            	FORMATDATETIME(deal.create_date, 'yyyy-MM-dd HH:mm:ss') AS dealCreateDate,
             	post.status AS postStatus,
             	deal.status AS dealStatus
             FROM post

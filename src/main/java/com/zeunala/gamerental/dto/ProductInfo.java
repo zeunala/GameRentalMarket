@@ -15,7 +15,7 @@ public class ProductInfo {
     String description;
     Integer originalPrice;
     String filePath;
-    String createDate; // "2023-01-01"의 형태로 저장
+    String createDate; // "2023-01-01 15:01:02"의 형태로 저장
     Integer minRentalPrice;
     Integer minUsedPrice;
 
