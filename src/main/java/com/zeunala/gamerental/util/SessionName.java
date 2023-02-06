@@ -1,4 +1,4 @@
-package com.zeunala.gamerental.controller;
+package com.zeunala.gamerental.util;
 
 /**
  * 세션 조회/저장시 사용할 이름들을 모음

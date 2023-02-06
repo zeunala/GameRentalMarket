@@ -2,6 +2,7 @@ package com.zeunala.gamerental.controller;
 
 import com.zeunala.gamerental.dto.LoginForm;
 import com.zeunala.gamerental.service.UsersService;
+import com.zeunala.gamerental.util.SessionName;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
