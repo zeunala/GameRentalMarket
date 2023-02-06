@@ -38,6 +38,7 @@ public class MainController {
         model.addAttribute("imgUrl", "/" + productInfo.getFilePath());
         model.addAttribute("minRentalPrice", productInfo.getMinRentalPrice());
         model.addAttribute("minUsedPrice", productInfo.getMinUsedPrice());
+        model.addAttribute("productId", productId);
 
         model.addAttribute("rentalPosts", rentalPosts);
         model.addAttribute("usedPosts", usedPosts);
