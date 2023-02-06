@@ -95,8 +95,8 @@
 </div>
 
 <!-- 렌탈 상품 상세 -->
-<div class="container p-5">
-    <table class="table table-hover align-middle" id="rentalPosts">
+<div class="container p-5 d-none" id="rentalPosts">
+    <table class="table table-hover align-middle">
         <thead>
         <tr>
             <th class="col-lg-2 col-3" scope="col">거래방법</th>
@@ -107,7 +107,7 @@
         </thead>
         <tbody>
         <th:block th:each="post : ${rentalPosts}">
-            <tr>
+            <tr class="simple-info">
                 <td th:text="${post.directFlag== 1 ? '직거래' : '택배'}">직거래</td>
                 <td>
                     <!--/* 직거래인 경우 설명 앞에 "(판매자주소)" 추가 */-->
@@ -134,7 +134,7 @@
                     </span>
                 </td>
             </tr>
-            <tr class="table-active">
+            <tr class="table-active detail-info d-none">
                 <td colspan="4">
                     <div class="d-flex justify-content-center">
                         <table class="table" style="max-width: 800px">
@@ -192,7 +192,11 @@
                         </table>
                     </div>
                     <div class="d-flex justify-content-center row">
-                        <button class="btn btn-lg btn-primary col-sm-6 buy-button" type="button">구매신청</button>
+                        <button th:onclick="|window.location.href='@{/register/buy/{id}(id=${post.id})}'|"
+                                onclick="window.location.href='./register_buy.html'"
+                                class="btn btn-lg btn-primary col-sm-6 buy-button" type="button">
+                            구매신청
+                        </button>
                     </div>
                 </td>
             </tr>
@@ -202,8 +206,8 @@
 </div>
 
 <!-- 중고 상품 상세 -->
-<div class="container p-5">
-    <table class="table table-hover align-middle" id="usedPosts">
+<div class="container p-5 d-none" id="usedPosts">
+    <table class="table table-hover align-middle">
         <thead>
         <tr>
             <th class="col-lg-2 col-3" scope="col">거래방법</th>
@@ -214,7 +218,7 @@
         </thead>
         <tbody>
         <th:block th:each="post : ${usedPosts}">
-            <tr>
+            <tr class="simple-info">
                 <td th:text="${post.directFlag== 1 ? '직거래' : '택배'}">직거래</td>
                 <td>
                     <!--/* 직거래인 경우 설명 앞에 "(판매자주소)" 추가 */-->
@@ -241,7 +245,7 @@
                 </span>
                 </td>
             </tr>
-            <tr class="table-active">
+            <tr class="table-active detail-info d-none">
                 <td colspan="4">
                     <div class="d-flex justify-content-center">
                         <table class="table" style="max-width: 800px">
@@ -285,7 +289,11 @@
                         </table>
                     </div>
                     <div class="d-flex justify-content-center row">
-                        <button class="btn btn-lg btn-primary col-sm-6 buy-button" type="button">구매신청</button>
+                        <button th:onclick="|window.location.href='@{/register/buy/{id}(id=${post.id})}'|"
+                                onclick="window.location.href='./register_buy.html'"
+                                class="btn btn-lg btn-primary col-sm-6 buy-button" type="button">
+                            구매신청
+                        </button>
                     </div>
                 </td>
             </tr>
