@@ -46,16 +46,6 @@ public class MainController {
         return "detail";
     }
 
-    @GetMapping("/register/buy")
-    public String registerBuy() {
-        return "register_buy";
-    }
-
-    @GetMapping("/register/sell")
-    public String registerSell() {
-        return "register_sell";
-    }
-
     @GetMapping("/mypage/buy")
     public String mypageBuy() {
         return "mypage_buy";

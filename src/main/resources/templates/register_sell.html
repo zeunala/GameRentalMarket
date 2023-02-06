@@ -61,7 +61,7 @@
         <table class="table align-middle">
             <tr>
                 <th class="col-4 text-center table-info">타이틀명</th>
-                <td class="col-8">Lorem ipsum</td>
+                <td class="col-8" th:text="${productInfo.title}">Lorem ipsum</td>
             </tr>
             <tr>
                 <th class="text-center table-info">판매유형</th>
@@ -163,15 +163,19 @@
         <table class="table align-middle">
             <tr>
                 <th class="col-4 text-center table-info">이름</th>
-                <td class="col-8">Lorem</td>
+                <td class="col-8" th:text="${sellerInfo.name}">Lorem</td>
             </tr>
             <tr>
                 <th class="text-center table-info">연락처</th>
-                <td>010-1234-5678</td>
+                <td th:text="${sellerInfo.tel}">010-1234-5678</td>
             </tr>
             <tr>
                 <th class="text-center table-info">이메일</th>
-                <td>xxx@gmail.com</td>
+                <td th:text="${sellerInfo.email}">xxx@gmail.com</td>
+            </tr>
+            <tr>
+                <th class="text-center table-info">주소</th>
+                <td th:text="${sellerInfo.homeAddress}">Lorem ipsum</td>
             </tr>
         </table>
     </div>
