@@ -127,9 +127,22 @@
                               th:errors="*{directFlag}"></span>
                     </td>
                 </tr>
-                <!-- 렌탈: 3주 렌탈가, 중고: 중고 판매가 -->
                 <tr>
-                    <th class="text-center table-info" id="priceHeader">3주 렌탈가</th>
+                    <th class="text-center table-info">판매문구</th>
+                    <td>
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-sm" maxlength="50"
+                                   placeholder="최대 50자까지 입력 가능합니다."
+                                   th:field="*{comment}" th:errorclass="is-invalid" id="comment">
+                        </div>
+                        <span class="text-danger" th:style="${'display: inline'}" style="display: none;"
+                              th:errors="*{comment}"></span>
+                    </td>
+                </tr>
+                <!-- 렌탈: 3주 렌탈가, 중고: 중고 판매가 -->
+                <tr class="d-none" id="priceRow">
+                    <th class="text-center table-info" id="rentalPriceHeader">3주 렌탈가</th>
+                    <th class="text-center table-info d-none" id="usedPriceHeader">중고 판매가</th>
                     <td>
                         <div class="form-group">
                             <input type="number" class="form-control form-control-sm" placeholder="택배비 등을 포함한 가격 입력"
@@ -140,7 +153,7 @@
                     </td>
                 </tr>
                 <!-- 렌탈의 경우에만 해당 -->
-                <tr id="extensionPriceRow">
+                <tr class="d-none" id="extensionPriceRow">
                     <th class="text-center table-info">1주 초과당</th>
                     <td>
                         <div class="row d-flex align-items-center">
@@ -157,7 +170,7 @@
                         </div>
                     </td>
                 </tr>
-                <tr id="depositRow">
+                <tr class="d-none" id="depositRow">
                     <th class="text-center table-info">보증금</th>
                     <td>
                         <div class="row d-flex align-items-center">
@@ -172,19 +185,6 @@
                                 </label>
                             </div>
                         </div>
-                    </td>
-                </tr>
-                <!-- 둘 모두 해당 -->
-                <tr>
-                    <th class="text-center table-info">판매문구</th>
-                    <td>
-                        <div class="form-group">
-                            <input type="text" class="form-control form-control-sm" maxlength="50"
-                                   placeholder="최대 50자까지 입력 가능합니다."
-                                   th:field="*{comment}" th:errorclass="is-invalid" id="comment">
-                        </div>
-                        <span class="text-danger" th:style="${'display: inline'}" style="display: none;"
-                              th:errors="*{comment}"></span>
                     </td>
                 </tr>
             </table>
