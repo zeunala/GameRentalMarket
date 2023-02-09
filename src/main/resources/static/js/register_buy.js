@@ -28,7 +28,7 @@ const PriceCalcObj = {
     showTotalPrice() {
         const totalPrice = this._calcTotalPrice();
         document.getElementById("totalPriceDisplay").innerText = `${totalPrice.toLocaleString()}`;
-        document.getElementById("totalPrice").value = totalPrice;
+        document.getElementById("totalPriceHiddenValue").value = totalPrice;
     }
 }
 
