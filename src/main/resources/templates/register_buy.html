@@ -52,65 +52,99 @@
 </nav>
 
 <div class="container p-5" style="max-width: 900px">
-    <div>
-        <h4 class="text-primary">구매정보 확인</h4>
-        <hr/>
-    </div>
-    <div class="my-4">
-        <div class="text-dark fw-bold my-2">물품정보</div>
-        <table class="table align-middle">
-            <tr>
-                <th class="col-4 text-center table-info">타이틀명</th>
-                <td class="col-8">Lorem ipsum</td>
-            </tr>
-            <tr>
-                <th class="text-center table-info">구매유형</th>
-                <td>렌탈</td>
-            </tr>
-            <tr>
-                <th class="text-center table-info">거래방법</th>
-                <td>직거래</td>
-            </tr>
-            <!-- 렌탈의 경우에만 해당 -->
-            <tr>
-                <th class="text-center table-info">대여기간</th>
-                <td>
-                    <div class="form-group">
-                        <select class="form-select" id="periodSelect">
-                            <option>3주</option>
-                            <option>6주</option>
-                            <option>9주</option>
-                        </select>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <th class="text-center table-info">총 가격</th>
-                <td>0,000원 (택배비 없음)</td>
-            </tr>
-        </table>
-    </div>
-    <div class="my-4">
-        <div class="text-dark fw-bold my-2">내 정보</div>
-        <table class="table align-middle">
-            <tr>
-                <th class="col-4 text-center table-info">이름</th>
-                <td class="col-8">Lorem</td>
-            </tr>
-            <tr>
-                <th class="text-center table-info">연락처</th>
-                <td>010-1234-5678</td>
-            </tr>
-            <tr>
-                <th class="text-center table-info">이메일</th>
-                <td>xxx@gmail.com</td>
-            </tr>
-        </table>
-    </div>
-    <div class="my-5 row">
-        <button class="btn btn-primary btn-lg col mx-5" type="button">구매신청</button>
-        <button class="btn btn-secondary btn-lg col mx-5" type="button" onclick="history.back()">돌아가기</button>
-    </div>
+    <form action="./register_buy.html" th:action method="post">
+        <div>
+            <h4 class="text-primary">구매정보 확인</h4>
+            <hr/>
+        </div>
+        <div class="my-4">
+            <div class="text-dark fw-bold my-2">물품정보</div>
+            <table class="table align-middle">
+                <tr>
+                    <th class="col-4 text-center table-info">타이틀명</th>
+                    <td class="col-8" th:text="${postInfo.title}">Lorem ipsum</td>
+                </tr>
+                <tr>
+                    <th class="text-center table-info">구매유형</th>
+                    <td th:text="${postInfo.rentalFlag == 1 ? '렌탈' : '중고'}">렌탈</td>
+                </tr>
+                <tr>
+                    <th class="text-center table-info">거래방법</th>
+                    <td th:text="${postInfo.directFlag == 1 ? '직거래' : '택배'}">직거래</td>
+                </tr>
+                <!-- 렌탈의 경우에만 해당 -->
+                <tr th:if="${postInfo.rentalFlag == 1}">
+                    <th class="text-center table-info">대여기간</th>
+                    <td>
+                        <div class="form-group">
+                            <select class="form-select" id="periodSelect">
+                                <option value="3">
+                                    3주 (<span th:text="${#numbers.formatInteger(postInfo.price, 1, 'COMMA')}">5,000</span>원)
+                                    <span th:if="${postInfo.extensionPrice == null}" th:text="' [연장불가]'"></span>
+                                </option>
+                                <option th:if="${postInfo.extensionPrice}" value="4">
+                                    4주 (<span th:text="${#numbers.formatInteger(postInfo.price + postInfo.extensionPrice, 1, 'COMMA')}">6,000</span>원)
+                                </option>
+                                <option th:if="${postInfo.extensionPrice}" value="5">
+                                    5주 (<span th:text="${#numbers.formatInteger(postInfo.price + (postInfo.extensionPrice * 2), 1, 'COMMA')}">7,000</span>원)
+                                </option>
+                                <option th:if="${postInfo.extensionPrice}" value="6">
+                                    6주 (<span th:text="${#numbers.formatInteger(postInfo.price + (postInfo.extensionPrice * 3), 1, 'COMMA')}">8,000</span>원)
+                                </option>
+                                <option th:if="${postInfo.extensionPrice}" value="7">
+                                    7주 (<span th:text="${#numbers.formatInteger(postInfo.price + (postInfo.extensionPrice * 4), 1, 'COMMA')}">9,000</span>원)
+                                </option>
+                                <option th:if="${postInfo.extensionPrice}" value="8">
+                                    8주 (<span th:text="${#numbers.formatInteger(postInfo.price + (postInfo.extensionPrice * 5), 1, 'COMMA')}">10,000</span>원)
+                                </option>
+                                <option th:if="${postInfo.extensionPrice}" value="9">
+                                    9주 (<span th:text="${#numbers.formatInteger(postInfo.price + (postInfo.extensionPrice * 6), 1, 'COMMA')}">11,000</span>원)
+                                </option>
+                            </select>
+                        </div>
+                    </td>
+                </tr>
+                <!-- 렌탈+보증금이 있는 경우에만 해당 -->
+                <tr th:if="${postInfo.rentalFlag} == 1 and ${postInfo.deposit}">
+                    <th class="text-center table-info">보증금</th>
+                    <td><span th:text="${#numbers.formatInteger(postInfo.deposit, 1, 'COMMA')}">10,000</span>원</td>
+                </tr>
+                <tr>
+                    <th class="text-center table-info">총 가격</th>
+                    <td>
+                        <span id="totalPriceDisplay">0,000</span>원
+                        <input type="hidden" id="priceHiddenValue" th:value="${postInfo.price}" value="5000">
+                        <input type="hidden" id="extensionPriceHiddenValue"
+                               th:if="${postInfo.extensionPrice}" th:value="${postInfo.extensionPrice}" value="1000">
+                        <input type="hidden" id="depositHiddenValue"
+                               th:if="${postInfo.deposit}" th:value="${postInfo.deposit}" value="10000">
+                        <input type="hidden" id="totalPrice">
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="my-4">
+            <div class="text-dark fw-bold my-2">내 정보</div>
+            <table class="table align-middle">
+                <tr>
+                    <th class="col-4 text-center table-info">이름</th>
+                    <td class="col-8" th:text="${buyerInfo.name}">Lorem</td>
+                </tr>
+                <tr>
+                    <th class="text-center table-info">연락처</th>
+                    <td th:text="${buyerInfo.tel}">010-1234-5678</td>
+                </tr>
+                <tr>
+                    <th class="text-center table-info">이메일</th>
+                    <td th:text="${buyerInfo.email}">xxx@gmail.com</td>
+                </tr>
+            </table>
+        </div>
+        <div class="my-5 row">
+            <button class="btn btn-primary btn-lg col mx-5" type="submit">구매신청</button>
+            <button class="btn btn-secondary btn-lg col mx-5" type="button" onclick="history.back()">돌아가기</button>
+        </div>
+    </form>
 </div>
 
 </body>

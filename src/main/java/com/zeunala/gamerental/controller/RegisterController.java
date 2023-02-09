@@ -1,9 +1,6 @@
 package com.zeunala.gamerental.controller;
 
-import com.zeunala.gamerental.dto.Post;
-import com.zeunala.gamerental.dto.ProductInfo;
-import com.zeunala.gamerental.dto.RegisterSellForm;
-import com.zeunala.gamerental.dto.Users;
+import com.zeunala.gamerental.dto.*;
 import com.zeunala.gamerental.service.PostService;
 import com.zeunala.gamerental.service.ProductService;
 import com.zeunala.gamerental.service.UsersService;
@@ -29,8 +26,14 @@ public class RegisterController {
     private final UsersService usersService;
     private final PostService postService;
 
-    @GetMapping("/buy")
-    public String registerBuy() {
+    @GetMapping("/buy/{postId}")
+    public String registerBuy(@PathVariable Integer postId, HttpSession session, Model model) {
+        PostInfo postInfo = postService.getPostInfoByPostId(postId);
+        Users users = usersService.getUsersById((Integer) session.getAttribute(SessionName.LOGIN_USERS_ID));
+
+        model.addAttribute("postInfo", postInfo);
+        model.addAttribute("buyerInfo", users);
+
         return "register_buy";
     }
 
