@@ -1,6 +1,7 @@
 package com.zeunala.gamerental.controller;
 
 import com.zeunala.gamerental.dto.*;
+import com.zeunala.gamerental.service.DealService;
 import com.zeunala.gamerental.service.PostService;
 import com.zeunala.gamerental.service.ProductService;
 import com.zeunala.gamerental.service.UsersService;
@@ -25,6 +26,7 @@ public class RegisterController {
     private final ProductService productService;
     private final UsersService usersService;
     private final PostService postService;
+    private final DealService dealService;
 
     @GetMapping("/buy/{postId}")
     public String registerBuy(@PathVariable Integer postId, HttpSession session, Model model) {
@@ -35,6 +37,20 @@ public class RegisterController {
         model.addAttribute("buyerInfo", users);
 
         return "register_buy";
+    }
+
+    @PostMapping("/buy/{postId}")
+    public String registerBuy(@PathVariable Integer postId, HttpSession session, Model model, Integer totalPrice) {
+        try {
+            Deal deal = new Deal(postId, (Integer) session.getAttribute(SessionName.LOGIN_USERS_ID), totalPrice);
+            Deal registeredDeal = dealService.registerDeal(deal);
+            log.info("추가된 거래글 정보: {}", registeredDeal);
+            return "mypage_buy";
+        } catch (Exception e) {
+            log.info("{}", e.getMessage());
+            log.info("유효하지 않은 거래글");
+            return "redirect:/main";
+        }
     }
 
     @GetMapping("/sell/{productId}")
@@ -60,6 +76,7 @@ public class RegisterController {
             log.info("추가된 판매글 정보: {}", registeredPost);
             return "mypage_sell";
         } catch (Exception e) {
+            log.info("{}", e.getMessage());
             bindingResult.reject("postFail", "정상적이지 않은 판매글 등록입니다.");
             addInfoToModel(productId, session, model);
             return "register_sell";
