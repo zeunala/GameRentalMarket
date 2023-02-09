@@ -38,6 +38,6 @@ public class LoginController {
         HttpSession session = request.getSession();
         session.setAttribute(SessionName.LOGIN_USERS_ID,
                 usersService.getUsersByLoginId(loginForm.getLoginId()).getId());
-        return "redirect:main";
+        return "redirect:/main";
     }
 }

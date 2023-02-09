@@ -45,7 +45,7 @@ public class RegisterController {
             Deal deal = new Deal(postId, (Integer) session.getAttribute(SessionName.LOGIN_USERS_ID), totalPrice);
             Deal registeredDeal = dealService.registerDeal(deal);
             log.info("추가된 거래글 정보: {}", registeredDeal);
-            return "mypage_buy";
+            return "redirect:/mypage/buy";
         } catch (IllegalStateException e) {
             log.info("{}", e.getMessage());
             log.info("유효하지 않은 거래글");
@@ -74,7 +74,7 @@ public class RegisterController {
                     registerSellForm.getExtensionPrice(), registerSellForm.getDeposit(), registerSellForm.getComment());
             Post registeredPost = postService.registerPost(post);
             log.info("추가된 판매글 정보: {}", registeredPost);
-            return "mypage_sell";
+            return "redirect:/mypage/sell";
         } catch (Exception e) {
             log.info("{}", e.getMessage());
             bindingResult.reject("postFail", "정상적이지 않은 판매글 등록입니다.");
