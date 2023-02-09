@@ -20,9 +20,13 @@ public class ProductRepositorySql {
             SELECT product.id AS id, product.title AS title, product.description AS description,
             	product.original_price AS originalPrice, file.path AS filePath,
             	FORMATDATETIME(product.create_date, 'yyyy-MM-dd HH:mm:ss') AS createDate,
-            	(SELECT MIN(post.price) FROM post WHERE post.product_id = product.id AND post.rental_flag = 1)
-            		AS minRentalPrice,
-            	(SELECT MIN(post.price) FROM post WHERE post.product_id = product.id AND post.rental_flag = 0)
+            	(SELECT MIN(post.price)
+            	FROM post
+            	WHERE post.product_id = product.id AND post.rental_flag = 1 AND post.status = 0)
+            	    AS minRentalPrice,
+            	(SELECT MIN(post.price)
+            	FROM post
+            	WHERE post.product_id = product.id AND post.rental_flag = 0 AND post.status = 0)
             		AS minUsedPrice
             FROM product
             	INNER JOIN file ON product.file_id = file.id
@@ -36,9 +40,13 @@ public class ProductRepositorySql {
             SELECT product.id AS id, product.title AS title, product.description AS description,
             	product.original_price AS originalPrice, file.path AS filePath,
             	FORMATDATETIME(product.create_date, 'yyyy-MM-dd HH:mm:ss-MM-dd') AS createDate,
-            	(SELECT MIN(post.price) FROM post WHERE post.product_id = product.id AND post.rental_flag = 1)
-            		AS minRentalPrice,
-            	(SELECT MIN(post.price) FROM post WHERE post.product_id = product.id AND post.rental_flag = 0)
+            	(SELECT MIN(post.price)
+            	FROM post
+            	WHERE post.product_id = product.id AND post.rental_flag = 1 AND post.status = 0)
+            	    AS minRentalPrice,
+            	(SELECT MIN(post.price)
+            	FROM post
+            	WHERE post.product_id = product.id AND post.rental_flag = 0 AND post.status = 0)
             		AS minUsedPrice
             FROM product
             	INNER JOIN file ON product.file_id = file.id
@@ -53,9 +61,13 @@ public class ProductRepositorySql {
             SELECT product.id AS id, product.title AS title, product.description AS description,
             	product.original_price AS originalPrice, file.path AS filePath,
             	FORMATDATETIME(product.create_date, 'yyyy-MM-dd HH:mm:ss-MM-dd') AS createDate,
-            	(SELECT MIN(post.price) FROM post WHERE post.product_id = product.id AND post.rental_flag = 1)
-            		AS minRentalPrice,
-            	(SELECT MIN(post.price) FROM post WHERE post.product_id = product.id AND post.rental_flag = 0)
+            	(SELECT MIN(post.price)
+            	FROM post
+            	WHERE post.product_id = product.id AND post.rental_flag = 1 AND post.status = 0)
+            	    AS minRentalPrice,
+            	(SELECT MIN(post.price)
+            	FROM post
+            	WHERE post.product_id = product.id AND post.rental_flag = 0 AND post.status = 0)
             		AS minUsedPrice
             FROM product
             	INNER JOIN file ON product.file_id = file.id
