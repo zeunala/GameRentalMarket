@@ -1,11 +1,5 @@
 const PostFormObj = {
-    _resetFormPrice() {
-        document.getElementById("price").value = null;
-        document.getElementById("extensionPrice").value = null;
-        document.getElementById("deposit").value = null;
-    },
     selectRental() {
-        this._resetFormPrice();
         document.getElementById("priceRow").classList.remove("d-none");
 
         document.getElementById("extensionPriceRow").classList.remove("d-none");
@@ -14,13 +8,26 @@ const PostFormObj = {
         document.getElementById("usedPriceHeader").classList.add("d-none");
     },
     selectUsed() {
-        this._resetFormPrice();
         document.getElementById("priceRow").classList.remove("d-none");
+
+        document.getElementById("extensionPrice").value = null;
+        document.getElementById("deposit").value = null;
 
         document.getElementById("extensionPriceRow").classList.add("d-none");
         document.getElementById("depositRow").classList.add("d-none");
         document.getElementById("rentalPriceHeader").classList.add("d-none");
         document.getElementById("usedPriceHeader").classList.remove("d-none");
+    },
+    /**
+     * 전송 실패 등을 이유로 이미 렌탈/중고에 체크된 상태에서 페이지를 열 경우의 처리
+     */
+    checkAlreadySelected() {
+        if (document.getElementById("selectRental").checked) {
+            this.selectRental();
+        }
+        if (document.getElementById("selectUsed").checked) {
+            this.selectUsed();
+        }
     }
 }
 
@@ -65,6 +72,7 @@ const EventObj = {
  * 문서 로딩 후 실행될 함수들
  */
 function initConfig() {
+    PostFormObj.checkAlreadySelected();
     EventObj.setEventListeners();
 }
 
