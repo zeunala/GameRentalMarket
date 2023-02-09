@@ -58,10 +58,11 @@ public interface DealService {
     List<DealInfo> getAllDealInfoByBuyerUsersIdAndDealStatus(Integer buyerUsersId, Integer dealStatus);
 
     /**
-     * 새로운 deal 데이터 추가
+     * 새로운 deal 데이터 추가, 그에 따라 판매글 상태를 대기물품에서 거래중으로 변경
      *
      * @param deal 추가할 데이터(id값은 DB에서 지정)
      * @return 자동 생성된 id값을 포함한 추가된 데이터
+     * @throws IllegalStateException 판매글의 상태가 이미 거래중인 경우
      */
     Deal registerDeal(Deal deal);
 

@@ -3,15 +3,18 @@ package com.zeunala.gamerental.service.impl;
 import com.zeunala.gamerental.dto.Deal;
 import com.zeunala.gamerental.dto.DealInfo;
 import com.zeunala.gamerental.repository.DealRepository;
+import com.zeunala.gamerental.repository.PostRepository;
 import com.zeunala.gamerental.service.DealService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 public class DealServiceImpl implements DealService {
+    private final PostRepository postRepository;
     private final DealRepository dealRepository;
 
     @Override
@@ -45,7 +48,13 @@ public class DealServiceImpl implements DealService {
     }
 
     @Override
-    public Deal registerDeal(Deal deal) {
+    @Transactional
+    public Deal registerDeal(Deal deal) throws IllegalStateException {
+        if (postRepository.findPostInfoByPostId(deal.getPostId()).getStatus() == 1) {
+            throw new IllegalStateException("이미 거래중인 거래글입니다.");
+        }
+
+        postRepository.updateStatusById(deal.getPostId(), 1);
         return dealRepository.save(deal);
     }
 

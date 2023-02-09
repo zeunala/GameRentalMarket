@@ -46,7 +46,7 @@ public class RegisterController {
             Deal registeredDeal = dealService.registerDeal(deal);
             log.info("추가된 거래글 정보: {}", registeredDeal);
             return "mypage_buy";
-        } catch (Exception e) {
+        } catch (IllegalStateException e) {
             log.info("{}", e.getMessage());
             log.info("유효하지 않은 거래글");
             return "redirect:/main";
