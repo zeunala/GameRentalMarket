@@ -44,7 +44,7 @@ public class JoinController {
             HttpSession session = request.getSession();
             session.setAttribute(SessionName.LOGIN_USERS_ID,
                     usersService.getUsersByLoginId(joinForm.getLoginId()).getId());
-            return "redirect:main";
+            return "redirect:/main";
         } catch (IllegalArgumentException e) {
             bindingResult.reject("joinFail", "중복된 정보로 가입을 시도했습니다.");
             return "join";
