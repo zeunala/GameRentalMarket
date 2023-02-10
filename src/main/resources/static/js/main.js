@@ -121,6 +121,9 @@ const EventObj = {
      * EventListener들을 등록
      */
     setEventListeners() {
+        document.querySelector(".navbar-brand").addEventListener("click", () => {
+            ProductObj.currentCategoryId = null;
+        });
         document.querySelectorAll(".change-category").forEach(e => {
             e.addEventListener("click", () => {
                 ProductObj.currentCategoryId = parseInt(e.dataset.categoryId);
