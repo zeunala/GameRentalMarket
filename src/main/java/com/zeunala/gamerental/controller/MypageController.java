@@ -22,7 +22,14 @@ public class MypageController {
     private final DealService dealService;
 
     @GetMapping("/buy")
-    public String mypageBuy() {
+    public String mypageBuy(HttpSession session, Model model) {
+        Integer buyerUsersId = (Integer) session.getAttribute(SessionName.LOGIN_USERS_ID);
+        List<DealInfo> activeDeal = dealService.getAllDealInfoByBuyerUsersIdAndPostStatus(buyerUsersId, 1);
+        List<DealInfo> closedDeal = dealService.getAllDealInfoByBuyerUsersIdAndPostStatus(buyerUsersId, 2);
+
+        model.addAttribute("activeDeal", activeDeal);
+        model.addAttribute("closedDeal", closedDeal);
+
         return "mypage_buy";
     }
 
