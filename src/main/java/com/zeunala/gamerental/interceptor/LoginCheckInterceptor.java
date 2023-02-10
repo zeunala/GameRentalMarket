@@ -17,7 +17,7 @@ public class LoginCheckInterceptor implements HandlerInterceptor {
             throws Exception {
         HttpSession session = request.getSession();
         if (session.getAttribute(SessionName.LOGIN_USERS_ID) == null) {
-            response.sendRedirect("/login");
+            response.sendRedirect("/login?redirect=" + request.getRequestURI());
             return false;
         }
         return true;

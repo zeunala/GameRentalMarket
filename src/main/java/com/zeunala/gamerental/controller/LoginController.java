@@ -12,6 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequiredArgsConstructor
@@ -25,7 +26,8 @@ public class LoginController {
     }
 
     @PostMapping
-    public String login(@Valid LoginForm loginForm, BindingResult bindingResult, HttpServletRequest request) {
+    public String login(@Valid LoginForm loginForm, BindingResult bindingResult,
+                        @RequestParam(defaultValue = "/") String redirect, HttpServletRequest request) {
         if (bindingResult.hasErrors()) {
             return "login";
         }
@@ -38,6 +40,6 @@ public class LoginController {
         HttpSession session = request.getSession();
         session.setAttribute(SessionName.LOGIN_USERS_ID,
                 usersService.getUsersByLoginId(loginForm.getLoginId()).getId());
-        return "redirect:/main";
+        return "redirect:" + redirect;
     }
 }
