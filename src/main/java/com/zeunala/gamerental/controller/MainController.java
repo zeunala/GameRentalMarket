@@ -4,6 +4,8 @@ import com.zeunala.gamerental.dto.PostInfo;
 import com.zeunala.gamerental.dto.ProductInfo;
 import com.zeunala.gamerental.service.PostService;
 import com.zeunala.gamerental.service.ProductService;
+import com.zeunala.gamerental.util.SessionName;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -44,5 +46,11 @@ public class MainController {
         model.addAttribute("usedPosts", usedPosts);
 
         return "detail";
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+        session.removeAttribute(SessionName.LOGIN_USERS_ID);
+        return "redirect:/main";
     }
 }
