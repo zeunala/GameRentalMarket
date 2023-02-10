@@ -29,7 +29,12 @@ const PromotionObj = {
 }
 
 const ProductObj = {
-    _currentCategoryId: null,
+    /**
+     * 현재 보여지게 할 상품들의 categoryId
+     * null이면 모든 상품이 보여짐
+     * 초기 페이지 로드시 categoryId 파라미터가 있으면 그 값으로 초기화
+     */
+    _currentCategoryId: Number(new URLSearchParams(location.search).get("categoryId")) || null,
     _currentCount: 0,
     _totalCount: 0,
     _convertPriceText(minRentalPrice, minUsedPrice) {
