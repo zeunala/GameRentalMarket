@@ -29,6 +29,17 @@ public class DealInfo {
     Integer postStatus; // 대기물품 0, 거래중 1, 거래종료 2
     Integer dealStatus; // 예약중 0, 구매자 입금 1, 판매자 인계 2, 렌탈중 3, 구매자 반환 4, 판매자 반환수령 및 보증금 입금 5, 거래종료 6
 
+    // 대출 기간 getter (deal 테이블에 따로 두지 않음)
+    public Integer getRentalPeriod() {
+        if (rentalFlag != 1) {
+            return null;
+        }
+
+        if (this.deposit != null) {
+            return (this.totalPrice - this.deposit) / price;
+        }
+        return this.totalPrice / this.price;
+    }
 
     public DealInfo(Integer id, Integer postId, String buyerUsersNickname, String sellerUsersNickname,
                     String sellerUsersHomeAddress, Integer rentalFlag, Integer directFlag, String categoryName,
