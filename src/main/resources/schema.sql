@@ -84,7 +84,7 @@ CREATE TABLE IF NOT EXISTS `deal` (
     `buyer_users_id` INT(11) NOT NULL,
     `total_price` INT(11) NOT NULL,
     `create_date` DATETIME NOT NULL DEFAULT NOW(),
-    `status` TINYINT(1) NOT NULL DEFAULT 0 COMMENT '예약중(구매자등장) 0, 판매자 인계완료 1, 구매자 인수완료 2, 렌탈중 3(렌탈이 아닌 거래는 바로 거래종료로 이동), 구매자 반환완료 4, 판매자 반환수령 5, 거래종료 6',
+    `status` TINYINT(1) NOT NULL DEFAULT 0 COMMENT '예약중(구매자등장) 0, 구매자 입금 1, 판매자 인계 2, 렌탈중 3(중고는 바로 6), 구매자 반환 4, 판매자 반환수령 및 보증금 입금 5(보증금 없으면 바로 6), 거래종료 6',
     `expiration_date` DATETIME NULL,
     PRIMARY KEY (`id`, `post_id`),
     FOREIGN KEY (`buyer_users_id`)
