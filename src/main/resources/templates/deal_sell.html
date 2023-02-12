@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link th:href="@{/favicon.ico}" rel="shortcut icon" type="image/x-icon" href="../static/favicon.ico"/>
+    <!-- Bootstrap CSS -->
+    <link th:href="@{/css/bootstrap.min.css}" href="../static/css/bootstrap.min.css" rel="stylesheet">
+    <script defer th:src="@{/js/register_sell.js}" src="../static/js/register_sell.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <title>GameRentalMarket</title>
+</head>
+
+<body>
+<!-- 네비게이션 바 -->
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" th:href="@{/main}" href="./main.html">
+            <img th:src="@{/img/logo_nav.png}" src="../static/img/logo_nav.png" width="92" height="38" alt="로고이미지">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar"
+                aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbar">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link change-category" th:href="@{/main?categoryId=1}" href="./main.html">PS5/PS4</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link change-category" th:href="@{/main?categoryId=2}" href="./main.html">XSX</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link change-category" th:href="@{/main?categoryId=3}" href="./main.html">Switch</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link change-category" th:href="@{/main?categoryId=4}" href="./main.html">Others</a>
+                </li>
+            </ul>
+            <div class="d-flex">
+                <!-- 로그아웃 상태 -->
+                <div th:if="${session[T(com.zeunala.gamerental.util.SessionName).LOGIN_USERS_ID]} == null">
+                    <a class="btn btn-secondary" th:href="@{/login}" href="./login.html">로그인</a>
+                </div>
+
+                <!-- 로그인 상태 -->
+                <div class="btn-group" th:if="${session[T(com.zeunala.gamerental.util.SessionName).LOGIN_USERS_ID]}">
+                    <div class="dropdown mx-lg-3 mx-2">
+                        <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                            나의 거래정보
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" th:href="@{/mypage/sell}" href="./mypage_sell.html">판매목록 확인</a>
+                            </li>
+                            <li><a class="dropdown-item" th:href="@{/mypage/buy}" href="./mypage_buy.html">구매목록 확인</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <a class="btn btn-secondary" th:href="@{/logout}" href="./logout.html">로그아웃</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="container p-5" style="max-width: 900px">
+    <div>
+        <h4 class="text-primary">판매 진행 정보</h4>
+        <hr/>
+    </div>
+    <div class="my-4">
+        <div class="text-dark fw-bold my-2">물품정보</div>
+        <table class="table align-middle">
+            <tr>
+                <th class="col-4 text-center table-info">카테고리</th>
+                <td class="col-8" th:text="${deal.categoryName}">PS5/PS4</td>
+            </tr>
+            <tr>
+                <th class="text-center table-info">타이틀명</th>
+                <td th:text="${deal.title}">Lorem ipsum</td>
+            </tr>
+            <tr>
+                <th class="text-center table-info">판매문구</th>
+                <td th:text="${deal.comment}">물건 싸게 거래합니다~</td>
+            </tr>
+        </table>
+    </div>
+    <div class="my-4">
+        <div class="text-dark fw-bold my-2">거래정보</div>
+        <table class="table align-middle">
+            <tr>
+                <th class="col-4 text-center table-info">판매유형</th>
+                <td class="col-8">
+                    <span th:text="${deal.rentalFlag == 1 ? '렌탈' : '중고'}">렌탈</span>
+                    <span th:if="${deal.rentalFlag == 1}"> (대여기간: <span th:text="${deal.rentalPeriod}">3</span>주)</span>
+                </td>
+            </tr>
+            <tr>
+                <th class="text-center table-info">거래방법</th>
+                <td>
+                    <span th:text="${deal.directFlag == 1 ? '직거래' : '택배'}">직거래</span>
+                    <span th:if="${deal.directFlag == 1}"> (장소: <span
+                            th:text="${deal.sellerUsersHomeAddress}">서울 강남구</span>)</span>
+                </td>
+            </tr>
+            <tr>
+                <th class="text-center table-info">총 거래금액</th>
+                <td>
+                    &#8361;<span th:text="${#numbers.formatInteger(deal.totalPrice, 1, 'COMMA')}">7,400</span>원
+                    <span th:if="${deal.deposit}">
+                        (보증금 &#8361;<span th:text="${#numbers.formatInteger(deal.deposit, 1, 'COMMA')}">1,000</span>원 포함)
+                    </span>
+                </td>
+            </tr>
+            <tr th:if="${deal.extensionPrice}">
+                <th class="text-center table-info">1주 초과시마다</th>
+                <td>
+                    &#8361;<span th:text="${#numbers.formatInteger(deal.extensionPrice, 1, 'COMMA')}">2,000</span>원
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="my-4">
+        <div class="text-dark fw-bold my-2">상대방(구매자) 정보</div>
+        <table class="table align-middle">
+            <tr>
+                <th class="col-4 text-center table-info">이름</th>
+                <td class="col-8" th:text="${buyer.name}">Lorem</td>
+            </tr>
+            <tr>
+                <th class="col-4 text-center table-info">닉네임</th>
+                <td class="col-8" th:text="${buyer.nickname}">ipsum</td>
+            </tr>
+            <tr>
+                <th class="text-center table-info">연락처</th>
+                <td th:text="${buyer.tel}">010-1234-5678</td>
+            </tr>
+            <tr>
+                <th class="text-center table-info">이메일</th>
+                <td th:text="${buyer.email}">xxx@gmail.com</td>
+            </tr>
+            <tr>
+                <th class="text-center table-info">주소</th>
+                <td th:text="${buyer.homeAddress}">Lorem ipsum</td>
+            </tr>
+        </table>
+    </div>
+    <div class="my-4">
+        <div class="text-dark fw-bold my-2">판매절차</div>
+        <!-- 렌탈/택배의 경우 -->
+        <div th:if="${deal.rentalFlag} == 1 and ${deal.directFlag} == 0" class="text-center row">
+            <div class="col-12 col-md-6 col-lg-3 pb-2">
+                <!-- 현재 해당하는 단계인 경우 bg-info text-white, 아닌 경우 border-info 추가 -->
+                <div th:classappend="${deal.dealStatus} == 0 ? 'bg-info text-white' : 'border-info'" class="card my-2 h-100">
+                    <div class="card-header">1. 입금 대기</div>
+                    <div class="card-body">
+                        <p class="card-text">
+                            구매자가 구매신청을 했습니다.
+                            현재 구매자의 입금을 기다리고 있습니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-3 pb-2">
+                <div th:classappend="${deal.dealStatus} == 1 ? 'bg-info text-white' : 'border-info'" class="card my-2 h-100">
+                    <div class="card-header">2. 구매자 입금</div>
+                    <div class="card-body">
+                        <p class="card-text">
+                            구매자가 입금을 했습니다. 구매자에게 상품을 전달하세요.
+                            구매자가 상품 수령 버튼을 누르면 다음 단계로 이동합니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-3 pb-2">
+                <div th:classappend="${deal.dealStatus} == 2 ? 'bg-info text-white' : 'border-info'" class="card my-2 h-100">
+                    <div class="card-header">3. 렌탈중</div>
+                    <div class="card-body">
+                        <p class="card-text">
+                            구매자가 물건을 받아 사용하고 있습니다.
+                            사용 이후 구매자로부터 물건을 받았으면 반환수령 버튼을 눌러주세요.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- 보증금이 있는 경우만 표시 -->
+            <div class="col-12 col-md-6 col-lg-3 pb-2">
+                <div th:classappend="${deal.dealStatus} == 3 ? 'bg-info text-white' : 'border-info'" class="card my-2 h-100">
+                    <div class="card-header">4. 종료 예정</div>
+                    <div class="card-body">
+                        <p class="card-text">
+                            상품을 반환받았습니다. 구매자에게 보증금을 입금해주세요.
+                            구매자가 보증금 수령 버튼을 누르면 종료됩니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 렌탈/직거래의 경우 -->
+        <div th:if="${deal.rentalFlag} == 1 and ${deal.directFlag} == 1"
+             th:class="'text-center row'" class="text-center row d-none">
+            <div class="col-12 col-md-6 pb-2">
+                <div th:classappend="${deal.dealStatus} == 0 ? 'bg-info text-white' : 'border-info'" class="card my-2 h-100">
+                    <div class="card-header">1. 거래 전</div>
+                    <div class="card-body">
+                        <p class="card-text">
+                            구매자가 구매신청을 했습니다.
+                            구매자와 연락하여 입금받고 상품을 전달해주세요.
+                            구매자가 상품 수령 버튼을 누르면 다음 단계로 이동합니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 pb-2">
+                <div th:classappend="${deal.dealStatus} == 2 ? 'bg-info text-white' : 'border-info'" class="card my-2 h-100">
+                    <div class="card-header">2. 렌탈중</div>
+                    <div class="card-body">
+                        <p class="card-text">
+                            구매자가 물건을 받아 사용하고 있습니다.
+                            사용 후 구매자와 연락하여 상품을 받고 정산해주세요.
+                            상품반환 버튼을 누르면 거래가 완전히 종료됩니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 중고/택배의 경우 -->
+        <div th:if="${deal.rentalFlag} == 0 and ${deal.directFlag} == 0"
+             th:class="'text-center row'" class="text-center row d-none">
+            <div class="col-12 col-md-6 pb-2">
+                <div th:classappend="${deal.dealStatus} == 0 ? 'bg-info text-white' : 'border-info'" class="card my-2 h-100">
+                    <div class="card-header">1. 입금 대기</div>
+                    <div class="card-body">
+                        <p class="card-text">
+                            구매자가 구매신청을 했습니다.
+                            현재 구매자의 입금을 기다리고 있습니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 pb-2">
+                <div th:classappend="${deal.dealStatus} == 1 ? 'bg-info text-white' : 'border-info'" class="card my-2 h-100">
+                    <div class="card-header">2. 구매자 입금</div>
+                    <div class="card-body">
+                        <p class="card-text">
+                            구매자가 입금을 했습니다. 구매자에게 상품을 전달하세요.
+                            구매자가 상품 수령 버튼을 누르면 거래가 완전히 종료됩니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 중고/직거래의 경우 -->
+        <div th:if="${deal.rentalFlag} == 0 and ${deal.directFlag} == 1"
+             th:class="'text-center row'" class="text-center row d-none">
+            <div class="text-center row">
+                <div class="col-12">
+                    <div class="card border-info my-2"> <!-- 단계가 하나 뿐인 경우 -->
+                        <div class="card-body">
+                            <p class="card-text text-start">
+                                구매자가 구매신청을 했습니다.<br>
+                                구매자와 연락하여 입금받고 상품을 전달해주세요.<br>
+                                구매자가 상품 수령 버튼을 누르면 거래가 완전히 종료됩니다.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="my-5 row">
+        <button class="btn btn-primary btn-lg col mx-5" type="submit">진행</button>
+        <button class="btn btn-secondary btn-lg col mx-5" type="button">거래취소</button>
+    </div>
+</div>
+</body>
+
+</html>

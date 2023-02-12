@@ -340,9 +340,9 @@
                                 </table>
                             </div>
                             <div class="d-flex justify-content-center row">
-                                <button class="btn btn-lg btn-primary col-sm-6 buy-button" type="button">
+                                <a class="btn btn-lg btn-primary col-sm-6 buy-button" th:href="@{/deal/sell/{id}(id=${deal.id})}" href="./deal_sell.html">
                                     거래 확인
-                                </button>
+                                </a>
                             </div>
                         </td>
                     </tr>
