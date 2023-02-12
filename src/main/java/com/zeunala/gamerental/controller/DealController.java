@@ -23,6 +23,11 @@ public class DealController {
 
     @GetMapping("/buy/{dealId}")
     public String dealBuy(@PathVariable Integer dealId, Model model) {
+        DealInfo dealInfo = dealService.getDealInfoByDealId(dealId);
+        Users seller = usersService.getUsersByNickname(dealInfo.getSellerUsersNickname());
+
+        model.addAttribute("deal", dealInfo);
+        model.addAttribute("seller", seller);
         return "deal_buy";
     }
 
