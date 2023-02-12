@@ -90,20 +90,58 @@ INSERT INTO `product` (id, category_id, title, description, original_price, file
 INSERT INTO `product` (id, category_id, title, description, original_price, file_id) VALUES (41, 4, '기타 타이틀 5번', '기타 타이틀', 24000,  35);
 INSERT INTO `product` (id, category_id, title, description, original_price, file_id) VALUES (42, 4, '기타 타이틀 6번', '기타 타이틀', 29000,  36);
 
-INSERT INTO `users` (id, name, nickname, email, tel, home_address, login_id, login_password) VALUES (1, '갑', 'AAA', 'AAA@gmail.com', '010-1111-1111', '서울', 'AAA123', '$2a$10$95xF27wD7B7s.TGeUt5UtuNdUJaXzvkG1PV/lNxxjV1u7cWqmNxFW'); -- rawPassword: 1234
-INSERT INTO `users` (id, name, nickname, email, tel, home_address, login_id, login_password) VALUES (2, '을', 'BBB', 'BBB@gmail.com', '010-2222-2222', '인천', 'BBB456', '$2a$10$NRM1oFA87EbebfULTqrgB.6wqLM1zZq6QhvRhLXefzwAlqd7lCBDe'); -- rawPassword: 4567
-INSERT INTO `users` (id, name, nickname, email, tel, home_address, login_id, login_password) VALUES (3, '병', 'CCC', 'CCC@gmail.com', '010-3333-3333', '경기', 'CCC789', '$2a$10$0IyuMKgSPUQimls5hzDLROKanwuv0Efgh/lunkhRKfnTLglkPcTbS'); -- rawPassword: 7890
-INSERT INTO `users` (id, name, nickname, email, tel, home_address, login_id, login_password) VALUES (4, '정', 'DDD', 'DDD@gmail.com', '010-4444-4444', '부산', 'DDD369', '$2a$10$mKZ1m4hUDYsWIAN/IvIjQO3v9Zl8LdKLt4xKkGmmLGRdBSDhbI5cW'); -- rawPassword: 3690
+INSERT INTO `users` (id, name, nickname, email, tel, home_address, login_id, login_password) VALUES (1, '갑', 'AAA', 'AAA@gmail.com', '010-1111-1111', '서울특별시 강남구', 'AAA123', '$2a$10$95xF27wD7B7s.TGeUt5UtuNdUJaXzvkG1PV/lNxxjV1u7cWqmNxFW'); -- rawPassword: 1234
+INSERT INTO `users` (id, name, nickname, email, tel, home_address, login_id, login_password) VALUES (2, '을', 'BBB', 'BBB@gmail.com', '010-2222-2222', '인천광역시 계양구', 'BBB456', '$2a$10$NRM1oFA87EbebfULTqrgB.6wqLM1zZq6QhvRhLXefzwAlqd7lCBDe'); -- rawPassword: 4567
+INSERT INTO `users` (id, name, nickname, email, tel, home_address, login_id, login_password) VALUES (3, '병', 'CCC', 'CCC@gmail.com', '010-3333-3333', '경기도 수원시 장안구', 'CCC789', '$2a$10$0IyuMKgSPUQimls5hzDLROKanwuv0Efgh/lunkhRKfnTLglkPcTbS'); -- rawPassword: 7890
+INSERT INTO `users` (id, name, nickname, email, tel, home_address, login_id, login_password) VALUES (4, '정', 'DDD', 'DDD@gmail.com', '010-4444-4444', '부산광역시 강서구', 'DDD369', '$2a$10$mKZ1m4hUDYsWIAN/IvIjQO3v9Zl8LdKLt4xKkGmmLGRdBSDhbI5cW'); -- rawPassword: 3690
+INSERT INTO `users` (id, name, nickname, email, tel, home_address, login_id, login_password) VALUES (5, '무', 'EEE', 'EEE@gmail.com', '010-1111-1111', '대전광역시 대덕구', 'EEE123', '$2a$10$95xF27wD7B7s.TGeUt5UtuNdUJaXzvkG1PV/lNxxjV1u7cWqmNxFW'); -- rawPassword: 1234
+INSERT INTO `users` (id, name, nickname, email, tel, home_address, login_id, login_password) VALUES (6, '기', 'FFF', 'FFF@gmail.com', '010-2222-2222', '광주광역시 광산구', 'FFF456', '$2a$10$NRM1oFA87EbebfULTqrgB.6wqLM1zZq6QhvRhLXefzwAlqd7lCBDe'); -- rawPassword: 4567
+INSERT INTO `users` (id, name, nickname, email, tel, home_address, login_id, login_password) VALUES (7, '경', 'GGG', 'GGG@gmail.com', '010-3333-3333', '울산광역시 남구', 'GGG789', '$2a$10$0IyuMKgSPUQimls5hzDLROKanwuv0Efgh/lunkhRKfnTLglkPcTbS'); -- rawPassword: 7890
+INSERT INTO `users` (id, name, nickname, email, tel, home_address, login_id, login_password) VALUES (8, '신', 'HHH', 'HHH@gmail.com', '010-4444-4444', '대구광역시 남구', 'HHH369', '$2a$10$mKZ1m4hUDYsWIAN/IvIjQO3v9Zl8LdKLt4xKkGmmLGRdBSDhbI5cW'); -- rawPassword: 3690
 
 -- 갑이 렌탈/직거래로 물건 등록만 한 상황
 INSERT INTO `post` (id, product_id, seller_users_id, rental_flag, direct_flag, price, extension_price, deposit, comment, status) VALUES (1, 1, 1, 1, 1, 6900, 1500, 20000, '싸게 거래합니다', 0);
 -- 을이 렌탈/택배로 물건 등록만 한 상황
 INSERT INTO `post` (id, product_id, seller_users_id, rental_flag, direct_flag, price, extension_price, deposit, comment, status) VALUES (2, 1, 2, 1, 0, 7900, 1500, NULL, '빠르게 빌려드립니다', 0);
--- 병이 렌탈/직거래로 물건 등록하고 정이 구매신청을 한 상황
-INSERT INTO `post` (id, product_id, seller_users_id, rental_flag, direct_flag, price, extension_price, deposit, comment, status) VALUES (3, 1, 3, 1, 1, 6000, 1500, NULL, '물건 빌려드립니다', 1);
-INSERT INTO `deal` (id, post_id, buyer_users_id, total_price, status, expiration_date) VALUES (1, 3, 4, 6000, 0, NULL);
--- 갑이 중고/직거래로 물건을 등록하고 정과 거래를 완료한 상황
-INSERT INTO `post` (id, product_id, seller_users_id, rental_flag, direct_flag, price, extension_price, deposit, comment, status) VALUES (4, 1, 1, 0, 0, 20000, NULL, NULL, '중고로 싸게 팝니다', 2);
-INSERT INTO `deal` (id, post_id, buyer_users_id, total_price, status, expiration_date) VALUES (2, 4, 4, 20000, 0, NULL);
+
+-- 갑이 렌탈/택배로 물건 등록, 을이 구매신청, 현재 입금대기 상태
+INSERT INTO `post` (id, product_id, seller_users_id, rental_flag, direct_flag, price, extension_price, deposit, comment, status) VALUES (3, 1, 1, 1, 0, 6000, 1500, NULL, '물건 빌려드려요', 1);
+INSERT INTO `deal` (id, post_id, buyer_users_id, total_price, status, expiration_date) VALUES (1, 3, 2, 6000, 0, NULL);
+-- 갑이 렌탈/택배로 물건 등록, 병이 구매신청, 현재 구매자입금 상태
+INSERT INTO `post` (id, product_id, seller_users_id, rental_flag, direct_flag, price, extension_price, deposit, comment, status) VALUES (4, 1, 1, 1, 0, 7000, 2000, NULL, '물건 빌려드려요!', 1);
+INSERT INTO `deal` (id, post_id, buyer_users_id, total_price, status, expiration_date) VALUES (2, 4, 3, 9000, 1, NULL);
+-- 갑이 렌탈/택배로 물건 등록, 정이 구매신청, 현재 렌탈중 상태
+INSERT INTO `post` (id, product_id, seller_users_id, rental_flag, direct_flag, price, extension_price, deposit, comment, status) VALUES (5, 1, 1, 1, 0, 8000, 2500, 10000, '물건 빌려드려요@', 1);
+INSERT INTO `deal` (id, post_id, buyer_users_id, total_price, status, expiration_date) VALUES (3, 5, 4, 18000, 2, NULL);
+-- 갑이 렌탈/택배로 물건 등록, 무가 구매신청, 현재 종료예정 상태
+INSERT INTO `post` (id, product_id, seller_users_id, rental_flag, direct_flag, price, extension_price, deposit, comment, status) VALUES (6, 1, 1, 1, 0, 9000, 3000, 20000, '물건 빌려드려요~', 1);
+INSERT INTO `deal` (id, post_id, buyer_users_id, total_price, status, expiration_date) VALUES (4, 6, 5, 29000, 3, NULL);
+-- 갑이 렌탈/택배로 물건 등록, 기가 구매신청, 현재 거래종료 상태
+INSERT INTO `post` (id, product_id, seller_users_id, rental_flag, direct_flag, price, extension_price, deposit, comment, status) VALUES (7, 1, 1, 1, 0, 10000, 4000, 3000, '물건 빌려드려요!!', 2);
+INSERT INTO `deal` (id, post_id, buyer_users_id, total_price, status, expiration_date) VALUES (5, 7, 6, 17000, 4, NULL);
+-- 갑이 렌탈/직거래로 물건 등록, 경이 구매신청, 현재 거래전 상태
+INSERT INTO `post` (id, product_id, seller_users_id, rental_flag, direct_flag, price, extension_price, deposit, comment, status) VALUES (8, 1, 1, 1, 1, 6500, 1500, NULL, '물건 빌려드려요@@', 1);
+INSERT INTO `deal` (id, post_id, buyer_users_id, total_price, status, expiration_date) VALUES (6, 8, 7, 8000, 0, NULL);
+-- 갑이 렌탈/직거래로 물건 등록, 신이 구매신청, 현재 렌탈중 상태
+INSERT INTO `post` (id, product_id, seller_users_id, rental_flag, direct_flag, price, extension_price, deposit, comment, status) VALUES (9, 1, 1, 1, 1, 7500, 2500, 10000, '물건 빌려드려요~~', 1);
+INSERT INTO `deal` (id, post_id, buyer_users_id, total_price, status, expiration_date) VALUES (7, 9, 8, 20000, 2, NULL);
+-- 갑이 렌탈/직거래로 물건 등록, 을이 구매신청, 현재 거래종료 상태
+INSERT INTO `post` (id, product_id, seller_users_id, rental_flag, direct_flag, price, extension_price, deposit, comment, status) VALUES (10, 1, 1, 1, 1, 8500, 3500, 20000, '물건 빌려드려요!!!', 2);
+INSERT INTO `deal` (id, post_id, buyer_users_id, total_price, status, expiration_date) VALUES (8, 10, 2, 28500, 4, NULL);
+-- 갑이 중고/택배로 물건 등록, 병이 구매신청, 현재 거래전 상태
+INSERT INTO `post` (id, product_id, seller_users_id, rental_flag, direct_flag, price, extension_price, deposit, comment, status) VALUES (11, 1, 1, 0, 0, 30000, NULL, NULL, '물건 팝니다', 1);
+INSERT INTO `deal` (id, post_id, buyer_users_id, total_price, status, expiration_date) VALUES (9, 11, 3, 30000, 0, NULL);
+-- 갑이 중고/택배로 물건 등록, 정이 구매신청, 현재 구매자입금 상태
+INSERT INTO `post` (id, product_id, seller_users_id, rental_flag, direct_flag, price, extension_price, deposit, comment, status) VALUES (12, 1, 1, 0, 0, 35000, NULL, NULL, '물건 팝니다!', 1);
+INSERT INTO `deal` (id, post_id, buyer_users_id, total_price, status, expiration_date) VALUES (10, 12, 4, 35000, 1, NULL);
+-- 갑이 중고/택배로 물건 등록, 무가 구매신청, 현재 거래종료 상태
+INSERT INTO `post` (id, product_id, seller_users_id, rental_flag, direct_flag, price, extension_price, deposit, comment, status) VALUES (13, 1, 1, 0, 0, 40000, NULL, NULL, '물건 팝니다~', 2);
+INSERT INTO `deal` (id, post_id, buyer_users_id, total_price, status, expiration_date) VALUES (11, 13, 5, 40000, 4, NULL);
+-- 갑이 중고/직거래로 물건 등록, 기가 구매신청, 현재 거래전 상태
+INSERT INTO `post` (id, product_id, seller_users_id, rental_flag, direct_flag, price, extension_price, deposit, comment, status) VALUES (14, 1, 1, 0, 1, 22000, NULL, NULL, '물건 팝니다!!', 1);
+INSERT INTO `deal` (id, post_id, buyer_users_id, total_price, status, expiration_date) VALUES (12, 14, 6, 22000, 0, NULL);
+-- 갑이 중고/직거래로 물건 등록, 경이 구매신청, 현재 거래종료 상태
+INSERT INTO `post` (id, product_id, seller_users_id, rental_flag, direct_flag, price, extension_price, deposit, comment, status) VALUES (15, 1, 1, 0, 1, 32000, NULL, NULL, '물건 팝니다~~', 2);
+INSERT INTO `deal` (id, post_id, buyer_users_id, total_price, status, expiration_date) VALUES (13, 15, 7, 32000, 4, NULL);
 
 INSERT INTO `chat_message` (id, deal_id, deal_post_id, sender, message) VALUES (1, 1, 3, 1, '안녕하세요');
