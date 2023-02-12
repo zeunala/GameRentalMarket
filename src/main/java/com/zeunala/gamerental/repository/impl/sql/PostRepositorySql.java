@@ -44,4 +44,9 @@ public class PostRepositorySql {
             SET status = :status
             WHERE id = :id
             """;
+
+    public static final String DELETE_BY_ID = """
+            DELETE FROM post
+            WHERE id = :id;
+            """;
 }

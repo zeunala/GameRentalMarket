@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.Map;
 
 import static com.zeunala.gamerental.repository.impl.sql.PostRepositorySql.*;
+import static com.zeunala.gamerental.repository.impl.sql.UsersRepositorySql.FIND_BY_ID;
 
 @Repository
 public class JdbcTemplatePostRepository implements PostRepository {
@@ -88,6 +89,13 @@ public class JdbcTemplatePostRepository implements PostRepository {
                 .addValue("status", status);
 
         Integer result = jdbc.update(UPDATE_STATUS_BY_ID, sqlParam);
+
+        return result > 0;
+    }
+
+    @Override
+    public Boolean deleteById(Integer id) {
+        Integer result = jdbc.update(DELETE_BY_ID, Map.of("id", id));
 
         return result > 0;
     }
