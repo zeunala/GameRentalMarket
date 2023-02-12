@@ -144,7 +144,7 @@
                 <th class="text-center table-info">이메일</th>
                 <td th:text="${seller.email}">xxx@gmail.com</td>
             </tr>
-            <tr>
+            <tr th:if="${deal.directFlag == 1}">
                 <th class="text-center table-info">주소</th>
                 <td th:text="${seller.homeAddress}">Lorem ipsum</td>
             </tr>
