@@ -52,7 +52,7 @@ public interface DealRepository {
      * 구매자 id, 거래 상태에 해당하는 모든 거래글 정보 반환
      *
      * @param buyerUsersId 구매자 id 조건
-     * @param dealStatus   거래 상태 조건 (0~6)
+     * @param dealStatus   거래 상태 조건 (0~4)
      * @return 해당 조건들이 모두 일치하는 모든 거래글 정보 목록
      */
     List<DealInfo> findAllDealInfoByBuyerUsersIdAndDealStatus(Integer buyerUsersId, Integer dealStatus);

@@ -27,7 +27,7 @@ public class DealInfo {
     String postCreateDate; // "2023-01-01 15:01:02"의 형태로 저장
     String dealCreateDate; // "2023-01-01 15:01:02"의 형태로 저장
     Integer postStatus; // 대기물품 0, 거래중 1, 거래종료 2
-    Integer dealStatus; // 예약중 0, 구매자 입금 1, 판매자 인계 2, 렌탈중 3, 구매자 반환 4, 판매자 반환수령 및 보증금 입금 5, 거래종료 6
+    Integer dealStatus; // 입금대기/거래전 0, 구매자입금 1, 렌탈중 2, 종료예정 3, 거래종료 4
 
     // 대출 기간 getter (deal 테이블에 따로 두지 않음)
     public Integer getRentalPeriod() {
