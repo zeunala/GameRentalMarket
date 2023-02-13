@@ -74,4 +74,12 @@ public interface DealService {
      * @return 변경 성공시 true, 실패시 false 반환
      */
     Boolean changeStatusById(Integer id, Integer status);
+
+    /**
+     * id가 일치하는 deal 데이터 삭제, 그에 따라 판매글 상태를 거래중에서 대기물품으로 변경
+     *
+     * @param id 삭제할 행의 id
+     * @return 삭제 성공시 true, 실패시 false 반환
+     */
+    Boolean deleteDealById(Integer id);
 }

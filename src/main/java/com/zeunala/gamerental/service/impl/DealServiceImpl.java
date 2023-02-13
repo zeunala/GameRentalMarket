@@ -62,4 +62,14 @@ public class DealServiceImpl implements DealService {
     public Boolean changeStatusById(Integer id, Integer status) {
         return dealRepository.updateStatusById(id, status);
     }
+
+    @Override
+    @Transactional
+    public Boolean deleteDealById(Integer id) {
+        if (dealRepository.findDealInfoByDealId(id) != null) {
+            Integer updateTargetPostId = dealRepository.findDealInfoByDealId(id).getPostId();
+            postRepository.updateStatusById(updateTargetPostId, 0);
+        }
+        return dealRepository.deleteById(id);
+    }
 }
