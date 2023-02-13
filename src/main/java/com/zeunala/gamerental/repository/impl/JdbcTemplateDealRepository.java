@@ -108,4 +108,11 @@ public class JdbcTemplateDealRepository implements DealRepository {
 
         return result > 0;
     }
+
+    @Override
+    public Boolean deleteById(Integer id) {
+        Integer result = jdbc.update(DELETE_BY_ID, Map.of("id", id));
+
+        return result > 0;
+    }
 }

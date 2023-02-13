@@ -56,4 +56,9 @@ public class DealRepositorySql {
             SET status = :status
             WHERE id = :id
             """;
+
+    public static final String DELETE_BY_ID = """
+            DELETE FROM deal
+            WHERE id = :id;
+            """;
 }
