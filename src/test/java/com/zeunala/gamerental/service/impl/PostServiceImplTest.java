@@ -97,4 +97,12 @@ class PostServiceImplTest {
             assertThat(postService.getPostInfoByPostId(id).getStatus()).isEqualTo(status);
         }
     }
+
+    @ParameterizedTest
+    @CsvSource({"1,true", "2,true", "100,false", "-1,false"})
+    @DisplayName("판매글 삭제시 삭제유무를 리턴하고 정보가 조회되지 않는지 테스트")
+    void deletePostById(Integer id, Boolean expected) {
+        assertThat(postService.deletePostById(id)).isEqualTo(expected);
+        assertThat(postService.getPostInfoByPostId(id)).isNull();
+    }
 }
