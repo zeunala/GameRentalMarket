@@ -107,7 +107,7 @@ CREATE TABLE IF NOT EXISTS `chat_message` (
     PRIMARY KEY (`id`, `deal_id`, `deal_post_id`),
     FOREIGN KEY (`deal_id` , `deal_post_id`)
     REFERENCES `deal` (`id` , `post_id`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION)
 ENGINE = InnoDB DEFAULT CHARSET=utf8;
 
