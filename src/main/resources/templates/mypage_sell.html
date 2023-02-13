@@ -76,19 +76,19 @@
         <div class="card border-primary mb-3" style="">
             <h5 class="card-header">대기물품</h5>
             <div class="card-body">
-                <h4 class="card-title"><span th:text="${registeringPosts.size()}">4</span>건</h4>
+                <h4 class="card-title"><span id="registeringPostCount" th:text="${registeringPosts.size()}">4</span>건</h4>
             </div>
         </div>
         <div class="card border-primary mb-3" style="">
             <h5 class="card-header">거래중</h5>
             <div class="card-body">
-                <h4 class="card-title"><span th:text="${activeDeal.size()}">2</span>건</h4>
+                <h4 class="card-title"><span id="activeDealCount" th:text="${activeDeal.size()}">2</span>건</h4>
             </div>
         </div>
         <div class="card border-primary mb-3" style="">
             <h5 class="card-header">거래종료</h5>
             <div class="card-body">
-                <h4 class="card-title"><span th:text="${closedDeal.size()}">1</span>건</h4>
+                <h4 class="card-title"><span id="closedDealCount" th:text="${closedDeal.size()}">1</span>건</h4>
             </div>
         </div>
     </div>
@@ -124,7 +124,7 @@
                 </thead>
                 <tbody>
                 <th:block th:each="post : ${registeringPosts}">
-                    <tr class="simple-info">
+                    <tr class="simple-info" th:attr="data-post-info-id=${post.id}">
                         <td th:text="${post.rentalFlag == 1 ? '렌탈' : '중고'}">렌탈</td>
                         <td th:text="${post.directFlag == 1 ? '직거래' : '택배'}">직거래</td>
                         <td th:text="${post.categoryName}">PS5/PS4</td>
@@ -150,7 +150,7 @@
                             </span>
                         </td>
                     </tr>
-                    <tr class="table-active detail-info d-none">
+                    <tr class="table-active detail-info d-none" th:attr="data-post-info-id=${post.id}">
                         <td colspan="7">
                             <div class="d-flex justify-content-center">
                                 <table class="table">
@@ -211,7 +211,8 @@
                                 </table>
                             </div>
                             <div class="d-flex justify-content-center row">
-                                <button class="btn btn-lg btn-primary col-sm-6 buy-button" type="button">
+                                <button class="btn btn-lg btn-primary col-sm-6 buy-button post-delete"
+                                        th:attr="data-post-delete-id=${post.id}" type="button">
                                     글 삭제
                                 </button>
                             </div>
