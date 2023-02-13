@@ -3,6 +3,7 @@ package com.zeunala.gamerental.service.impl;
 import com.zeunala.gamerental.dto.Deal;
 import com.zeunala.gamerental.dto.DealInfo;
 import com.zeunala.gamerental.service.DealService;
+import com.zeunala.gamerental.service.PostService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -21,6 +22,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 @Slf4j
 @SpringBootTest
 class DealServiceImplTest {
+    @Autowired
+    PostService postService;
+
     @Autowired
     DealService dealService;
 
@@ -113,6 +117,22 @@ class DealServiceImplTest {
         assertThat(updateResult).isEqualTo(expected);
         if (updateResult) {
             assertThat(dealService.getDealInfoByDealId(id).getDealStatus()).isEqualTo(status);
+        }
+    }
+
+    @ParameterizedTest
+    @CsvSource({"1,true", "2,true", "100,false", "-1,false"})
+    @DisplayName("거래글 삭제시 삭제유무를 리턴하고 정보가 조회되지 않는지, 판매글은 거래전 상태로 돌아갔는지 테스트")
+    void deleteDealById(Integer id, Boolean expected) {
+        Integer updateTargetPostId = null;
+        if (dealService.getDealInfoByDealId(id) != null) {
+            updateTargetPostId = dealService.getDealInfoByDealId(id).getPostId();
+        }
+
+        assertThat(dealService.deleteDealById(id)).isEqualTo(expected);
+        assertThat(dealService.getDealInfoByDealId(id)).isNull();
+        if (expected) {
+            assertThat(postService.getPostInfoByPostId(updateTargetPostId).getStatus()).isEqualTo(0);
         }
     }
 }
