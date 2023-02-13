@@ -14,7 +14,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
 
+import static com.zeunala.gamerental.repository.impl.sql.PostRepositorySql.DELETE_BY_ID;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Transactional
@@ -96,5 +98,13 @@ class JdbcTemplatePostRepositoryTest {
         if (updateResult) {
             assertThat(postRepository.findPostInfoByPostId(id).getStatus()).isEqualTo(status);
         }
+    }
+
+    @ParameterizedTest
+    @CsvSource({"1,true", "2,true", "100,false", "-1,false"})
+    @DisplayName("판매글 삭제시 삭제유무를 리턴하고 정보가 조회되지 않는지 테스트")
+    void deleteById(Integer id, Boolean expected) {
+        assertThat(postRepository.deleteById(id)).isEqualTo(expected);
+        assertThat(postRepository.findPostInfoByPostId(id)).isNull();
     }
 }
