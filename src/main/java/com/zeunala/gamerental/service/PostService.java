@@ -58,4 +58,12 @@ public interface PostService {
      * @return 변경 성공시 true, 실패시 false 반환
      */
     Boolean changeStatusById(Integer id, Integer status);
+
+    /**
+     * id가 일치하는 post 데이터 삭제
+     *
+     * @param id 삭제할 행의 id
+     * @return 삭제 성공시 true, 실패시 false 반환
+     */
+    Boolean deletePostById(Integer id);
 }

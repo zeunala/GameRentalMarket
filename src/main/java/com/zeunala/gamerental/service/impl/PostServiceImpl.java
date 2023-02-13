@@ -44,4 +44,9 @@ public class PostServiceImpl implements PostService {
     public Boolean changeStatusById(Integer id, Integer status) {
         return postRepository.updateStatusById(id, status);
     }
+
+    @Override
+    public Boolean deletePostById(Integer id) {
+        return postRepository.deleteById(id);
+    }
 }
