@@ -25,7 +25,7 @@ public class DealStatus {
     public static final Integer DEPOSIT_REMAIN = 3;
 
     /**
-     * 거래종료, 든 절차를 마치고 거래가 종료된 상태
+     * 거래종료, 모든 절차를 마치고 거래가 종료된 상태
      */
     public static final Integer AFTER_DEAL = 4;
 }
