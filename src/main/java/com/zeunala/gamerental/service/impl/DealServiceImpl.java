@@ -5,6 +5,7 @@ import com.zeunala.gamerental.dto.DealInfo;
 import com.zeunala.gamerental.repository.DealRepository;
 import com.zeunala.gamerental.repository.PostRepository;
 import com.zeunala.gamerental.service.DealService;
+import com.zeunala.gamerental.util.PostStatus;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -50,11 +51,11 @@ public class DealServiceImpl implements DealService {
     @Override
     @Transactional
     public Deal registerDeal(Deal deal) throws IllegalStateException {
-        if (postRepository.findPostInfoByPostId(deal.getPostId()).getStatus() == 1) {
+        if (postRepository.findPostInfoByPostId(deal.getPostId()).getStatus() == PostStatus.ACTIVE_DEAL) {
             throw new IllegalStateException("이미 거래중인 거래글입니다.");
         }
 
-        postRepository.updateStatusById(deal.getPostId(), 1);
+        postRepository.updateStatusById(deal.getPostId(), PostStatus.ACTIVE_DEAL);
         return dealRepository.save(deal);
     }
 
@@ -68,7 +69,7 @@ public class DealServiceImpl implements DealService {
     public Boolean deleteDealById(Integer id) {
         if (dealRepository.findDealInfoByDealId(id) != null) {
             Integer updateTargetPostId = dealRepository.findDealInfoByDealId(id).getPostId();
-            postRepository.updateStatusById(updateTargetPostId, 0);
+            postRepository.updateStatusById(updateTargetPostId, PostStatus.REGISTERING_POST);
         }
         return dealRepository.deleteById(id);
     }

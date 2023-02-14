@@ -4,6 +4,7 @@ import com.zeunala.gamerental.dto.DealInfo;
 import com.zeunala.gamerental.dto.Users;
 import com.zeunala.gamerental.service.DealService;
 import com.zeunala.gamerental.service.UsersService;
+import com.zeunala.gamerental.util.DealStatus;
 import com.zeunala.gamerental.util.SessionName;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -70,7 +71,7 @@ public class DealController {
         }
 
         // 거래 대기 상태가 아니면 삭제 불가
-        if (dealService.getDealInfoByDealId(dealId).getDealStatus() != 0) {
+        if (dealService.getDealInfoByDealId(dealId).getDealStatus() != DealStatus.BEFORE_DEAL) {
             return new ResponseEntity<>(Map.of("message", "거래 대기 물품만 삭제 가능합니다."), HttpStatus.FORBIDDEN);
         }
 

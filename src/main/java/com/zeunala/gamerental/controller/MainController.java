@@ -4,6 +4,7 @@ import com.zeunala.gamerental.dto.PostInfo;
 import com.zeunala.gamerental.dto.ProductInfo;
 import com.zeunala.gamerental.service.PostService;
 import com.zeunala.gamerental.service.ProductService;
+import com.zeunala.gamerental.util.PostStatus;
 import com.zeunala.gamerental.util.SessionName;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -33,8 +34,12 @@ public class MainController {
     @GetMapping("/detail/{productId}")
     public String detail(@PathVariable Integer productId, Model model) {
         ProductInfo productInfo = productService.getProductInfoByProductId(productId);
-        List<PostInfo> rentalPosts = postService.getAllPostInfoByProductIdAndRentalFlagAndStatus(productId, 1, 0);
-        List<PostInfo> usedPosts = postService.getAllPostInfoByProductIdAndRentalFlagAndStatus(productId, 0, 0);
+        List<PostInfo> rentalPosts = postService.getAllPostInfoByProductIdAndRentalFlagAndStatus(
+                productId, 1, PostStatus.REGISTERING_POST
+        );
+        List<PostInfo> usedPosts = postService.getAllPostInfoByProductIdAndRentalFlagAndStatus(
+                productId, 0, PostStatus.REGISTERING_POST
+        );
 
         model.addAttribute("title", productInfo.getTitle());
         model.addAttribute("imgUrl", "/" + productInfo.getFilePath());

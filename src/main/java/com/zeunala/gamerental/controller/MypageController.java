@@ -4,6 +4,7 @@ import com.zeunala.gamerental.dto.DealInfo;
 import com.zeunala.gamerental.dto.PostInfo;
 import com.zeunala.gamerental.service.DealService;
 import com.zeunala.gamerental.service.PostService;
+import com.zeunala.gamerental.util.PostStatus;
 import com.zeunala.gamerental.util.SessionName;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -24,8 +25,12 @@ public class MypageController {
     @GetMapping("/buy")
     public String mypageBuy(HttpSession session, Model model) {
         Integer buyerUsersId = (Integer) session.getAttribute(SessionName.LOGIN_USERS_ID);
-        List<DealInfo> activeDeal = dealService.getAllDealInfoByBuyerUsersIdAndPostStatus(buyerUsersId, 1);
-        List<DealInfo> closedDeal = dealService.getAllDealInfoByBuyerUsersIdAndPostStatus(buyerUsersId, 2);
+        List<DealInfo> activeDeal = dealService.getAllDealInfoByBuyerUsersIdAndPostStatus(
+                buyerUsersId, PostStatus.ACTIVE_DEAL
+        );
+        List<DealInfo> closedDeal = dealService.getAllDealInfoByBuyerUsersIdAndPostStatus(
+                buyerUsersId, PostStatus.CLOSED_DEAL
+        );
 
         model.addAttribute("activeDeal", activeDeal);
         model.addAttribute("closedDeal", closedDeal);
@@ -36,9 +41,15 @@ public class MypageController {
     @GetMapping("/sell")
     public String mypageSell(HttpSession session, Model model) {
         Integer sellerUsersId = (Integer) session.getAttribute(SessionName.LOGIN_USERS_ID);
-        List<PostInfo> registeringPosts = postService.getAllPostInfoBySellerUsersIdAndStatus(sellerUsersId, 0);
-        List<DealInfo> activeDeal = dealService.getAllDealInfoBySellerUsersIdAndPostStatus(sellerUsersId, 1);
-        List<DealInfo> closedDeal = dealService.getAllDealInfoBySellerUsersIdAndPostStatus(sellerUsersId, 2);
+        List<PostInfo> registeringPosts = postService.getAllPostInfoBySellerUsersIdAndStatus(
+                sellerUsersId, PostStatus.REGISTERING_POST
+        );
+        List<DealInfo> activeDeal = dealService.getAllDealInfoBySellerUsersIdAndPostStatus(
+                sellerUsersId, PostStatus.ACTIVE_DEAL
+        );
+        List<DealInfo> closedDeal = dealService.getAllDealInfoBySellerUsersIdAndPostStatus(
+                sellerUsersId, PostStatus.CLOSED_DEAL
+        );
 
         model.addAttribute("registeringPosts", registeringPosts);
         model.addAttribute("activeDeal", activeDeal);

@@ -2,6 +2,7 @@ package com.zeunala.gamerental.controller;
 
 import com.zeunala.gamerental.service.PostService;
 import com.zeunala.gamerental.service.UsersService;
+import com.zeunala.gamerental.util.PostStatus;
 import com.zeunala.gamerental.util.SessionName;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -42,7 +43,7 @@ public class PostController {
         }
 
         // 거래전 글이 아니면 삭제 불가
-        if (postService.getPostInfoByPostId(postId).getStatus() != 0) {
+        if (postService.getPostInfoByPostId(postId).getStatus() != PostStatus.REGISTERING_POST) {
             return new ResponseEntity<>(Map.of("message", "거래 대기 물품만 삭제 가능합니다."), HttpStatus.FORBIDDEN);
         }
 
