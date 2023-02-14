@@ -76,6 +76,16 @@ public interface DealService {
     Boolean changeStatusById(Integer id, Integer status);
 
     /**
+     * id가 일치하는 deal의 status 값을 beforeStatus에서 afterStatus로 변경, 거래 종료로 변경시 그에 따라 판매글 상태도 거래종료로 변경
+     *
+     * @param id           변경할 행의 id
+     * @param beforeStatus 이전 status 값
+     * @param afterStatus  바꿀 status 값
+     * @return 변경 성공시 true, 실패시 false 반환
+     */
+    Boolean changeStatusById(Integer id, Integer beforeStatus, Integer afterStatus);
+
+    /**
      * id가 일치하는 deal 데이터 삭제, 그에 따라 판매글 상태를 거래중에서 대기물품으로 변경
      *
      * @param id 삭제할 행의 id
