@@ -4,6 +4,8 @@ import com.zeunala.gamerental.dto.Deal;
 import com.zeunala.gamerental.dto.DealInfo;
 import com.zeunala.gamerental.service.DealService;
 import com.zeunala.gamerental.service.PostService;
+import com.zeunala.gamerental.util.DealStatus;
+import com.zeunala.gamerental.util.PostStatus;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -118,6 +120,16 @@ class DealServiceImplTest {
         if (updateResult) {
             assertThat(dealService.getDealInfoByDealId(id).getDealStatus()).isEqualTo(status);
         }
+    }
+
+    @Test
+    @DisplayName("status 값 종료상태로 바꾸고 post 상태도 바뀌는지 확인")
+    void changeStatusById_AfterDeal_ChangePostStatus() {
+        Integer dealId = 1;
+        Boolean updateResult = dealService.changeStatusById(dealId, DealStatus.AFTER_DEAL);
+        assertThat(updateResult).isEqualTo(true);
+        assertThat(dealService.getDealInfoByDealId(dealId).getDealStatus()).isEqualTo(DealStatus.AFTER_DEAL);
+        assertThat(dealService.getDealInfoByDealId(dealId).getPostStatus()).isEqualTo(PostStatus.CLOSED_DEAL);
     }
 
     @ParameterizedTest
