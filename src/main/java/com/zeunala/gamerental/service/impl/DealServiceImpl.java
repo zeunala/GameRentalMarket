@@ -5,6 +5,7 @@ import com.zeunala.gamerental.dto.DealInfo;
 import com.zeunala.gamerental.repository.DealRepository;
 import com.zeunala.gamerental.repository.PostRepository;
 import com.zeunala.gamerental.service.DealService;
+import com.zeunala.gamerental.util.DealStatus;
 import com.zeunala.gamerental.util.PostStatus;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -60,7 +61,13 @@ public class DealServiceImpl implements DealService {
     }
 
     @Override
+    @Transactional
     public Boolean changeStatusById(Integer id, Integer status) {
+        if (status == DealStatus.AFTER_DEAL) {
+            Integer postId = dealRepository.findDealInfoByDealId(id).getPostId();
+            return dealRepository.updateStatusById(id, status)
+                    && postRepository.updateStatusById(postId, PostStatus.CLOSED_DEAL);
+        }
         return dealRepository.updateStatusById(id, status);
     }
 

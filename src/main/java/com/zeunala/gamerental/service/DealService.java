@@ -67,7 +67,7 @@ public interface DealService {
     Deal registerDeal(Deal deal);
 
     /**
-     * id가 일치하는 deal의 status 값을 변경
+     * id가 일치하는 deal의 status 값을 변경, 거래 종료로 변경시 그에 따라 판매글 상태도 거래종료로 변경
      *
      * @param id     변경할 행의 id
      * @param status 바꿀 status 값
