@@ -54,7 +54,7 @@ public class DealRepositorySql {
     public static final String UPDATE_STATUS_BY_ID = """
             UPDATE deal
             SET status = :status
-            WHERE id = :id
+            WHERE id = :id;
             """;
 
     public static final String DELETE_BY_ID = """

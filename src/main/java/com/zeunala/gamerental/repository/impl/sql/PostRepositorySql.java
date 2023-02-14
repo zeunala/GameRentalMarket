@@ -42,7 +42,7 @@ public class PostRepositorySql {
     public static final String UPDATE_STATUS_BY_ID = """
             UPDATE post
             SET status = :status
-            WHERE id = :id
+            WHERE id = :id;
             """;
 
     public static final String DELETE_BY_ID = """

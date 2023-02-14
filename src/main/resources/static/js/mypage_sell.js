@@ -23,7 +23,7 @@ const PostObj = {
                 if (response.ok) {
                     this._deletePostHtml(postId);
                 }
-                return response.json()
+                return response.json();
             }).then(jsonData => alert(jsonData.message));
         }
     }

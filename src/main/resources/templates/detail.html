@@ -125,7 +125,7 @@
         <tbody>
         <th:block th:each="post : ${rentalPosts}">
             <tr class="simple-info">
-                <td th:text="${post.directFlag== 1 ? '직거래' : '택배'}">직거래</td>
+                <td th:text="${post.directFlag == 1 ? '직거래' : '택배'}">직거래</td>
                 <td>
                     <!--/* 직거래인 경우 설명 앞에 "(판매자주소)" 추가 */-->
                     <span th:if="${post.directFlag == 1}" th:text="'(' + ${post.sellerUsersHomeAddress}+')'">
@@ -236,7 +236,7 @@
         <tbody>
         <th:block th:each="post : ${usedPosts}">
             <tr class="simple-info">
-                <td th:text="${post.directFlag== 1 ? '직거래' : '택배'}">직거래</td>
+                <td th:text="${post.directFlag == 1 ? '직거래' : '택배'}">직거래</td>
                 <td>
                     <!--/* 직거래인 경우 설명 앞에 "(판매자주소)" 추가 */-->
                     <span th:if="${post.directFlag == 1}" th:text="'(' + ${post.sellerUsersHomeAddress}+')'">
