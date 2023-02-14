@@ -133,6 +133,27 @@ class DealServiceImplTest {
     }
 
     @ParameterizedTest
+    @CsvSource({"1,0,1,true", "1,2,1,false", "99999,0,2,false"})
+    @DisplayName("status 값을 바꾸고 변경값 확인")
+    void changeStatusById2(Integer id, Integer beforeStatus, Integer afterStatus, Boolean expected) {
+        Boolean updateResult = dealService.changeStatusById(id, beforeStatus, afterStatus);
+        assertThat(updateResult).isEqualTo(expected);
+        if (updateResult) {
+            assertThat(dealService.getDealInfoByDealId(id).getDealStatus()).isEqualTo(afterStatus);
+        }
+    }
+
+    @Test
+    @DisplayName("status 값 종료상태로 바꾸고 post 상태도 바뀌는지 확인")
+    void changeStatusById2_AfterDeal_ChangePostStatus() {
+        Integer dealId = 1;
+        Boolean updateResult = dealService.changeStatusById(dealId, DealStatus.BEFORE_DEAL, DealStatus.AFTER_DEAL);
+        assertThat(updateResult).isEqualTo(true);
+        assertThat(dealService.getDealInfoByDealId(dealId).getDealStatus()).isEqualTo(DealStatus.AFTER_DEAL);
+        assertThat(dealService.getDealInfoByDealId(dealId).getPostStatus()).isEqualTo(PostStatus.CLOSED_DEAL);
+    }
+
+    @ParameterizedTest
     @CsvSource({"1,true", "2,true", "100,false", "-1,false"})
     @DisplayName("거래글 삭제시 삭제유무를 리턴하고 정보가 조회되지 않는지, 판매글은 거래전 상태로 돌아갔는지 테스트")
     void deleteDealById(Integer id, Boolean expected) {
