@@ -15,7 +15,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-import static com.zeunala.gamerental.repository.impl.sql.ProductRepositorySql.*;
+import static com.zeunala.gamerental.repository.impl.sql.postgresql.ProductRepositorySql.*;
 
 @Repository
 public class JdbcTemplateProductRepository implements ProductRepository {

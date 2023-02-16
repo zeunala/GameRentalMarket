@@ -2,7 +2,6 @@ package com.zeunala.gamerental.repository.impl;
 
 import com.zeunala.gamerental.dto.PromotionInfo;
 import com.zeunala.gamerental.repository.PromotionRepository;
-import com.zeunala.gamerental.repository.impl.sql.PromotionRepositorySql;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -10,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import javax.sql.DataSource;
 import java.util.List;
 
-import static com.zeunala.gamerental.repository.impl.sql.PromotionRepositorySql.FIND_ALL_PROMOTION_INFO;
+import static com.zeunala.gamerental.repository.impl.sql.postgresql.PromotionRepositorySql.FIND_ALL_PROMOTION_INFO;
 
 @Repository
 public class JdbcTemplatePromotionRepository implements PromotionRepository {

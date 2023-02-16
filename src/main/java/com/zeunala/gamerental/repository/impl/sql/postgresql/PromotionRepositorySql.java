@@ -1,4 +1,4 @@
-package com.zeunala.gamerental.repository.impl.sql;
+package com.zeunala.gamerental.repository.impl.sql.postgresql;
 
 public class PromotionRepositorySql {
     public static final String FIND_ALL_PROMOTION_INFO = """

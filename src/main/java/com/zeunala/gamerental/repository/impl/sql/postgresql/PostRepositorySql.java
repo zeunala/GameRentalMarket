@@ -1,9 +1,6 @@
-package com.zeunala.gamerental.repository.impl.sql;
+package com.zeunala.gamerental.repository.impl.sql.postgresql;
 
 public class PostRepositorySql {
-    /**
-     * FORMATDATETIME: H2 문법
-     */
     private static final String COMMON_SELECT_POST_INFO_SQL = """
             SELECT post.id AS id,
                 (SELECT users.nickname FROM users WHERE users.id = post.seller_users_id)
@@ -14,7 +11,7 @@ public class PostRepositorySql {
                 category.name AS categoryName, product.title AS title,
                 post.price AS price, post.extension_price AS extensionPrice,
                 post.deposit AS deposit, post.comment AS comment,
-                FORMATDATETIME(post.create_date, 'yyyy-MM-dd HH:mm:ss') AS createDate,
+                to_char(post.create_date, 'yyyy-MM-dd HH24:MI:SS') AS createDate,
                 post.status AS status
             FROM post
                 INNER JOIN product ON post.product_id = product.id

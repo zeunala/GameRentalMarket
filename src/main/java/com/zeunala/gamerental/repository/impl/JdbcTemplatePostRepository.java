@@ -17,8 +17,7 @@ import javax.sql.DataSource;
 import java.util.List;
 import java.util.Map;
 
-import static com.zeunala.gamerental.repository.impl.sql.PostRepositorySql.*;
-import static com.zeunala.gamerental.repository.impl.sql.UsersRepositorySql.FIND_BY_ID;
+import static com.zeunala.gamerental.repository.impl.sql.postgresql.PostRepositorySql.*;
 
 @Repository
 public class JdbcTemplatePostRepository implements PostRepository {

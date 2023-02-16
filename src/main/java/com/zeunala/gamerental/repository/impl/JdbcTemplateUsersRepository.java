@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 import javax.sql.DataSource;
 import java.util.Map;
 
-import static com.zeunala.gamerental.repository.impl.sql.UsersRepositorySql.*;
+import static com.zeunala.gamerental.repository.impl.sql.postgresql.UsersRepositorySql.*;
 
 @Repository
 public class JdbcTemplateUsersRepository implements UsersRepository {

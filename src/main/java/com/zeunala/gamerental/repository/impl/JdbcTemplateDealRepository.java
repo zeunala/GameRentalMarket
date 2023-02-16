@@ -17,7 +17,7 @@ import javax.sql.DataSource;
 import java.util.List;
 import java.util.Map;
 
-import static com.zeunala.gamerental.repository.impl.sql.DealRepositorySql.*;
+import static com.zeunala.gamerental.repository.impl.sql.postgresql.DealRepositorySql.*;
 
 @Repository
 public class JdbcTemplateDealRepository implements DealRepository {

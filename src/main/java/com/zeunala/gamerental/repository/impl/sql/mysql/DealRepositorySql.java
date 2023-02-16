@@ -1,4 +1,4 @@
-package com.zeunala.gamerental.repository.impl.sql;
+package com.zeunala.gamerental.repository.impl.sql.mysql;
 
 public class DealRepositorySql {
     /**
