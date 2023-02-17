@@ -33,10 +33,12 @@ INSERT INTO "file" (id, name, path) VALUES (27, 'PS4 그란 투리스모7 이미
 INSERT INTO "file" (id, name, path) VALUES (28, 'PS5 엘든링 이미지', 'img/product/ps5_엘든링.png');
 INSERT INTO "file" (id, name, path) VALUES (29, 'PS4 엘든링 이미지', 'img/product/ps4_엘든링.png');
 INSERT INTO "file" (id, name, path) VALUES (30, '3DS 몬스터헌터 4G 이미지', 'img/product/3ds_몬스터헌터4G.png');
+SELECT setval('file_id_seq', (SELECT MAX(id) FROM "file"));
 
 INSERT INTO "promotion" (id, file_id, url) VALUES (1, 1, NULL);
 INSERT INTO "promotion" (id, file_id, url) VALUES (2, 2, '/detail/1');
 INSERT INTO "promotion" (id, file_id, url) VALUES (3, 3, NULL);
+SELECT setval('promotion_id_seq', (SELECT MAX(id) FROM "promotion"));
 
 INSERT INTO "product" (id, category_id, title, description, original_price, file_id) VALUES (1, 1, 'PS5 호그와트 레거시', '플레이스테이션 액션 RPG 게임', 79800,  4);
 INSERT INTO "product" (id, category_id, title, description, original_price, file_id) VALUES (2, 1, 'PS5 더 위쳐 3: 와일드 헌트 컴플리트 에디션', '플레이스테이션 RPG 게임', 54800,  5);
@@ -65,6 +67,7 @@ INSERT INTO "product" (id, category_id, title, description, original_price, file
 INSERT INTO "product" (id, category_id, title, description, original_price, file_id) VALUES (25, 1, 'PS5 엘든링', '플레이스테이션 RPG 게임', 64800,  28);
 INSERT INTO "product" (id, category_id, title, description, original_price, file_id) VALUES (26, 1, 'PS4 엘든링', '플레이스테이션 RPG 게임', 64800,  29);
 INSERT INTO "product" (id, category_id, title, description, original_price, file_id) VALUES (27, 4, '3DS 몬스터헌터 4G', '닌텐도 스위치 헌터 액션 게임', 49000,  30);
+SELECT setval('product_id_seq', (SELECT MAX(id) FROM "product"));
 
 INSERT INTO "users" (id, name, nickname, email, tel, home_address, login_id, login_password) VALUES (1, '김주원', '테스트_망고', 'test1@gamerental.com', '010-0000-0001', '서울특별시 강남구', 'test1', '$2a$10$iMSgSUC1ip/pnBK6Zh0jdOtkAtl2OfFXaaJQtsTusLVvtUPFIoRVO');
 INSERT INTO "users" (id, name, nickname, email, tel, home_address, login_id, login_password) VALUES (2, '김하은', '테스트_라면', 'test2@gamerental.com', '010-0000-0002', '서울특별시 강동구', 'test2', '$2a$10$JqarIz51uOm9p2XbL3nG3.dBvP0D9PNNVLko5LoRTGtGlzfJyIDWi');
@@ -87,6 +90,7 @@ INSERT INTO "users" (id, name, nickname, email, tel, home_address, login_id, log
 INSERT INTO "users" (id, name, nickname, email, tel, home_address, login_id, login_password) VALUES (19, '박민석', '테스트_돌풍', 'test19@gamerental.com', '010-0000-0019', '울산광역시 남구', 'test19', '$2a$10$Cq883Ri3IxxMG/XQlwSp4.U1e46G3js9J9Iei93tDLv5hJX7C1dSO');
 INSERT INTO "users" (id, name, nickname, email, tel, home_address, login_id, login_password) VALUES (20, '박민석', '테스트_라떼', 'test20@gamerental.com', '010-0000-0020', '대구광역시 남구', 'test20', '$2a$10$mKZ1m4hUDYsWIAN/IvIjQO3v9Zl8LdKLt4xKkGmmLGRdBSDhbI5cW');
 INSERT INTO "users" (id, name, nickname, email, tel, home_address, login_id, login_password) VALUES (21, '테스트', '테스트_개발', 'test@gamerental.com', '010-0000-0000', '서울특별시 강남구', 'test', '$2a$10$w6z/si3SB30v2p/YQBcZkOlNtK.Bl1nw3E8qdFzrqB5tpTBserScu');
+SELECT setval('users_id_seq', (SELECT MAX(id) FROM "users"));
 
 -- 1번이 렌탈/직거래로 물건 등록만 한 상황
 INSERT INTO "post" (id, product_id, seller_users_id, rental_flag, direct_flag, price, extension_price, deposit, comment, status) VALUES (1, 1, 1, 1, 1, 6900, 1500, 20000, '[테스트] 싸게 거래합니다', 0);
@@ -301,4 +305,8 @@ INSERT INTO "post" (id, product_id, seller_users_id, rental_flag, direct_flag, p
 INSERT INTO "post" (id, product_id, seller_users_id, rental_flag, direct_flag, price, extension_price, deposit, comment, status) VALUES (156, 25, 14, 0, 1, 30000, NULL, NULL, '[테스트] 중고로 싸게 팝니다', 0);
 INSERT INTO "post" (id, product_id, seller_users_id, rental_flag, direct_flag, price, extension_price, deposit, comment, status) VALUES (157, 25, 15, 0, 0, 36000, NULL, NULL, '[테스트] 급하게 쳐분합니다.', 0);
 
+SELECT setval('post_id_seq', (SELECT MAX(id) FROM "post"));
+SELECT setval('deal_id_seq', (SELECT MAX(id) FROM "deal"));
+
 INSERT INTO "chat_message" (id, deal_id, deal_post_id, sender, message) VALUES (1, 1, 3, 1, '안녕하세요');
+SELECT setval('chat_message_id_seq', (SELECT MAX(id) FROM "chat_message"));
