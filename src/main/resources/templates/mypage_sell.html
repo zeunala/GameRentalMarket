@@ -117,7 +117,7 @@
                     <th class="col-lg-1 col" scope="col">거래방법</th>
                     <th class="col-lg-1 col" scope="col">카테고리</th>
                     <th class="col-lg-2 col" scope="col">타이틀명</th>
-                    <th class="col-lg-0 col d-none d-lg-block" scope="col">판매문구</th>
+                    <th class="col-lg-0 col d-none d-lg-table-cell" scope="col">판매문구</th>
                     <th class="col-lg-2 col" scope="col">금액</th>
                     <th class="col-lg-1 col" scope="col">등록시간</th>
                 </tr>
@@ -129,7 +129,7 @@
                         <td th:text="${post.directFlag == 1 ? '직거래' : '택배'}">직거래</td>
                         <td th:text="${post.categoryName}">PS5/PS4</td>
                         <td th:text="${post.title}">PS5 타이틀</td>
-                        <td class="d-none d-lg-block">
+                        <td class="d-none d-lg-table-cell">
                             <!--/* 설명이 15자 이상인 경우 15자까지만 나타내고 뒤에 ... 을 붙임 */-->
                             <span th:if="${#strings.length(post.comment)} > 15"
                                   th:text="${#strings.substring(post.comment, 0, 15)} + '...'">싸게 거래합니다~</span>
@@ -225,7 +225,7 @@
                         <td>택배</td>
                         <td>XSX</td>
                         <td>dolor sit</td>
-                        <td class="d-none d-lg-block">dolor sit amet consectetur</td>
+                        <td class="d-none d-lg-table-cell">dolor sit amet consectetur</td>
                         <td>&#8361;6,900원~</td>
                         <td>01-03</td>
                     </tr>
@@ -234,7 +234,7 @@
                         <td>직거래</td>
                         <td>SWITCH</td>
                         <td>amet consectetur</td>
-                        <td class="d-none d-lg-block">amet consectetur adipisicing elit</td>
+                        <td class="d-none d-lg-table-cell">amet consectetur adipisicing elit</td>
                         <td>&#8361;29,000원</td>
                         <td>01-02</td>
                     </tr>
@@ -243,7 +243,7 @@
                         <td>택배</td>
                         <td>VR</td>
                         <td>adipisicing elit</td>
-                        <td class="d-none d-lg-block">adipisicing elit aspernatur illo</td>
+                        <td class="d-none d-lg-table-cell">adipisicing elit aspernatur illo</td>
                         <td>&#8361;34,000원</td>
                         <td>01-01</td>
                     </tr>
@@ -259,7 +259,7 @@
                     <th class="col-lg-1 col" scope="col">거래방법</th>
                     <th class="col-lg-1 col" scope="col">카테고리</th>
                     <th class="col-lg-2 col" scope="col">타이틀명</th>
-                    <th class="col-lg-0 col d-none d-lg-block" scope="col">판매문구</th>
+                    <th class="col-lg-0 col d-none d-lg-table-cell" scope="col">판매문구</th>
                     <th class="col-lg-2 col" scope="col">거래금액</th>
                     <th class="col-lg-1 col" scope="col">등록시간</th>
                 </tr>
@@ -271,7 +271,7 @@
                         <td th:text="${deal.directFlag == 1 ? '직거래' : '택배'}">택배</td>
                         <td th:text="${deal.categoryName}">XSX</td>
                         <td th:text="${deal.title}">XSX 타이틀</td>
-                        <td class="d-none d-lg-block">
+                        <td class="d-none d-lg-table-cell">
                             <!--/* 설명이 15자 이상인 경우 15자까지만 나타내고 뒤에 ... 을 붙임 */-->
                             <span th:if="${#strings.length(deal.comment)} > 15"
                                   th:text="${#strings.substring(deal.comment, 0, 15)} + '...'">빠르게 거래합니다~</span>
@@ -354,7 +354,7 @@
                     <td>직거래</td>
                     <td>PS5/PS4</td>
                     <td>sit amet</td>
-                    <td class="d-none d-lg-block">sit amet consectetur amet</td>
+                    <td class="d-none d-lg-table-cell">sit amet consectetur amet</td>
                     <td>&#8361;6900원</td>
                     <td>01-03</td>
                 </tr>
@@ -370,7 +370,7 @@
                     <th class="col-lg-1 col" scope="col">거래방법</th>
                     <th class="col-lg-1 col" scope="col">카테고리</th>
                     <th class="col-lg-2 col" scope="col">타이틀명</th>
-                    <th class="col-lg-0 col d-none d-lg-block" scope="col">판매문구</th>
+                    <th class="col-lg-0 col d-none d-lg-table-cell" scope="col">판매문구</th>
                     <th class="col-lg-3 col" scope="col">거래금액</th>
                 </tr>
                 </thead>
@@ -381,7 +381,7 @@
                         <td th:text="${deal.directFlag == 1 ? '직거래' : '택배'}">택배</td>
                         <td th:text="${deal.categoryName}">XSX</td>
                         <td th:text="${deal.title}">XSX 타이틀</td>
-                        <td class="d-none d-lg-block">
+                        <td class="d-none d-lg-table-cell">
                             <!--/* 설명이 15자 이상인 경우 15자까지만 나타내고 뒤에 ... 을 붙임 */-->
                             <span th:if="${#strings.length(deal.comment)} > 15"
                                   th:text="${#strings.substring(deal.comment, 0, 15)} + '...'">빠르게 거래합니다~</span>
