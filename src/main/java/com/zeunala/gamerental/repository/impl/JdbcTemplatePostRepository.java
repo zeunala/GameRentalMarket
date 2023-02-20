@@ -75,9 +75,9 @@ public class JdbcTemplatePostRepository implements PostRepository {
     @Override
     public Post save(Post post) {
         KeyHolder keyholder = jdbcInsert.executeAndReturnKeyHolder(new BeanPropertySqlParameterSource(post));
-        post.setId((Integer)keyholder.getKeys().get("id"));
+        post.setId((Integer) keyholder.getKeys().get("id"));
         post.setCreateDate(keyholder.getKeys().get("create_date").toString().substring(0, 10));
-        post.setStatus((Integer)keyholder.getKeys().get("status"));
+        post.setStatus((Integer) keyholder.getKeys().get("status"));
         return post;
     }
 

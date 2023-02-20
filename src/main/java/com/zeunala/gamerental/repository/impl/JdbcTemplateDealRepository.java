@@ -92,9 +92,9 @@ public class JdbcTemplateDealRepository implements DealRepository {
     @Override
     public Deal save(Deal deal) {
         KeyHolder keyholder = jdbcInsert.executeAndReturnKeyHolder(new BeanPropertySqlParameterSource(deal));
-        deal.setId((Integer)keyholder.getKeys().get("id"));
+        deal.setId((Integer) keyholder.getKeys().get("id"));
         deal.setCreateDate(keyholder.getKeys().get("create_date").toString().substring(0, 10));
-        deal.setStatus((Integer)keyholder.getKeys().get("status"));
+        deal.setStatus((Integer) keyholder.getKeys().get("status"));
         return deal;
     }
 

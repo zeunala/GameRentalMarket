@@ -14,9 +14,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Map;
 
-import static com.zeunala.gamerental.repository.impl.sql.PostRepositorySql.DELETE_BY_ID;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Transactional

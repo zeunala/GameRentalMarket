@@ -1,7 +1,6 @@
 package com.zeunala.gamerental.service.impl;
 
 import com.zeunala.gamerental.dto.PromotionInfo;
-import com.zeunala.gamerental.repository.PromotionRepository;
 import com.zeunala.gamerental.service.PromotionService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.DisplayName;
@@ -12,7 +11,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 @Slf4j
 @SpringBootTest

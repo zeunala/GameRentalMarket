@@ -16,7 +16,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 @Transactional
 @Slf4j
@@ -33,6 +32,7 @@ class PostServiceImplTest {
         log.info("{}번 판매글 정보: {}", postId, postInfo);
         assertThat(postInfo).isNotNull();
     }
+
     @ParameterizedTest
     @ValueSource(ints = {11111111, 22222222, 33333333, 44444444, -1})
     @DisplayName("존재하지 않는 판매글 정보 확인시 null 리턴")

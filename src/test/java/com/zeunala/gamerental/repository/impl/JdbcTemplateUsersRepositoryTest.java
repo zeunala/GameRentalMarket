@@ -94,7 +94,7 @@ class JdbcTemplateUsersRepositoryTest {
         log.info("추가된 유저 정보: {}", savedUsers);
         assertThat(savedUsers.getId()).isNotNull();
     }
-    
+
     @Test
     @DisplayName("새로운 유저를 추가하고 정보가 정상적으로 조회되는지 테스트")
     void save_saveNewUserThenFind_isNotNull() {
