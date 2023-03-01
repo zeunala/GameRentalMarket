@@ -43,7 +43,7 @@
             <div class="d-flex">
                 <!-- 로그아웃 상태 -->
                 <div th:if="${session[T(com.zeunala.gamerental.util.SessionName).LOGIN_USERS_ID]} == null">
-                    <a class="btn btn-secondary" th:href="@{/login}" href="./login.html">로그인</a>
+                    <a class="btn btn-secondary" th:href="@{/login(redirect=${requestURI})}" href="./login.html">로그인</a>
                 </div>
 
                 <!-- 로그인 상태 -->
@@ -54,14 +54,12 @@
                             나의 거래정보
                         </button>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" th:href="@{/mypage/sell}" href="./mypage_sell.html">판매목록 확인</a>
-                            </li>
-                            <li><a class="dropdown-item" th:href="@{/mypage/buy}" href="./mypage_buy.html">구매목록 확인</a>
-                            </li>
+                            <li><a class="dropdown-item" th:href="@{/mypage/sell}" href="./mypage_sell.html">판매목록 확인</a></li>
+                            <li><a class="dropdown-item" th:href="@{/mypage/buy}" href="./mypage_buy.html">구매목록 확인</a></li>
                         </ul>
                     </div>
                     <div>
-                        <a class="btn btn-secondary" th:href="@{/logout}" href="./logout.html">로그아웃</a>
+                        <a class="btn btn-secondary" th:href="@{/logout(redirect=${requestURI})}" href="./logout.html">로그아웃</a>
                     </div>
                 </div>
             </div>

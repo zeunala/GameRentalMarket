@@ -43,7 +43,7 @@
             <div class="d-flex">
                 <!-- 로그아웃 상태 -->
                 <div th:if="${session[T(com.zeunala.gamerental.util.SessionName).LOGIN_USERS_ID]} == null">
-                    <a class="btn btn-secondary" th:href="@{/login}" href="./login.html">로그인</a>
+                    <a class="btn btn-secondary" th:href="@{/login(redirect=${requestURI})}" href="./login.html">로그인</a>
                 </div>
 
                 <!-- 로그인 상태 -->
@@ -59,7 +59,7 @@
                         </ul>
                     </div>
                     <div>
-                        <a class="btn btn-secondary" th:href="@{/logout}" href="./logout.html">로그아웃</a>
+                        <a class="btn btn-secondary" th:href="@{/logout(redirect=${requestURI})}" href="./logout.html">로그아웃</a>
                     </div>
                 </div>
             </div>

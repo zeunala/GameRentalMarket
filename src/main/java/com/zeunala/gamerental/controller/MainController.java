@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -54,8 +55,8 @@ public class MainController {
     }
 
     @GetMapping("/logout")
-    public String logout(HttpSession session) {
+    public String logout(@RequestParam(defaultValue = "/") String redirect, HttpSession session) {
         session.removeAttribute(SessionName.LOGIN_USERS_ID);
-        return "redirect:/main";
+        return "redirect:" + redirect;
     }
 }
