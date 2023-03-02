@@ -39,7 +39,7 @@ public class ProductRepositorySql {
     public static final String FIND_MULTIPLE_PRODUCT_INFO_BY_CATEGORY_ID = """
             SELECT product.id AS id, product.title AS title, product.description AS description,
             	product.original_price AS originalPrice, file.path AS filePath,
-            	FORMATDATETIME(product.create_date, 'yyyy-MM-dd HH:mm:ss-MM-dd') AS createDate,
+            	FORMATDATETIME(product.create_date, 'yyyy-MM-dd HH:mm:ss') AS createDate,
             	(SELECT MIN(post.price)
             	FROM post
             	WHERE post.product_id = product.id AND post.rental_flag = 1 AND post.status = 0)
@@ -60,7 +60,7 @@ public class ProductRepositorySql {
     public static final String FIND_PRODUCT_INFO_BY_PRODUCT_ID = """
             SELECT product.id AS id, product.title AS title, product.description AS description,
             	product.original_price AS originalPrice, file.path AS filePath,
-            	FORMATDATETIME(product.create_date, 'yyyy-MM-dd HH:mm:ss-MM-dd') AS createDate,
+            	FORMATDATETIME(product.create_date, 'yyyy-MM-dd HH:mm:ss') AS createDate,
             	(SELECT MIN(post.price)
             	FROM post
             	WHERE post.product_id = product.id AND post.rental_flag = 1 AND post.status = 0)
