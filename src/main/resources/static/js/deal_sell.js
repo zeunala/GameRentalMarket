@@ -1,4 +1,4 @@
-const PostObj = {
+const DealObj = {
     /**
      * alert창 확인 선택시 현재 페이지의 deal을 삭제한다.
      */
@@ -25,7 +25,7 @@ const EventObj = {
          */
         document.querySelectorAll(".deal-delete").forEach(e => {
             e.addEventListener("click", () => {
-                PostObj.deleteDeal();
+                DealObj.deleteDeal();
             });
         });
     }
