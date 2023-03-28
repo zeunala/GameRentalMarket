@@ -3,3 +3,9 @@
     height: 30vw;
     object-fit: contain;
 }
+
+@media (max-width: 768px) {
+    #productImage {
+        height: 60vw;
+    }
+}
