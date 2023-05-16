@@ -1,6 +1,6 @@
 package com.zeunala.gamerental.repository;
 
-import com.zeunala.gamerental.dto.Deal;
+import com.zeunala.gamerental.dto.DealDto;
 import com.zeunala.gamerental.dto.DealInfo;
 
 import java.util.List;
@@ -60,10 +60,10 @@ public interface DealRepository {
     /**
      * deal 테이블에 새로운 데이터 추가
      *
-     * @param deal 추가할 데이터(id값은 DB에서 지정)
+     * @param dealDto 추가할 데이터(id값은 DB에서 지정)
      * @return 자동 생성된 id값을 포함한 추가된 데이터
      */
-    Deal save(Deal deal);
+    DealDto save(DealDto dealDto);
 
     /**
      * deal 테이블에서 id로 행을 찾아 status 값을 변경

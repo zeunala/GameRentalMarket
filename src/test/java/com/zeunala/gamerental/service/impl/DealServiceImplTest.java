@@ -1,6 +1,6 @@
 package com.zeunala.gamerental.service.impl;
 
-import com.zeunala.gamerental.dto.Deal;
+import com.zeunala.gamerental.dto.DealDto;
 import com.zeunala.gamerental.dto.DealInfo;
 import com.zeunala.gamerental.service.DealService;
 import com.zeunala.gamerental.service.PostService;
@@ -95,18 +95,18 @@ class DealServiceImplTest {
     @Test
     @DisplayName("새로운 거래글 추가")
     void registerDeal() {
-        Deal deal = new Deal(1, 2, 6900);
-        Deal savedDeal = dealService.registerDeal(deal);
-        log.info("추가된 거래글: {}", savedDeal);
-        assertThat(savedDeal.getId()).isNotNull();
+        DealDto dealDto = new DealDto(1, 2, 6900);
+        DealDto savedDealDto = dealService.registerDeal(dealDto);
+        log.info("추가된 거래글: {}", savedDealDto);
+        assertThat(savedDealDto.getId()).isNotNull();
     }
 
     @Test
     @DisplayName("새로운 거래글을 추가하고 정보가 정상적으로 조회되는지 테스트")
     void registerDeal_RegisterThenFind_IsNotNull() {
-        Deal deal = new Deal(1, 3, 8400);
-        Deal savedDeal = dealService.registerDeal(deal);
-        DealInfo findDealInfo = dealService.getDealInfoByDealId(savedDeal.getId());
+        DealDto dealDto = new DealDto(1, 3, 8400);
+        DealDto savedDealDto = dealService.registerDeal(dealDto);
+        DealInfo findDealInfo = dealService.getDealInfoByDealId(savedDealDto.getId());
         log.info("조회된 거래글 정보: {}", findDealInfo);
         assertThat(findDealInfo).isNotNull();
     }

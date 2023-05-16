@@ -42,9 +42,9 @@ public class RegisterController {
     @PostMapping("/buy/{postId}")
     public String registerBuy(@PathVariable Integer postId, HttpSession session, Model model, Integer totalPrice) {
         try {
-            Deal deal = new Deal(postId, (Integer) session.getAttribute(SessionName.LOGIN_USERS_ID), totalPrice);
-            Deal registeredDeal = dealService.registerDeal(deal);
-            log.info("추가된 거래글 정보: {}", registeredDeal);
+            DealDto dealDto = new DealDto(postId, (Integer) session.getAttribute(SessionName.LOGIN_USERS_ID), totalPrice);
+            DealDto registeredDealDto = dealService.registerDeal(dealDto);
+            log.info("추가된 거래글 정보: {}", registeredDealDto);
             return "redirect:/mypage/buy";
         } catch (IllegalStateException e) {
             log.info("{}", e.getMessage());

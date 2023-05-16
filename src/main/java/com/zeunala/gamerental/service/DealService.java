@@ -1,6 +1,6 @@
 package com.zeunala.gamerental.service;
 
-import com.zeunala.gamerental.dto.Deal;
+import com.zeunala.gamerental.dto.DealDto;
 import com.zeunala.gamerental.dto.DealInfo;
 
 import java.util.List;
@@ -60,11 +60,11 @@ public interface DealService {
     /**
      * 새로운 deal 데이터 추가, 그에 따라 판매글 상태를 대기물품에서 거래중으로 변경
      *
-     * @param deal 추가할 데이터(id값은 DB에서 지정)
+     * @param dealDto 추가할 데이터(id값은 DB에서 지정)
      * @return 자동 생성된 id값을 포함한 추가된 데이터
      * @throws IllegalStateException 판매글의 상태가 이미 거래중인 경우
      */
-    Deal registerDeal(Deal deal);
+    DealDto registerDeal(DealDto dealDto);
 
     /**
      * id가 일치하는 deal의 status 값을 변경, 거래 종료로 변경시 그에 따라 판매글 상태도 거래종료로 변경

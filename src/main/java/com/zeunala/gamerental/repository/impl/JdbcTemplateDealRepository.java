@@ -1,6 +1,6 @@
 package com.zeunala.gamerental.repository.impl;
 
-import com.zeunala.gamerental.dto.Deal;
+import com.zeunala.gamerental.dto.DealDto;
 import com.zeunala.gamerental.dto.DealInfo;
 import com.zeunala.gamerental.repository.DealRepository;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -90,12 +90,12 @@ public class JdbcTemplateDealRepository implements DealRepository {
     }
 
     @Override
-    public Deal save(Deal deal) {
-        KeyHolder keyholder = jdbcInsert.executeAndReturnKeyHolder(new BeanPropertySqlParameterSource(deal));
-        deal.setId((Integer) keyholder.getKeys().get("id"));
-        deal.setCreateDate(keyholder.getKeys().get("create_date").toString().substring(0, 10));
-        deal.setStatus((Integer) keyholder.getKeys().get("status"));
-        return deal;
+    public DealDto save(DealDto dealDto) {
+        KeyHolder keyholder = jdbcInsert.executeAndReturnKeyHolder(new BeanPropertySqlParameterSource(dealDto));
+        dealDto.setId((Integer) keyholder.getKeys().get("id"));
+        dealDto.setCreateDate(keyholder.getKeys().get("create_date").toString().substring(0, 10));
+        dealDto.setStatus((Integer) keyholder.getKeys().get("status"));
+        return dealDto;
     }
 
     @Override

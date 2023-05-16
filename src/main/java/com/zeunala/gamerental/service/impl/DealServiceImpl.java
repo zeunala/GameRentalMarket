@@ -1,6 +1,6 @@
 package com.zeunala.gamerental.service.impl;
 
-import com.zeunala.gamerental.dto.Deal;
+import com.zeunala.gamerental.dto.DealDto;
 import com.zeunala.gamerental.dto.DealInfo;
 import com.zeunala.gamerental.repository.DealRepository;
 import com.zeunala.gamerental.repository.PostRepository;
@@ -51,13 +51,13 @@ public class DealServiceImpl implements DealService {
 
     @Override
     @Transactional
-    public Deal registerDeal(Deal deal) throws IllegalStateException {
-        if (postRepository.findPostInfoByPostId(deal.getPostId()).getStatus() == PostStatus.ACTIVE_DEAL) {
+    public DealDto registerDeal(DealDto dealDto) throws IllegalStateException {
+        if (postRepository.findPostInfoByPostId(dealDto.getPostId()).getStatus() == PostStatus.ACTIVE_DEAL) {
             throw new IllegalStateException("이미 거래중인 거래글입니다.");
         }
 
-        postRepository.updateStatusById(deal.getPostId(), PostStatus.ACTIVE_DEAL);
-        return dealRepository.save(deal);
+        postRepository.updateStatusById(dealDto.getPostId(), PostStatus.ACTIVE_DEAL);
+        return dealRepository.save(dealDto);
     }
 
     @Override

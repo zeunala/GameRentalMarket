@@ -1,6 +1,6 @@
 package com.zeunala.gamerental.repository.impl;
 
-import com.zeunala.gamerental.dto.Deal;
+import com.zeunala.gamerental.dto.DealDto;
 import com.zeunala.gamerental.dto.DealInfo;
 import com.zeunala.gamerental.repository.DealRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -89,18 +89,18 @@ class JdbcTemplateDealRepositoryTest {
     @Test
     @DisplayName("새로운 거래글 추가")
     void save() {
-        Deal deal = new Deal(1, 2, 6900);
-        Deal savedDeal = dealRepository.save(deal);
-        log.info("추가된 거래글: {}", savedDeal);
-        assertThat(savedDeal.getId()).isNotNull();
+        DealDto dealDto = new DealDto(1, 2, 6900);
+        DealDto savedDealDto = dealRepository.save(dealDto);
+        log.info("추가된 거래글: {}", savedDealDto);
+        assertThat(savedDealDto.getId()).isNotNull();
     }
 
     @Test
     @DisplayName("새로운 거래글을 추가하고 정보가 정상적으로 조회되는지 테스트")
     void save_SaveDealThenFind_IsNotNull() {
-        Deal deal = new Deal(1, 3, 8400);
-        Deal savedDeal = dealRepository.save(deal);
-        DealInfo findDealInfo = dealRepository.findDealInfoByDealId(savedDeal.getId());
+        DealDto dealDto = new DealDto(1, 3, 8400);
+        DealDto savedDealDto = dealRepository.save(dealDto);
+        DealInfo findDealInfo = dealRepository.findDealInfoByDealId(savedDealDto.getId());
         log.info("조회된 거래글 정보: {}", findDealInfo);
         assertThat(findDealInfo).isNotNull();
     }
