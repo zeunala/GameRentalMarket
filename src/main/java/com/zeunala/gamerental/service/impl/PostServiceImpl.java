@@ -1,6 +1,6 @@
 package com.zeunala.gamerental.service.impl;
 
-import com.zeunala.gamerental.dto.Post;
+import com.zeunala.gamerental.dto.PostDto;
 import com.zeunala.gamerental.dto.PostInfo;
 import com.zeunala.gamerental.repository.PostRepository;
 import com.zeunala.gamerental.service.PostService;
@@ -36,8 +36,8 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public Post registerPost(Post post) {
-        return postRepository.save(post);
+    public PostDto registerPost(PostDto postDto) {
+        return postRepository.save(postDto);
     }
 
     @Override

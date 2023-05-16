@@ -1,6 +1,6 @@
 package com.zeunala.gamerental.repository.impl;
 
-import com.zeunala.gamerental.dto.Post;
+import com.zeunala.gamerental.dto.PostDto;
 import com.zeunala.gamerental.dto.PostInfo;
 import com.zeunala.gamerental.repository.PostRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -71,18 +71,18 @@ class JdbcTemplatePostRepositoryTest {
     @Test
     @DisplayName("새로운 판매글 추가")
     void save() {
-        Post post = new Post(1, 1, 1, 1, 5000, 1000, null, "물건 싸게 빌려드립니다~");
-        Post savedPost = postRepository.save(post);
-        log.info("추가된 판매글: {}", savedPost);
-        assertThat(savedPost.getId()).isNotNull();
+        PostDto postDto = new PostDto(1, 1, 1, 1, 5000, 1000, null, "물건 싸게 빌려드립니다~");
+        PostDto savedPostDto = postRepository.save(postDto);
+        log.info("추가된 판매글: {}", savedPostDto);
+        assertThat(savedPostDto.getId()).isNotNull();
     }
 
     @Test
     @DisplayName("새로운 판매글을 추가하고 정보가 정상적으로 조회되는지 테스트")
     void save_SavePostThenFind_IsNotNull() {
-        Post post = new Post(1, 1, 0, 1, 25000, null, null, "물건 싸게 팝니다~");
-        Post savedPost = postRepository.save(post);
-        PostInfo findPostInfo = postRepository.findPostInfoByPostId(savedPost.getId());
+        PostDto postDto = new PostDto(1, 1, 0, 1, 25000, null, null, "물건 싸게 팝니다~");
+        PostDto savedPostDto = postRepository.save(postDto);
+        PostInfo findPostInfo = postRepository.findPostInfoByPostId(savedPostDto.getId());
         log.info("조회된 판매글 정보: {}", findPostInfo);
         assertThat(findPostInfo).isNotNull();
     }

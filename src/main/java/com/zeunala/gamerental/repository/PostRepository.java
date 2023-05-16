@@ -1,8 +1,7 @@
 package com.zeunala.gamerental.repository;
 
-import com.zeunala.gamerental.dto.Post;
+import com.zeunala.gamerental.dto.PostDto;
 import com.zeunala.gamerental.dto.PostInfo;
-import com.zeunala.gamerental.dto.Users;
 
 import java.util.List;
 
@@ -46,10 +45,10 @@ public interface PostRepository {
     /**
      * post 테이블에 새로운 데이터 추가
      *
-     * @param post 추가할 데이터(id값은 DB에서 지정)
+     * @param postDto 추가할 데이터(id값은 DB에서 지정)
      * @return 자동 생성된 id값을 포함한 추가된 데이터
      */
-    Post save(Post post);
+    PostDto save(PostDto postDto);
 
     /**
      * post 테이블에서 id로 행을 찾아 status 값을 변경

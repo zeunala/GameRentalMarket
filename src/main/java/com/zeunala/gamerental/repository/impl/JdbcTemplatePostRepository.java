@@ -1,6 +1,6 @@
 package com.zeunala.gamerental.repository.impl;
 
-import com.zeunala.gamerental.dto.Post;
+import com.zeunala.gamerental.dto.PostDto;
 import com.zeunala.gamerental.dto.PostInfo;
 import com.zeunala.gamerental.repository.PostRepository;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -73,12 +73,12 @@ public class JdbcTemplatePostRepository implements PostRepository {
     }
 
     @Override
-    public Post save(Post post) {
-        KeyHolder keyholder = jdbcInsert.executeAndReturnKeyHolder(new BeanPropertySqlParameterSource(post));
-        post.setId((Integer) keyholder.getKeys().get("id"));
-        post.setCreateDate(keyholder.getKeys().get("create_date").toString().substring(0, 10));
-        post.setStatus((Integer) keyholder.getKeys().get("status"));
-        return post;
+    public PostDto save(PostDto postDto) {
+        KeyHolder keyholder = jdbcInsert.executeAndReturnKeyHolder(new BeanPropertySqlParameterSource(postDto));
+        postDto.setId((Integer) keyholder.getKeys().get("id"));
+        postDto.setCreateDate(keyholder.getKeys().get("create_date").toString().substring(0, 10));
+        postDto.setStatus((Integer) keyholder.getKeys().get("status"));
+        return postDto;
     }
 
     @Override

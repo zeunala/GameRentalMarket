@@ -1,6 +1,6 @@
 package com.zeunala.gamerental.service;
 
-import com.zeunala.gamerental.dto.Post;
+import com.zeunala.gamerental.dto.PostDto;
 import com.zeunala.gamerental.dto.PostInfo;
 
 import java.util.List;
@@ -45,10 +45,10 @@ public interface PostService {
     /**
      * 새로운 post 데이터 추가
      *
-     * @param post 추가할 데이터(id값은 DB에서 지정)
+     * @param postDto 추가할 데이터(id값은 DB에서 지정)
      * @return 자동 생성된 id값을 포함한 추가된 데이터
      */
-    Post registerPost(Post post);
+    PostDto registerPost(PostDto postDto);
 
     /**
      * id가 일치하는 post의 status 값을 변경

@@ -69,11 +69,11 @@ public class RegisterController {
         }
 
         try {
-            Post post = new Post(productId, (Integer) session.getAttribute(SessionName.LOGIN_USERS_ID),
+            PostDto postDto = new PostDto(productId, (Integer) session.getAttribute(SessionName.LOGIN_USERS_ID),
                     registerSellForm.getRentalFlag(), registerSellForm.getDirectFlag(), registerSellForm.getPrice(),
                     registerSellForm.getExtensionPrice(), registerSellForm.getDeposit(), registerSellForm.getComment());
-            Post registeredPost = postService.registerPost(post);
-            log.info("추가된 판매글 정보: {}", registeredPost);
+            PostDto registeredPostDto = postService.registerPost(postDto);
+            log.info("추가된 판매글 정보: {}", registeredPostDto);
             return "redirect:/mypage/sell";
         } catch (Exception e) {
             log.info("{}", e.getMessage());
