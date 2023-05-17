@@ -1,5 +1,6 @@
 package com.zeunala.gamerental.dto;
 
+import com.zeunala.gamerental.domain.Promotion;
 import lombok.*;
 
 @Getter
@@ -15,5 +16,11 @@ public class PromotionInfo {
         this.id = id;
         this.filePath = filePath;
         this.url = url;
+    }
+
+    public PromotionInfo(Promotion promotion) {
+        this.id = promotion.getId();
+        this.filePath = promotion.getFile().getPath();
+        this.url = promotion.getUrl();
     }
 }
