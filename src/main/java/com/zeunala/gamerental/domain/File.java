@@ -5,7 +5,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import lombok.Getter;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -16,6 +16,6 @@ public class File {
 
     private String name;
     private String path;
-    private LocalDate createDate;
-    private LocalDate modifyDate;
+    private LocalDateTime createDate;
+    private LocalDateTime modifyDate;
 }
