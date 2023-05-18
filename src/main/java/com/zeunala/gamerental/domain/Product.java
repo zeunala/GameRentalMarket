@@ -1,12 +1,15 @@
 package com.zeunala.gamerental.domain;
 
 import jakarta.persistence.*;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
 @Entity
 @Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Product {
     @Id
     @GeneratedValue
@@ -25,4 +28,15 @@ public class Product {
     private File file;
 
     private LocalDateTime createDate;
+
+    public Product(Integer id, Category category, String title, String description, Integer originalPrice,
+                   File file, LocalDateTime createDate) {
+        this.id = id;
+        this.category = category;
+        this.title = title;
+        this.description = description;
+        this.originalPrice = originalPrice;
+        this.file = file;
+        this.createDate = createDate;
+    }
 }
