@@ -1,7 +1,7 @@
 package com.zeunala.gamerental.controller;
 
 import com.zeunala.gamerental.dto.JoinForm;
-import com.zeunala.gamerental.dto.Users;
+import com.zeunala.gamerental.dto.UsersDto;
 import com.zeunala.gamerental.service.UsersService;
 import com.zeunala.gamerental.util.SessionName;
 import jakarta.servlet.http.HttpServletRequest;
@@ -35,11 +35,11 @@ public class JoinController {
         }
 
         try {
-            Users users = new Users(joinForm.getName(), joinForm.getNickname(), joinForm.getEmail(), joinForm.getTel(),
+            UsersDto usersDto = new UsersDto(joinForm.getName(), joinForm.getNickname(), joinForm.getEmail(), joinForm.getTel(),
                     joinForm.getHomeAddressSido() + " " + joinForm.getHomeAddressSigugun(),
                     joinForm.getLoginId(), joinForm.getLoginPassword());
-            Users registeredUsers = usersService.registerUsers(users);
-            log.info("가입된 유저 정보: {}", registeredUsers);
+            UsersDto registeredUsersDto = usersService.registerUsers(usersDto);
+            log.info("가입된 유저 정보: {}", registeredUsersDto);
 
             HttpSession session = request.getSession();
             session.setAttribute(SessionName.LOGIN_USERS_ID,

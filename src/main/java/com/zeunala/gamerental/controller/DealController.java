@@ -1,7 +1,7 @@
 package com.zeunala.gamerental.controller;
 
 import com.zeunala.gamerental.dto.DealInfo;
-import com.zeunala.gamerental.dto.Users;
+import com.zeunala.gamerental.dto.UsersDto;
 import com.zeunala.gamerental.service.DealService;
 import com.zeunala.gamerental.service.UsersService;
 import com.zeunala.gamerental.util.DealStatus;
@@ -28,7 +28,7 @@ public class DealController {
     @GetMapping("/buy/{dealId}")
     public String dealBuy(@PathVariable Integer dealId, HttpSession session, Model model) {
         DealInfo dealInfo = dealService.getDealInfoByDealId(dealId);
-        Users seller = usersService.getUsersByNickname(dealInfo.getSellerUsersNickname());
+        UsersDto seller = usersService.getUsersByNickname(dealInfo.getSellerUsersNickname());
 
         // 구매자가 아닌 경우 접근 불가
         Integer buyerId = usersService.getUsersByNickname(dealInfo.getBuyerUsersNickname()).getId();
@@ -44,7 +44,7 @@ public class DealController {
     @GetMapping("/sell/{dealId}")
     public String dealSell(@PathVariable Integer dealId, HttpSession session, Model model) {
         DealInfo dealInfo = dealService.getDealInfoByDealId(dealId);
-        Users buyer = usersService.getUsersByNickname(dealInfo.getBuyerUsersNickname());
+        UsersDto buyer = usersService.getUsersByNickname(dealInfo.getBuyerUsersNickname());
 
         // 판매자가 아닌 경우 접근 불가
         Integer sellerId = usersService.getUsersByNickname(dealInfo.getSellerUsersNickname()).getId();

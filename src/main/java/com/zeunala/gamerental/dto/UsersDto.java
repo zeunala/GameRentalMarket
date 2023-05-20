@@ -7,7 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Users {
+public class UsersDto {
     Integer id; // DB에서 생성할 PK값으로 생성자에 존재하지 않음
     String name;
     String nickname;
@@ -17,8 +17,8 @@ public class Users {
     String loginId;
     String loginPassword;
 
-    public Users(String name, String nickname, String email, String tel,
-                 String homeAddress, String loginId, String loginPassword) {
+    public UsersDto(String name, String nickname, String email, String tel,
+                    String homeAddress, String loginId, String loginPassword) {
         this.name = name;
         this.nickname = nickname;
         this.email = email;

@@ -31,10 +31,10 @@ public class RegisterController {
     @GetMapping("/buy/{postId}")
     public String registerBuy(@PathVariable Integer postId, HttpSession session, Model model) {
         PostInfo postInfo = postService.getPostInfoByPostId(postId);
-        Users users = usersService.getUsersById((Integer) session.getAttribute(SessionName.LOGIN_USERS_ID));
+        UsersDto usersDto = usersService.getUsersById((Integer) session.getAttribute(SessionName.LOGIN_USERS_ID));
 
         model.addAttribute("postInfo", postInfo);
-        model.addAttribute("buyerInfo", users);
+        model.addAttribute("buyerInfo", usersDto);
 
         return "register_buy";
     }
@@ -85,9 +85,9 @@ public class RegisterController {
 
     private void addInfoToModel(Integer productId, HttpSession session, Model model) {
         ProductInfo productInfo = productService.getProductInfoByProductId(productId);
-        Users users = usersService.getUsersById((Integer) session.getAttribute(SessionName.LOGIN_USERS_ID));
+        UsersDto usersDto = usersService.getUsersById((Integer) session.getAttribute(SessionName.LOGIN_USERS_ID));
 
         model.addAttribute("productInfo", productInfo);
-        model.addAttribute("sellerInfo", users);
+        model.addAttribute("sellerInfo", usersDto);
     }
 }

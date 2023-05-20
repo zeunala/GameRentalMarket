@@ -1,6 +1,6 @@
 package com.zeunala.gamerental.service.impl;
 
-import com.zeunala.gamerental.dto.Users;
+import com.zeunala.gamerental.dto.UsersDto;
 import com.zeunala.gamerental.service.UsersService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.DisplayName;
@@ -27,86 +27,86 @@ class UsersServiceImplTest {
     @ValueSource(ints = {1, 2, 3, 4})
     @DisplayName("id로 유저정보 조회")
     void getUsersById(Integer id) {
-        Users users = usersService.getUsersById(id);
-        log.info("{}번 유저 정보: {}", id, users);
-        assertThat(users.getId()).isEqualTo(id);
+        UsersDto usersDto = usersService.getUsersById(id);
+        log.info("{}번 유저 정보: {}", id, usersDto);
+        assertThat(usersDto.getId()).isEqualTo(id);
     }
 
     @ParameterizedTest
     @ValueSource(ints = {11111111, 22222222, 33333333, -1})
     @DisplayName("존재하지 않는 id로 유저정보 조회시 null 리턴")
     void getUsersById_NotExist_ReturnNull(Integer id) {
-        Users users = usersService.getUsersById(id);
-        assertThat(users).isNull();
+        UsersDto usersDto = usersService.getUsersById(id);
+        assertThat(usersDto).isNull();
     }
 
     @ParameterizedTest
     @ValueSource(strings = {"AAA123", "BBB456", "CCC789", "DDD369"})
     @DisplayName("loginId로 유저정보 조회")
     void getUsersByLoginId(String loginId) {
-        Users users = usersService.getUsersByLoginId(loginId);
-        assertThat(users.getLoginId()).isEqualTo(loginId);
+        UsersDto usersDto = usersService.getUsersByLoginId(loginId);
+        assertThat(usersDto.getLoginId()).isEqualTo(loginId);
     }
 
     @ParameterizedTest
     @ValueSource(strings = {"aaa123", "bbb456", "CCC", " ", ""})
     @DisplayName("존재하지 않는 loginId로 유저정보 조회시 null 리턴")
     void getUsersByLoginId_NotExist_ReturnNull(String loginId) {
-        Users users = usersService.getUsersByLoginId(loginId);
-        assertThat(users).isNull();
+        UsersDto usersDto = usersService.getUsersByLoginId(loginId);
+        assertThat(usersDto).isNull();
     }
 
     @ParameterizedTest
     @ValueSource(strings = {"AAA@gmail.com", "BBB@gmail.com", "CCC@gmail.com", "DDD@gmail.com"})
     @DisplayName("email로 유저정보 조회")
     void getUsersByEmail(String email) {
-        Users users = usersService.getUsersByEmail(email);
-        assertThat(users.getEmail()).isEqualTo(email);
+        UsersDto usersDto = usersService.getUsersByEmail(email);
+        assertThat(usersDto.getEmail()).isEqualTo(email);
     }
 
     @ParameterizedTest
     @ValueSource(strings = {"AAA123", "AAA", "AAA@naver.com", " ", ""})
     @DisplayName("존재하지 않는 email로 유저정보 조회시 null 리턴")
     void getUsersByEmail_NotExist_ReturnNull(String email) {
-        Users users = usersService.getUsersByEmail(email);
-        assertThat(users).isNull();
+        UsersDto usersDto = usersService.getUsersByEmail(email);
+        assertThat(usersDto).isNull();
     }
 
     @ParameterizedTest
     @ValueSource(strings = {"AAA", "BBB", "CCC", "DDD"})
     @DisplayName("nickname으로 유저정보 조회")
     void getUsersByNickname(String nickname) {
-        Users users = usersService.getUsersByNickname(nickname);
-        assertThat(users.getNickname()).isEqualTo(nickname);
+        UsersDto usersDto = usersService.getUsersByNickname(nickname);
+        assertThat(usersDto.getNickname()).isEqualTo(nickname);
     }
 
     @ParameterizedTest
     @ValueSource(strings = {"AAA123", "AAA@gmail.com", "aaa", " ", ""})
     @DisplayName("존재하지 않는 nickname으로 유저정보 조회시 null 리턴")
     void getUsersByNickname_NotExist_ReturnNull(String nickname) {
-        Users users = usersService.getUsersByNickname(nickname);
-        assertThat(users).isNull();
+        UsersDto usersDto = usersService.getUsersByNickname(nickname);
+        assertThat(usersDto).isNull();
     }
 
     @Test
     @DisplayName("새로운 유저 추가")
     void registerUsers() {
-        Users users = new Users("무", "EEE", "EEE@gmail.com", "010-5555-5555",
+        UsersDto usersDto = new UsersDto("무", "EEE", "EEE@gmail.com", "010-5555-5555",
                 "대전", "EEE258", "2580");
-        Users savedUsers = usersService.registerUsers(users);
-        log.info("추가된 유저 정보: {}", savedUsers);
-        assertThat(savedUsers.getId()).isNotNull();
+        UsersDto savedUsersDto = usersService.registerUsers(usersDto);
+        log.info("추가된 유저 정보: {}", savedUsersDto);
+        assertThat(savedUsersDto.getId()).isNotNull();
     }
 
     @Test
     @DisplayName("중복된 닉네임 입력시 예외 발생")
     void registerUsers_DuplicateNickname_ThrowIllegalArgumentException() {
-        Users users1 = new Users("무", "EEE", "EEE@gmail.com", "010-5555-5555",
+        UsersDto usersDto1 = new UsersDto("무", "EEE", "EEE@gmail.com", "010-5555-5555",
                 "대전", "EEE258", "2580");
-        Users users2 = new Users("기", "EEE", "FFF@gmail.com", "010-6666-6666",
+        UsersDto usersDto2 = new UsersDto("기", "EEE", "FFF@gmail.com", "010-6666-6666",
                 "대구", "FFF147", "1470");
-        assertDoesNotThrow(() -> usersService.registerUsers(users1));
-        assertThrows(IllegalArgumentException.class, () -> usersService.registerUsers(users2));
+        assertDoesNotThrow(() -> usersService.registerUsers(usersDto1));
+        assertThrows(IllegalArgumentException.class, () -> usersService.registerUsers(usersDto2));
     }
 
     @ParameterizedTest

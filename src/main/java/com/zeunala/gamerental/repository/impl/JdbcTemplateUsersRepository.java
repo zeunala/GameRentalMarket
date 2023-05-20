@@ -1,6 +1,6 @@
 package com.zeunala.gamerental.repository.impl;
 
-import com.zeunala.gamerental.dto.Users;
+import com.zeunala.gamerental.dto.UsersDto;
 import com.zeunala.gamerental.repository.UsersRepository;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -27,49 +27,49 @@ public class JdbcTemplateUsersRepository implements UsersRepository {
     }
 
     @Override
-    public Users findById(Integer id) {
+    public UsersDto findById(Integer id) {
         try {
             return jdbc.queryForObject(FIND_BY_ID, Map.of("id", id),
-                    BeanPropertyRowMapper.newInstance(Users.class));
+                    BeanPropertyRowMapper.newInstance(UsersDto.class));
         } catch (EmptyResultDataAccessException e) {
             return null;
         }
     }
 
     @Override
-    public Users findByLoginId(String loginId) {
+    public UsersDto findByLoginId(String loginId) {
         try {
             return jdbc.queryForObject(FIND_BY_LOGIN_ID, Map.of("loginId", loginId),
-                    BeanPropertyRowMapper.newInstance(Users.class));
+                    BeanPropertyRowMapper.newInstance(UsersDto.class));
         } catch (EmptyResultDataAccessException e) {
             return null;
         }
     }
 
     @Override
-    public Users findByEmail(String email) {
+    public UsersDto findByEmail(String email) {
         try {
             return jdbc.queryForObject(FIND_BY_EMAIL, Map.of("email", email),
-                    BeanPropertyRowMapper.newInstance(Users.class));
+                    BeanPropertyRowMapper.newInstance(UsersDto.class));
         } catch (EmptyResultDataAccessException e) {
             return null;
         }
     }
 
     @Override
-    public Users findByNickname(String nickname) {
+    public UsersDto findByNickname(String nickname) {
         try {
             return jdbc.queryForObject(FIND_BY_NICKNAME, Map.of("nickname", nickname),
-                    BeanPropertyRowMapper.newInstance(Users.class));
+                    BeanPropertyRowMapper.newInstance(UsersDto.class));
         } catch (EmptyResultDataAccessException e) {
             return null;
         }
     }
 
     @Override
-    public Users save(Users users) {
-        Number id = jdbcInsert.executeAndReturnKey(new BeanPropertySqlParameterSource(users));
-        users.setId(id.intValue());
-        return users;
+    public UsersDto save(UsersDto usersDto) {
+        Number id = jdbcInsert.executeAndReturnKey(new BeanPropertySqlParameterSource(usersDto));
+        usersDto.setId(id.intValue());
+        return usersDto;
     }
 }
