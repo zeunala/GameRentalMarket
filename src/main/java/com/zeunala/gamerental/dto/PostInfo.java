@@ -1,9 +1,12 @@
 package com.zeunala.gamerental.dto;
 
+import com.zeunala.gamerental.domain.Post;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+
+import java.time.format.DateTimeFormatter;
 
 @Getter
 @Setter
@@ -39,5 +42,21 @@ public class PostInfo {
         this.comment = comment;
         this.createDate = createDate;
         this.status = status;
+    }
+
+    public PostInfo(Post post) {
+        this.id = post.getId();
+        this.sellerUsersNickname = post.getSellerUsers().getNickname();
+        this.sellerUsersHomeAddress = post.getSellerUsers().getHomeAddress();
+        this.rentalFlag = post.getRentalFlag();
+        this.directFlag = post.getDirectFlag();
+        this.categoryName = post.getProduct().getCategory().getName();
+        this.title = post.getProduct().getTitle();
+        this.price = post.getPrice();
+        this.extensionPrice = post.getExtensionPrice();
+        this.deposit = post.getDeposit();
+        this.comment = post.getComment();
+        this.createDate = post.getCreateDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        this.status = post.getStatus();
     }
 }
