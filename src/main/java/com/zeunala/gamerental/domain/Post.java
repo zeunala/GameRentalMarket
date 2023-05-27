@@ -47,4 +47,8 @@ public class Post {
         this.createDate = createDate;
         this.status = status;
     }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
 }
