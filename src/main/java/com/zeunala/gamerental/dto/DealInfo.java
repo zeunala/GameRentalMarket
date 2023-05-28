@@ -1,9 +1,12 @@
 package com.zeunala.gamerental.dto;
 
+import com.zeunala.gamerental.domain.Deal;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+
+import java.time.format.DateTimeFormatter;
 
 @Getter
 @Setter
@@ -64,5 +67,26 @@ public class DealInfo {
         this.dealCreateDate = dealCreateDate;
         this.postStatus = postStatus;
         this.dealStatus = dealStatus;
+    }
+
+    public DealInfo(Deal deal) {
+        this.id = deal.getId();
+        this.postId = deal.getPost().getId();
+        this.buyerUsersNickname = deal.getBuyerUsers().getNickname();
+        this.sellerUsersNickname = deal.getPost().getSellerUsers().getNickname();
+        this.sellerUsersHomeAddress = deal.getPost().getSellerUsers().getHomeAddress();
+        this.rentalFlag = deal.getPost().getRentalFlag();
+        this.directFlag = deal.getPost().getDirectFlag();
+        this.categoryName = deal.getPost().getProduct().getCategory().getName();
+        this.title = deal.getPost().getProduct().getTitle();
+        this.price = deal.getPost().getPrice();
+        this.extensionPrice = deal.getPost().getExtensionPrice();
+        this.totalPrice = deal.getTotalPrice();
+        this.deposit = deal.getPost().getDeposit();
+        this.comment = deal.getPost().getComment();
+        this.postCreateDate = deal.getPost().getCreateDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        this.dealCreateDate = deal.getCreateDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        this.postStatus = deal.getPost().getStatus();
+        this.dealStatus = deal.getStatus();
     }
 }

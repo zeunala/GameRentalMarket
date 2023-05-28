@@ -1,9 +1,12 @@
 package com.zeunala.gamerental.dto;
 
+import com.zeunala.gamerental.domain.Deal;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+
+import java.time.format.DateTimeFormatter;
 
 @Getter
 @Setter
@@ -21,5 +24,14 @@ public class DealDto {
         this.postId = postId;
         this.buyerUsersId = buyerUsersId;
         this.totalPrice = totalPrice;
+    }
+
+    public DealDto(Deal deal) {
+        this.id = deal.getId();
+        this.postId = deal.getPost().getId();
+        this.buyerUsersId = deal.getBuyerUsers().getId();
+        this.totalPrice = deal.getTotalPrice();
+        this.createDate = deal.getCreateDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        this.status = deal.getStatus();
     }
 }
