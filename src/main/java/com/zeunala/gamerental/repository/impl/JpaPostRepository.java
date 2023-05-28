@@ -74,7 +74,6 @@ public class JpaPostRepository implements PostRepository {
         }
 
         post.setStatus(status);
-        em.flush(); // DealServiceImpl에서 JdbcTemplateDealRepository와 같이 호출되므로 임시로 flush 호출
         return true;
     }
 

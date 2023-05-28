@@ -38,4 +38,8 @@ public class Deal {
         this.status = status;
         this.expirationDate = expirationDate;
     }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
 }
