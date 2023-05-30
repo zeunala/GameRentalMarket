@@ -1,5 +1,6 @@
 package com.zeunala.gamerental.dto;
 
+import com.zeunala.gamerental.domain.Users;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -26,6 +27,17 @@ public class UsersDto {
         this.homeAddress = homeAddress;
         this.loginId = loginId;
         this.loginPassword = loginPassword;
+    }
+
+    public UsersDto(Users users) {
+        this.id = users.getId();
+        this.name = users.getName();
+        this.nickname = users.getNickname();
+        this.email = users.getEmail();
+        this.tel = users.getTel();
+        this.homeAddress = users.getHomeAddress();
+        this.loginId = users.getLoginId();
+        this.loginPassword = users.getLoginPassword();
     }
 
     @Override
