@@ -4,7 +4,7 @@ import com.zeunala.gamerental.dto.UsersDto;
 import com.zeunala.gamerental.repository.UsersRepository;
 import com.zeunala.gamerental.service.UsersService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.dao.DuplicateKeyException;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -41,7 +41,7 @@ public class UsersServiceImpl implements UsersService {
         usersDto.setLoginPassword(passwordEncoder.encode(usersDto.getLoginPassword()));
         try {
             return usersRepository.save(usersDto);
-        } catch (DuplicateKeyException e) {
+        } catch (DataIntegrityViolationException e) {
             throw new IllegalArgumentException("이미 존재하는 값이 입력되었습니다.", e);
         }
     }
