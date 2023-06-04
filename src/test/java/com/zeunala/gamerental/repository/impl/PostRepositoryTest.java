@@ -47,7 +47,7 @@ class PostRepositoryTest {
         List<PostInfo> allPostInfo = postRepository.findAllPostInfoByProductIdAndRentalFlagAndStatus(
                 productId, rentalFlag, status);
         assertThat(allPostInfo).allMatch((postInfo) ->
-                postInfo.getRentalFlag() == rentalFlag && postInfo.getStatus() == status);
+                postInfo.getRentalFlag().equals(rentalFlag) && postInfo.getStatus().equals(status));
     }
 
     @ParameterizedTest
@@ -65,7 +65,7 @@ class PostRepositoryTest {
     void findAllPostInfoBySellerUsersIdAndStatus(Integer sellerUsersId, Integer status) {
         List<PostInfo> allPostInfo = postRepository.findAllPostInfoBySellerUsersIdAndStatus(
                 sellerUsersId, status);
-        assertThat(allPostInfo).allMatch((postInfo) -> postInfo.getStatus() == status);
+        assertThat(allPostInfo).allMatch((postInfo) -> postInfo.getStatus().equals(status));
     }
 
     @Test

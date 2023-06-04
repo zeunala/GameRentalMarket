@@ -52,7 +52,7 @@ public class DealServiceImpl implements DealService {
     @Override
     @Transactional
     public DealDto registerDeal(DealDto dealDto) throws IllegalStateException {
-        if (postRepository.findPostInfoByPostId(dealDto.getPostId()).getStatus() == PostStatus.ACTIVE_DEAL) {
+        if (postRepository.findPostInfoByPostId(dealDto.getPostId()).getStatus().equals(PostStatus.ACTIVE_DEAL)) {
             throw new IllegalStateException("이미 거래중인 거래글입니다.");
         }
 
@@ -63,7 +63,7 @@ public class DealServiceImpl implements DealService {
     @Override
     @Transactional
     public Boolean changeStatusById(Integer id, Integer status) {
-        if (status == DealStatus.AFTER_DEAL) {
+        if (status.equals(DealStatus.AFTER_DEAL)) {
             Integer postId = dealRepository.findDealInfoByDealId(id).getPostId();
             return dealRepository.updateStatusById(id, status)
                     && postRepository.updateStatusById(postId, PostStatus.CLOSED_DEAL);
@@ -75,7 +75,7 @@ public class DealServiceImpl implements DealService {
     @Transactional
     public Boolean changeStatusById(Integer id, Integer beforeStatus, Integer afterStatus) {
         if (dealRepository.findDealInfoByDealId(id) == null
-                || dealRepository.findDealInfoByDealId(id).getDealStatus() != beforeStatus) {
+                || !dealRepository.findDealInfoByDealId(id).getDealStatus().equals(beforeStatus)) {
             return false;
         }
         return changeStatusById(id, afterStatus);

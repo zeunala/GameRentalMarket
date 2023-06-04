@@ -43,7 +43,7 @@ public class PostController {
         }
 
         // 거래전 글이 아니면 삭제 불가
-        if (postService.getPostInfoByPostId(postId).getStatus() != PostStatus.REGISTERING_POST) {
+        if (!postService.getPostInfoByPostId(postId).getStatus().equals(PostStatus.REGISTERING_POST)) {
             return new ResponseEntity<>(Map.of("message", "거래 대기 물품만 삭제 가능합니다."), HttpStatus.FORBIDDEN);
         }
 

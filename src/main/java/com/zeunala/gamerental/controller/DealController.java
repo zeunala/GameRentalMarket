@@ -71,7 +71,7 @@ public class DealController {
         }
 
         // 거래 대기 상태가 아니면 삭제 불가
-        if (dealService.getDealInfoByDealId(dealId).getDealStatus() != DealStatus.BEFORE_DEAL) {
+        if (!dealService.getDealInfoByDealId(dealId).getDealStatus().equals(DealStatus.BEFORE_DEAL)) {
             return new ResponseEntity<>(Map.of("message", "거래 대기 물품만 삭제 가능합니다."), HttpStatus.FORBIDDEN);
         }
 
