@@ -20,7 +20,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @Transactional
 @Slf4j
 @SpringBootTest
-class JdbcTemplatePostRepositoryTest {
+class PostRepositoryTest {
     @Autowired
     PostRepository postRepository;
 

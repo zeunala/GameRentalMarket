@@ -14,7 +14,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @Slf4j
 @SpringBootTest
-class JdbcTemplatePromotionRepositoryTest {
+class PromotionRepositoryTest {
     @Autowired
     PromotionRepository promotionRepository;
 
